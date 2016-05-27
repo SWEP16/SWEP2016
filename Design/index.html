@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+      <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+
+      
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="css/style.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+        
+      <div class="col s12">
+        <ul class="tabs">
+        <!--class="active"-->
+          <li class="tab col s4 color3"><a href="#live" class="active">Live</a></li>
+          <li class="tab col s4 color3"><a href="#actual">Aktuelle</a></li>
+          <li class="tab col s4 color3"><a href="#MVList">Gespeicherte</a></li>
+        </ul>
+      </div>
+
+<!-- LIVE TAB VIEW 1-->
+      <div id="live" >
+        <div class="container shorter">
+          <div class="row">
+            <div id="measurementSeries" class="col s12 btn btn-large disabled rounded">
+              Wiederholungsgenauigkeit Messung
+            </div>
+          </div>
+
+          <div class="">EVTL LOGO</div>
+          
+          <div class="liveBottom">
+              <a class=" tab waves-effect waves-dark btn color3 fullwidth trigger roundedTop colorHover">Start</a>
+              <a class="btn fullwidth statusBar disabled color4"><i class="material-icons left">visibility</i> Nutzername
+              </a>
+          </div>
+
+        </div>
+      </div>
+        
+<!-- LIVE TAB VIEW 2-->
+      <div id="actual">
+        <div class="container">
+  <!-- X Messung -->      
+        <div class="row">
+          <div class="liveValueBox rounded s12 color3">
+            <div class="liveValueCoordinate rounded colorAccent">
+              <h4> X </h4>
+            </div>
+            <div class="liveValueValue ">
+              0.003236 
+            </div>
+          </div>
+        </div>
+  <!-- Y Messung -->      
+        <div class="row">
+          <div class="liveValueBox rounded s12 color3">
+            <div class="liveValueCoordinate rounded colorAccent">
+              <h4> Y </h4>
+            </div>
+            <div class="liveValueValue errorText">
+              FFFFFFF
+            </div>
+          </div>
+        </div> 
+  <!-- Z Messung -->      
+        <div class="row">
+          <div class="liveValueBox rounded s12 color3">
+            <div class="liveValueCoordinate rounded colorAccent">
+              <h4> Z </h4>
+            </div>
+            <div class="liveValueValue ">
+              0.003236 
+            </div>
+          </div>
+        </div>
+
+          <div class="row">
+            <div class="col s4"> 
+              <a class="waves-effect waves-light btn colorAccent fullwidth optionBtn rounded centerText">
+              <i class="material-icons ">done</i>
+            </a>Start
+            </div>
+            <div class="col s4"> 
+              <a class="waves-effect waves-light btn colorAccent fullwidth optionBtn rounded centerText">
+              <i class="material-icons ">cancel</i>
+            </a>Abbrechen
+            </div>
+            <div class="col s4"> 
+              <a class="waves-effect waves-light btn colorAccent fullwidth optionBtn rounded centerText">
+              <i class="material-icons ">adjust</i>
+              </a><p class="underButton">Kalibrieren</p>
+            </div>
+          </div>
+  <!-- Trigg Button -->      
+        </div>
+        <div class="liveBottom">
+              <a class=" tab waves-effect waves-dark btn color3 fullwidth trigger roundedTop colorHover" onkeydown="test()">Triggern</a>
+              <a class="btn light-blue fullwidth statusBar disabled centerText"><i class="material-icons left">visibility</i> Tobias
+              </a>
+          </div>
+      </div>
+
+<!-- TRIGGLIST TAB-->
+      <div id="MVList">
+        <div class="container" style="margin-top: 20px;">
+          <ul class="collapsible roundCollapsible" data-collapsible="accordion">
+            <li>
+              <div class="collapsible-header rounded"><i class="material-icons right red2">highlight_off</i>1. Messung</div>
+              <div class="collapsible-body shorter"><p>X: 0.01201301<br>Y: 0.01201301<br>Z: 0.01201301<br></p></div>
+            </li>
+            <li>
+              <div class="collapsible-header rounded"><i class="material-icons right red2">highlight_off</i>2. Messung</div>
+              <div class="collapsible-body shorter"><p>X: 0.01201301<br>Y: 0.01201301<br>Z: 0.01201301<br></p></div>
+            </li>
+            <li>
+              <div class="collapsible-header rounded"><i class="material-icons right red2">highlight_off</i>3. Messung</div>
+              <div class="collapsible-body shorter"><p>X: 0.01201301<br>Y: 0.01201301<br>Z: 0.01201301<br></p></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+        
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      </body>
+  </html>
