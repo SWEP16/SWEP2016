@@ -1,0 +1,1 @@
+\\vmware-host\shared folders\dokumente\visual studio 2015\Projects\model\model\bin\Release\model.exe.config
