@@ -1,0 +1,8 @@
+node_modules
+compiler.bat
+.atomignore
+backups
+Gruntfile.js
+tsconfig.json
+*.js
+*.map
