@@ -4,24 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Microsoft.Office.Interop.Excel;
+using usingExcel = Microsoft.Office.Interop.Excel;
 
 namespace model {
     class Excel {
 
         public void createExcel(MeasurementSeriesCollection msc) {
             Microsoft.Office.Interop.Excel.Application excelApp = null;
-            Workbook workbook = null;
-            Sheets sheets = null;
-            Worksheet newSheet = null;
+            usingExcel.Workbook workbook = null;
+            usingExcel.Sheets sheets = null;
+            usingExcel.Worksheet newSheet = null;
 
             try {
                 excelApp = new Microsoft.Office.Interop.Excel.Application();
-                workbook = excelApp.Workbooks.Add(XlSheetType.xlWorksheet);
+                workbook = excelApp.Workbooks.Add(usingExcel.XlSheetType.xlWorksheet);
                 sheets = workbook.Sheets;
 
                 for(int i = 0; i < msc.getMeasurementSeriesLength(); i++) {
-                    newSheet = (Worksheet)sheets.Add(sheets[i+1], Type.Missing, Type.Missing, Type.Missing);
+                    newSheet = (usingExcel.Worksheet)sheets.Add(sheets[i+1], Type.Missing, Type.Missing, Type.Missing);
                   
                     newSheet.Name = msc.getMeasurementSeries(i).name;
 
@@ -47,12 +47,15 @@ namespace model {
                     else {
                         //To implement
                     }
+                    usingExcel.Worksheet sheet = (usingExcel.Worksheet)sheets[1];
+                    sheet.Select(Type.Missing);
                 }
-
+                
                 //workbook.Save();
                 //workbook.Close(null, null, null);
                 //excelApp.Quit();
                 excelApp.Visible = true;
+
             }
             finally {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(newSheet);
