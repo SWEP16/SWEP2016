@@ -21,7 +21,8 @@ namespace model {
                 sheets = workbook.Sheets;
 
                 for(int i = 0; i < msc.getMeasurementSeriesLength(); i++) {
-                    newSheet = (Worksheet)sheets.Add(sheets[i], Type.Missing, Type.Missing, Type.Missing);
+                    newSheet = (Worksheet)sheets.Add(sheets[i+1], Type.Missing, Type.Missing, Type.Missing);
+                  
                     newSheet.Name = msc.getMeasurementSeries(i).name;
 
                     if (msc.getMeasurementSeries(i) is RepeatingAccuracyMeasurementSeries) {
@@ -39,10 +40,9 @@ namespace model {
                             newSheet.Cells[row, col + 1] = ramcs.getMeasurement(j).y;
                             newSheet.Cells[row, col + 2] = ramcs.getMeasurement(j).z;
                             row++;
-                            col++;
                         }
                         row = 1;
-                        col = 0;
+                        col = 1;
                     }
                     else {
                         //To implement
@@ -68,7 +68,5 @@ namespace model {
                 GC.Collect();
             }
         }
-    }
-
     }
 }

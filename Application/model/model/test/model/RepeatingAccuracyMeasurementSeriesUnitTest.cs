@@ -15,7 +15,7 @@ namespace test.model
             RepeatingAccuracyMeasurement measurement2 = new RepeatingAccuracyMeasurement(5.0, 1.3, 6.3);
             RepeatingAccuracyMeasurement measurement3 = new RepeatingAccuracyMeasurement(-8.3, 6.9, 6.9);
 
-            RepeatingAccuracyMeasurementSeries series = new RepeatingAccuracyMeasurementSeries();
+            RepeatingAccuracyMeasurementSeries series = new RepeatingAccuracyMeasurementSeries("series");
 
             series.addMeasurement(measurement1);
             series.addMeasurement(measurement2);

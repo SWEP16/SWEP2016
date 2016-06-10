@@ -8,7 +8,7 @@ namespace model {
     class RepeatingAccuracyMeasurementSeries : MeasurementSeries{
         private List<RepeatingAccuracyMeasurement> measurements;
 
-        public RepeatingAccuracyMeasurementSeries() {
+        public RepeatingAccuracyMeasurementSeries(string name) : base(name) {
             this.measurements = new List<RepeatingAccuracyMeasurement>();
         }
         public void addMeasurement(RepeatingAccuracyMeasurement measurement) {

@@ -30,7 +30,7 @@ namespace test.model
             WayTimeMeasurement measurement2 = new WayTimeMeasurement(values2);
             WayTimeMeasurement measurement3 = new WayTimeMeasurement(values3);
 
-            WayTimeMeasurementSeries series = new WayTimeMeasurementSeries();
+            WayTimeMeasurementSeries series = new WayTimeMeasurementSeries("series");
 
             series.addMeasurement(measurement1);
             series.addMeasurement(measurement2);

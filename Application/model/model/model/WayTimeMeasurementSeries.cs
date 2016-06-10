@@ -8,7 +8,7 @@ namespace model {
     class WayTimeMeasurementSeries : MeasurementSeries{
         private List<WayTimeMeasurement> measurements;
 
-        public WayTimeMeasurementSeries() {
+        public WayTimeMeasurementSeries(string name) : base(name) {
             measurements = new List<WayTimeMeasurement>();
         }
         public void addMeasurement(WayTimeMeasurement measurement) {

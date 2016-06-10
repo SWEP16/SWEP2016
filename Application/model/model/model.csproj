@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\Excel.cs" />
     <Compile Include="model\MeasurementDoesntExistException.cs" />
     <Compile Include="model\MeasurementSeriesCollection.cs" />
     <Compile Include="model\Observer.cs" />
