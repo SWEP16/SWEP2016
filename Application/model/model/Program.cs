@@ -3,19 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using model.Test;
 
-namespace model
+using model;
+using test;
+using test.model;
+
+class Program
 {
-    class Program
-    {
-        static void Main(string[] args) {
-            ModelTestSuite modelTestSuide = new ModelTestSuite();
-            if (modelTestSuide.test()) {
-                Console.WriteLine("Alle Tests bestanden!");
-            }
+    static void Main(string[] args) {
+        ModelTestSuite modelTestSuide = new ModelTestSuite();
+        ExcelExportUnitTest excelTest = new ExcelExportUnitTest();
 
-            Console.ReadLine();
+        if (modelTestSuide.test())
+        {
+            Console.WriteLine("Model Tests bestanden!");
         }
+
+        if (excelTest.test())
+        {
+            Console.WriteLine("Excel Datei erstellt!");
+        }
+
+        Console.ReadLine();
     }
 }

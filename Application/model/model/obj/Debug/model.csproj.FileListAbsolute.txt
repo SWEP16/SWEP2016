@@ -3,3 +3,9 @@
 \\vmware-host\shared folders\dokumente\visual studio 2015\Projects\model\model\bin\Debug\model.pdb
 \\vmware-host\shared folders\dokumente\visual studio 2015\Projects\model\model\obj\Debug\model.exe
 \\vmware-host\shared folders\dokumente\visual studio 2015\Projects\model\model\obj\Debug\model.pdb
+C:\Users\Florian\Desktop\SWEP 2016\SWEP2016\Application\model\model\bin\Debug\model.exe.config
+C:\Users\Florian\Desktop\SWEP 2016\SWEP2016\Application\model\model\obj\Debug\model.exe
+C:\Users\Florian\Desktop\SWEP 2016\SWEP2016\Application\model\model\obj\Debug\model.pdb
+C:\Users\Florian\Desktop\SWEP 2016\SWEP2016\Application\model\model\bin\Debug\model.exe
+C:\Users\Florian\Desktop\SWEP 2016\SWEP2016\Application\model\model\bin\Debug\model.pdb
+C:\Users\Florian\Desktop\SWEP 2016\SWEP2016\Application\model\model\obj\Debug\model.csprojResolveAssemblyReference.cache

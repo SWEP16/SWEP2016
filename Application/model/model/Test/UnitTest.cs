@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace model.Test {
+namespace test
+{
     class UnitTest {
         public virtual bool test() {
             return false;
