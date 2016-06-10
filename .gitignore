@@ -1,1 +1,3 @@
 /App (mit Angular 2)/node_modules/
+/Application/model/bin/*
+/Application/model/obj/*
