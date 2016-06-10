@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace model
 {
     public abstract class MeasurementSeries{
+        public string name { get; set; }
         public abstract int getMeasurementsLength();
     }
 }

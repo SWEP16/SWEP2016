@@ -8,6 +8,6 @@ namespace model {
     public class MeasurementDoesntExistException : Exception {
         public string what() {
         return "Measurement doesn't exist.";
-      }
     }
+}
 }
