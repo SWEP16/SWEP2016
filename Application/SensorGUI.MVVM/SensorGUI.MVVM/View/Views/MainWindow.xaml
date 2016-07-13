@@ -76,13 +76,14 @@
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
-
-        <Grid Grid.Row="1" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Idle}">
+        <Grid Grid.Row="1" Visibility="Hidden">
+        <!--Grid Grid.Row="1" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Idle}"-->
             <Image Source="https://login.hs-osnabrueck.de/nidp/View/Images/hsos-logo.jpg" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
         </Grid>
 
         <!--________________________________________Inhaltsview Wiederholgenauigkeit________________________________________-->
-        <Grid Grid.Row="1" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Genauigkeitsmessung}">
+        <Grid Grid.Row="1" Visibility="Visible">
+        <!--Grid Grid.Row="1" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Genauigkeitsmessung}"-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -298,6 +299,7 @@
                 <StackPanel Background="#FF051C27" Grid.ColumnSpan="2">
                     <Label HorizontalAlignment="Center" Foreground="White" Margin="0,3,0,0">App-Code</Label>
                     <TextBlock HorizontalAlignment="Center" Text="{Binding AppCode}" Margin="0,0,0,10" Foreground="White"></TextBlock>
+                    <TextBlock Text="{Binding CurrentMeasurementSeries.Name}" Foreground="White"></TextBlock>
                 </StackPanel>
                 <ItemsControl Grid.ColumnSpan="2" Grid.Row="1" ItemsSource="{Binding Users}" Background="#FF1B2323" Padding="3,5,0,0">
                     <ItemsControl.ItemTemplate>

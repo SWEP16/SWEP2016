@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using System.Diagnostics;
 using System.Windows.Threading;
+using model;
+using SensorGUI.MVVM.ViewModel;
 
 namespace SensorGUI.MVVM {
     [ImplementPropertyChanged]
@@ -28,9 +30,9 @@ namespace SensorGUI.MVVM {
         public ValueSet Live { get; set; }
         public ValueSet SelectedMeasurement { get; set; }
         public int SelectedIndex { get; set; }
-        public MeasurementSeries CurrentMeasurementSeries { get; set; }
+        public MeasurementSeriesWrapper CurrentMeasurementSeries { get; set; }
         public ObservableCollection<User> Users { get; set; }
-        public ObservableCollection<MeasurementSeries> MeasurementSeries { get; set; }
+        //public ObservableCollection<MeasurementSeries> MeasurementSeries { get; set; }
         public ObservableCollection<Configuration> Configs { get; set; }
         public DispatcherTimer DispatcherTimer { get; set; }
         public Stopwatch Stopwatch { get; set; }
@@ -44,8 +46,15 @@ namespace SensorGUI.MVVM {
             this.DialogService = DialogService;
             this.Users = new ObservableCollection<User>();
             this.Configs = new ObservableCollection<Configuration>();
-            this.MeasurementSeries = new ObservableCollection<MeasurementSeries>();
-            this.CurrentMeasurementSeries = new MeasurementSeries();
+            //this.MeasurementSeries = new ObservableCollection<MeasurementSeries>();
+
+            /* Florians Model Tests Start*/
+            RepeatingAccuracyMeasurementSeries series = new RepeatingAccuracyMeasurementSeries("Series 1");
+            series.addMeasurement(new RepeatingAccuracyMeasurement(1, 1, 1));
+            ViewModel.ModelToWrappedModelParser parser = new ModelToWrappedModelParser();
+            this.CurrentMeasurementSeries = parser.parse(series);
+            /* Florians Model Tests Ende */
+
             User u1 = new User { Name = "User 1", IsTriggerer = true };
             User u2 = new User { Name = "User 2", IsTriggerer = false };
             User u3 = new User { Name = "User 3", IsTriggerer = false };
@@ -67,8 +76,7 @@ namespace SensorGUI.MVVM {
             Configuration c2 = new Configuration { Name = "Weg-Zeit Messung", Id = 1, Config = ConfigView.WegZeitMessung };
             this.Configs.Add(c1);
             this.Configs.Add(c2);
-            this.Live = new ValueSet { Value1 = 0.1234f, Value2 = 9.7654f, Value3 = 5.9182f };
-            this.CurrentMeasurementSeries = new MeasurementSeries();
+            this.Live = new ValueSet(new RepeatingAccuracyMeasurement(1, 1, 1)); //new ValueSet { Value1 = 0.1234f, Value2 = 9.7654f, Value3 = 5.9182f };
             #endregion
 
             InitCommands();
@@ -87,10 +95,12 @@ namespace SensorGUI.MVVM {
         }*/
 
         private void UpdateExtraValues() {
+            /*
             this.AverageValue = MathHelper.CalculateAverage(this.CurrentMeasurementSeries.Measurements);
             this.StandardDeviation = MathHelper.CalculateStandardDeviation(this.CurrentMeasurementSeries.Measurements);
             this.MaxValue = MathHelper.GetMaximum(this.CurrentMeasurementSeries.Measurements);
             this.MinValue = MathHelper.GetMinimum(this.CurrentMeasurementSeries.Measurements);
+            */
         }
 
     }

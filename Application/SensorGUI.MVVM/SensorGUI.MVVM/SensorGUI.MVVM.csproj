@@ -57,6 +57,10 @@
       <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
@@ -98,6 +102,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Modell\Excel.cs" />
+    <Compile Include="Modell\MeasurementDoesntExistException.cs" />
+    <Compile Include="Modell\MeasurementSeries.cs" />
+    <Compile Include="Modell\MeasurementSeriesCollection.cs" />
+    <Compile Include="Modell\RepeatingAccuracyMeasurement.cs" />
+    <Compile Include="Modell\RepeatingAccuracyMeasurementSeries.cs" />
+    <Compile Include="ViewModel\ModelToWrappedModelParser.cs" />
     <Compile Include="View\Converter\EnumToVisibilityConverter.cs" />
     <Compile Include="Helper\MathHelper.cs" />
     <Compile Include="ViewModel\ModelWrapper\Configuration.cs" />
@@ -107,13 +118,15 @@
     <Compile Include="ViewModel\ModelWrapper\ValueSet.cs" />
     <Compile Include="Helper\RelayCommand.cs" />
     <Compile Include="ViewModel\ModelWrapper\ApplicationState.cs" />
-    <Compile Include="ViewModel\ModelWrapper\MeasurementSeries.cs" />
+    <Compile Include="ViewModel\ModelWrapper\MeasurementSeriesWrapper.cs" />
     <Compile Include="ViewModel\ModelWrapper\User.cs" />
     <Compile Include="Helper\VisualTreeExtensions.cs" />
     <Compile Include="ViewModel\ViewModels\SaveWindowViewModel.cs" />
     <Compile Include="View\Views\SaveWindow.xaml.cs">
       <DependentUpon>SaveWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modell\WayTimeMeasurement.cs" />
+    <Compile Include="Modell\WayTimeMeasurementSeries.cs" />
     <Page Include="View\Views\CancelWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

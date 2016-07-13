@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Windows.Input;
+using model;
 
 namespace SensorGUI.MVVM {
     public partial class MainWindowViewModel {
@@ -20,8 +21,9 @@ namespace SensorGUI.MVVM {
         public ICommand StartCommand { get; set; }
         public ICommand StopCommand { get; set; }
         #endregion
-        private void InitCommands() {
-            this.ChangeConfigCommand = new RelayCommand(ChangeConfigExecute, ChangeConfigCanExecute);
+        private void InitCommands() 
+            {
+            /*this.ChangeConfigCommand = new RelayCommand(ChangeConfigExecute, ChangeConfigCanExecute);
             this.ChangeTriggererCommand = new RelayCommand(ChangeTriggererExecute, ChangeTriggererCanExecute);
             this.MeasurementNewCommand = new RelayCommand(MeasurementNewExecute, MeasurementNewCanExcecute);
             this.MeasurementCancelCommand = new RelayCommand(MeasurementCancelExecute, MeasurementCancelCanExcecute);
@@ -33,36 +35,36 @@ namespace SensorGUI.MVVM {
             this.CalibrateCommand = new RelayCommand(CalibrateExecute, CalibrateCanExecute);
             this.DeleteTriggeredValueCommand = new RelayCommand(DeleteTriggeredValueExecute, DeleteTriggeredValueCanExecute);
             this.StartCommand = new RelayCommand(StartExecute, StartCanExecute);
-            this.StopCommand = new RelayCommand(StopExecute);
+            this.StopCommand = new RelayCommand(StopExecute);*/
         }
 
         #region -----Executes-----
         private void ChangeConfigExecute(object obj) {
-            foreach(var item in Configs) {
+            /*foreach(var item in Configs) {
                 if((int)obj == item.Id) {
                     this.ConfigView = item.Config;
                     this.ConfigName = item.Name;
-                    this.CurrentMeasurementSeries = new MeasurementSeries();
+                    //this.CurrentMeasurementSeries = new MeasurementSeries();
                     this.Title = "";
                     State = ApplicationState.Ready;
                 }
-            }
+            }*/
         }
         private void MeasurementNewExecute(object obj) {
-            this.ConfigEnabled = false;
+            /*this.ConfigEnabled = false;
             this.SeriesEnabled = false;
             this.StartEnabled = true;
-            this.CurrentMeasurementSeries = new MeasurementSeries("Neuer Messvorgang", this.IDCounter++);
-            this.Title = CurrentMeasurementSeries.Name;
+            //this.CurrentMeasurementSeries = new MeasurementSeries("Neuer Messvorgang", this.IDCounter++);
+            //this.Title = CurrentMeasurementSeries.Name;
             State = ApplicationState.Measuring;
-            UpdateExtraValues();
+            UpdateExtraValues();*/
         }
 
         private void MeasurementCancelExecute(object obj) {
-            ShowCancelDialog(ViewModel => DialogService.ShowDialog<SensorGUI.MVVM.Views.CancelWindow>(this, ViewModel));
+            //ShowCancelDialog(ViewModel => DialogService.ShowDialog<SensorGUI.MVVM.Views.CancelWindow>(this, ViewModel));
         }
         private void ShowCancelDialog(Func<CancelWindowViewModel, bool?> showDialog) {
-            var DialogViewModel = new CancelWindowViewModel();
+            /*var DialogViewModel = new CancelWindowViewModel();
 
             bool? success = showDialog(DialogViewModel);
             if(success == true) {
@@ -74,14 +76,14 @@ namespace SensorGUI.MVVM {
                 this.Title = "";
                 State = ApplicationState.Ready;
                 this.CurrentMeasurementSeries.Measurements.Clear();
-            }
+            }*/
         }
 
         private void MeasurementSaveExecute(object obj) {
-            ShowSaveDialog(ViewModel => DialogService.ShowDialog<SensorGUI.MVVM.Views.SaveWindow>(this, ViewModel));
+            //ShowSaveDialog(ViewModel => DialogService.ShowDialog<SensorGUI.MVVM.Views.SaveWindow>(this, ViewModel));
         }
         private void ShowSaveDialog(Func<SaveWindowViewModel, bool?> showDialog) {
-            var DialogViewModel = new SaveWindowViewModel();
+            /*var DialogViewModel = new SaveWindowViewModel();
 
             bool? success = showDialog(DialogViewModel);
             if (success == true)
@@ -101,7 +103,7 @@ namespace SensorGUI.MVVM {
                 this.Title = CurrentMeasurementSeries.Name;
                 this.MeasurementSeries.Add(this.CurrentMeasurementSeries);
                 State = ApplicationState.Ready;
-            }
+            }*/
         }
 
         private void ExportExecute(object obj) {
@@ -113,7 +115,7 @@ namespace SensorGUI.MVVM {
         }
 
         private void ChangeMeasurementSeriesExecute(object obj) {
-            foreach (var item in MeasurementSeries)
+            /*foreach (var item in MeasurementSeries)
             {
                 if ((int)obj == item.Id)
                 {
@@ -123,13 +125,13 @@ namespace SensorGUI.MVVM {
                     this.ConfigName = item.Config.ToFriendlyString();
                     UpdateExtraValues();
                 }
-            }
+            }*/
         }
 
         private void TriggerExecute(object obj) {
             this.StartEnabled = false;
             // TODO: Call Trigger Function
-            ValueSet neu = new ValueSet { Value1 = 0.1234f, Value2 = 5.3142f, Value3 = 3.1415f };
+            ValueSet neu = new ValueSet(new RepeatingAccuracyMeasurement(1, 1, 1)); //new ValueSet { Value1 = 0.1234f, Value2 = 5.3142f, Value3 = 3.1415f };
             this.CurrentMeasurementSeries.Measurements.Add(neu);
             UpdateExtraValues();
         }
@@ -164,7 +166,10 @@ namespace SensorGUI.MVVM {
                 this.TimeSpan = this.Stopwatch.Elapsed;
                 this.Timer = String.Format("{0:00}:{1:00}",
                     this.TimeSpan.Minutes, this.TimeSpan.Seconds);
-                this.CurrentMeasurementSeries.Measurements.Add(new ValueSet { Value1 = 1.4241f, Value2 = 1.4241f, Value3 = 1.4241f });
+                this.CurrentMeasurementSeries.Measurements.Add(
+                    new ValueSet(new RepeatingAccuracyMeasurement(1, 1, 1))
+                //new ValueSet { Value1 = 1.4241f, Value2 = 1.4241f, Value3 = 1.4241f }
+                );
             }
         }
 
@@ -206,7 +211,8 @@ namespace SensorGUI.MVVM {
             return State == ApplicationState.Idle || State == ApplicationState.Ready;
         }
         private bool ChangeMeasurementSeriesCanExecute(object obj) {
-            return this.MeasurementSeries.Count != 0 && State == ApplicationState.Ready;
+            // return this.MeasurementSeries.Count != 0 && State == ApplicationState.Ready;
+            return true; // damits lauffähig ist (Florian)
         }
         private bool TriggerCanExecute(object obj) {
             return State == ApplicationState.Measuring;
