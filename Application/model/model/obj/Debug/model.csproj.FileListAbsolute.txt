@@ -15,3 +15,9 @@ C:\Users\Florian\Desktop\SWEP 2016\SWEP2016\Application\model\model\obj\Debug\mo
 \\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\model\model\obj\Debug\model.csprojResolveAssemblyReference.cache
 \\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\model\model\bin\Debug\model.exe
 \\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\model\model\bin\Debug\model.pdb
+Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\model\model\bin\Debug\model.exe.config
+Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\model\model\obj\Debug\model.exe
+Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\model\model\obj\Debug\model.pdb
+Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\model\model\bin\Debug\model.exe
+Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\model\model\bin\Debug\model.pdb
+Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\model\model\obj\Debug\model.csprojResolveAssemblyReference.cache

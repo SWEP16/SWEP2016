@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace model {
     class RepeatingAccuracyMeasurement {
-        public double x { get; set; }
-        public double y { get; set; }
-        public double z { get; set; }
+        public double value1 { get; set; }
+        public double value2 { get; set; }
+        public double value3 { get; set; }
 
-        public RepeatingAccuracyMeasurement(double x, double y, double z) {
-            this.x = x;
-            this.y = y;
-            this.z = z;
+        public RepeatingAccuracyMeasurement(double value1, double value2, double value3) {
+            this.value1 = value1;
+            this.value2 = value2;
+            this.value3 = value3;
         }
     }
 }

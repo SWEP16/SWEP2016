@@ -21,10 +21,10 @@ namespace test.model
             series.addMeasurement(measurement2);
             series.addMeasurement(measurement3);
 
-            if (series.getMeasurement(0).x != 1.0) return false;
-            if (series.getMeasurement(1).z != 6.3) return false;
-            if (series.getMeasurement(2).x != -8.3) return false;
-            if (series.getMeasurement(2).y != 6.9) return false;
+            if (series.getMeasurement(0).value1 != 1.0) return false;
+            if (series.getMeasurement(1).value3 != 6.3) return false;
+            if (series.getMeasurement(2).value1 != -8.3) return false;
+            if (series.getMeasurement(2).value2 != 6.9) return false;
 
             if (series.getMeasurementsLength() != 3.0) return false;
 

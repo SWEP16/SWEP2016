@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace model {
     class MeasurementSeriesCollection {
         private List<MeasurementSeries> measurementSeries = new List<MeasurementSeries>();
-        private List<Observer> observers = new List<Observer>();
 
         public MeasurementSeriesCollection()
         {
