@@ -21,3 +21,6 @@ Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\model\model\obj\Deb
 Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\model\model\bin\Debug\model.exe
 Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\model\model\bin\Debug\model.pdb
 Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\model\model\obj\Debug\model.csprojResolveAssemblyReference.cache
+C:\Users\Marcel\Documents\UNI\SWEP2016\Application\model\model\bin\Debug\model.exe.config
+C:\Users\Marcel\Documents\UNI\SWEP2016\Application\model\model\obj\Debug\model.exe
+C:\Users\Marcel\Documents\UNI\SWEP2016\Application\model\model\obj\Debug\model.pdb

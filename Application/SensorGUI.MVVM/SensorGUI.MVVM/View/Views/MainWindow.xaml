@@ -1,0 +1,321 @@
+﻿<Window x:Class="SensorGUI.MVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SensorGUI.MVVM"
+        xmlns:converter="clr-namespace:SensorGUI.MVVM.Converter"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:sparrow="http://sparrowtoolkit.codeplex.com/wpf"
+        mc:Ignorable="d"
+        xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+        md:DialogServiceViews.IsRegistered="True"
+        WindowStartupLocation="CenterScreen"
+        DataContext="{Binding Source={StaticResource Locator}, Path=MainWindow}"
+        Title="{Binding Title, StringFormat=SensorGUI - {0}}" Icon="/View/Images/Robot-96.png"
+        Height="600" Width="800" MinHeight="450" MinWidth="600">
+    <Window.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" True="Visible" False="Collapsed" />
+            <converter:BooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" True="Collapsed" False="Visible" />
+            <converter:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <!--________________________________________Ribbon Menu________________________________________-->
+        <Ribbon Grid.ColumnSpan="2" Loaded="Ribbon_Loaded" Background="#FF1C4355" BorderBrush="#FF00020C">
+            <RibbonTab>
+                <RibbonGroup>
+                    <RibbonMenuButton Label="{Binding ConfigName}" IsEnabled="{Binding ConfigEnabled}" ItemsSource="{Binding Configs}" ToolTip="Auswählen der Konfiguration für Genauigkeitsmessungen oder Weg-Zeit-Messungen" LargeImageSource="/View/Images/Services-96.png" SmallImageSource="/View/Images/Services-96.png">
+                        <RibbonMenuButton.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="3,0,0,0" Text="{Binding Name}"></TextBlock>
+                            </DataTemplate>
+                        </RibbonMenuButton.ItemTemplate>
+                        <RibbonMenuButton.ItemContainerStyle>
+                            <Style TargetType="{x:Type MenuItem}">
+                                <Setter Property="Command" Value="{Binding DataContext.ChangeConfigCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+                                <Setter Property="CommandParameter" Value="{Binding Id}" />
+                            </Style>
+                        </RibbonMenuButton.ItemContainerStyle>
+                    </RibbonMenuButton>
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="Messvorgang starten" Command="{Binding MeasurementNewCommand}" ToolTip="Starten des Messvorgangs zur Durchführung der Messungen" LargeImageSource="/View/Images/Document-96.png" SmallImageSource="/View/Images/Document-96.png"/>
+                    <RibbonButton Label="Messvorgang abbrechen" Command="{Binding MeasurementCancelCommand}" ToolTip="Verwerfen des aktuellen Messvorgangs mit allen Messungen" LargeImageSource="/View/Images/Delete-96.png" SmallImageSource="/View/Images/Delete-96.png"/>
+                    <RibbonButton Label="Messvorgang beenden" Command="{Binding MeasurementSaveCommand}" ToolTip="Speichern des aktuellen Messvorgangs mit allen Messungen" LargeImageSource="/View/Images/Save as-96.png" SmallImageSource="/View/Images/Save as-96.png"/>
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="Exportieren..." Command="{Binding ExportCommand}" ToolTip="Exportieren der ausgewählten Messvorgänge nach Excel" LargeImageSource="/View/Images/Export-96.png" SmallImageSource="/View/Images/Export-96.png"/>
+                    <RibbonButton Label="Konfiguration erstellen" Command="{Binding NewConfigCommand}" ToolTip="Erstellen einer Konfiguration für eigene Messvorgänge" LargeImageSource="/View/Images/Support-96.png" SmallImageSource="/View/Images/Support-96.png"/>
+                    <RibbonMenuButton Label="Messvorgänge ansehen" ItemsSource="{Binding MeasurementSeries}" IsEnabled="{Binding SeriesEnabled}" ToolTip="Auflisten der zuletzt durchgeführten Messvorgänge" LargeImageSource="/View/Images/Show Property-96.png" SmallImageSource="/View/Images/Show Property-96.png">
+                        <RibbonMenuButton.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="3,0,0,0" Text="{Binding Name}"></TextBlock>
+                            </DataTemplate>
+                        </RibbonMenuButton.ItemTemplate>
+                        <RibbonMenuButton.ItemContainerStyle>
+                            <Style TargetType="{x:Type MenuItem}">
+                                <Setter Property="Command" Value="{Binding DataContext.ChangeMeasurementSeriesCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+                                <Setter Property="CommandParameter" Value="{Binding Id}" />
+                            </Style>
+                        </RibbonMenuButton.ItemContainerStyle>
+                    </RibbonMenuButton>
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+
+        <Grid Grid.Row="1" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Idle}">
+            <Image Source="https://login.hs-osnabrueck.de/nidp/View/Images/hsos-logo.jpg" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+        </Grid>
+
+        <!--________________________________________Inhaltsview Wiederholgenauigkeit________________________________________-->
+        <Grid Grid.Row="1" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Genauigkeitsmessung}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--________________________________________Actions________________________________________-->
+            <Grid Background="Gray"  Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Background="#FF5B0606" Command="{Binding DeleteTriggeredValueCommand}" Foreground="White" Padding="0,4" ToolTip="Löschen des ausgewählten Messwerts">Löschen</Button>
+                <Button Grid.Column="1" Command="{Binding TriggerCommand}" Padding="0,4" ToolTip="Aufnehmen des aktuellen Messwerts">Trigger</Button>
+                <Button Grid.Column="2" Command="{Binding CalibrateCommand}" Padding="0,4" ToolTip="Festlegen des aktuellen Messwerts als Ausgangswert (0 mm) für die weiteren Messungen">Kalibrieren</Button>
+            </Grid>
+
+            <!--________________________________________Live Werte________________________________________-->
+            <Grid Grid.Row="1" Background="#ffaaaa">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label HorizontalAlignment="Center" Margin="0,5,0,0">Live-Sensor 1</Label>
+                <TextBlock Grid.Row="1" Text="{Binding Live.Value1}" HorizontalAlignment="Center" Margin="0,0,0,10"></TextBlock>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1" Background="#aaffaa">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label HorizontalAlignment="Center" Margin="0,5,0,0">Live-Sensor 2</Label>
+                <TextBlock Grid.Row="1" Text="{Binding Live.Value2}" HorizontalAlignment="Center" Margin="0,0,0,10"></TextBlock>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="2" Background="#aaaaff">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label HorizontalAlignment="Center" Margin="0,5,0,0">Live-Sensor 3</Label>
+                <TextBlock Grid.Row="1" Text="{Binding Live.Value3}" HorizontalAlignment="Center" Margin="0,0,0,10"></TextBlock>
+            </Grid>
+
+            <!--________________________________________Value Table________________________________________-->
+            <DataGrid Grid.Row="2" Grid.ColumnSpan="3" AutoGenerateColumns="False" HeadersVisibility="Column" ItemsSource="{Binding CurrentMeasurementSeries.Measurements}" SelectedIndex="{Binding SelectedIndex}" CanUserAddRows="False" CanUserDeleteRows="False">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF344A6E"/>
+                        <Setter Property="Foreground" Value="#FFFFFF" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Wert 1" Width="*" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Value1}" HorizontalAlignment="Center"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Wert 2" Width="*" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Value2}" HorizontalAlignment="Center"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Wert 3" Width="*" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Value3}" HorizontalAlignment="Center"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!--________________________________________Extra Values_______________________________________-->
+            <Grid Grid.ColumnSpan="3" Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" HorizontalContentAlignment="Center" Background="#FF07001D" Foreground="#FFFFFF">ø</Label>
+                <Label Grid.Column="1" Content="{Binding AverageValue.Value1}" ContentStringFormat="{}{0:0.0000}" Background="#FFACB3F5" BorderThickness="0,1" BorderBrush="#FF00020C"></Label>
+                <Label Grid.Column="2" HorizontalContentAlignment="Center" Background="#FF07001D" Foreground="#FFFFFF">σ</Label>
+                <Label Grid.Column="3" Content="{Binding StandardDeviation.Value1}" ContentStringFormat="{}{0:0.0000}" Background="#FFACB3F5" BorderThickness="0,1" BorderBrush="#FF00020C"></Label>
+                <Label Grid.Column="0" Grid.Row="1" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF07001D" Foreground="#FFFFFF">Min</Label>
+                <Label Grid.Column="1" Grid.Row="1" Content="{Binding MinValue.Value1}" ContentStringFormat="{}{0:0.0000}" Background="#FFACB3F5" BorderThickness="0,0,0,1" BorderBrush="#FF00020C"></Label>
+                <Label Grid.Column="2" Grid.Row="1" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF07001D" Foreground="#FFFFFF">Max</Label>
+                <Label Grid.Column="3" Grid.Row="1" Content="{Binding MaxValue.Value1}" ContentStringFormat="{}{0:0.0000}" Background="#FFACB3F5" BorderThickness="0,0,0,1" BorderBrush="#FF00020C"></Label>
+
+                <Label Grid.Column="4" HorizontalContentAlignment="Center" Background="#FF07001D" Foreground="#FFFFFF">ø</Label>
+                <Label Grid.Column="5" Content="{Binding AverageValue.Value2}" ContentStringFormat="{}{0:0.0000}" Background="#FFACB3F5" BorderThickness="0,1" BorderBrush="#FF00020C"></Label>
+                <Label Grid.Column="6" HorizontalContentAlignment="Center" Background="#FF07001D" Foreground="#FFFFFF">σ</Label>
+                <Label Grid.Column="7" Content="{Binding StandardDeviation.Value2}" ContentStringFormat="{}{0:0.0000}" Background="#FFACB3F5" BorderThickness="0,1" BorderBrush="#FF00020C"></Label>
+                <Label Grid.Column="4" Grid.Row="1" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF07001D" Foreground="#FFFFFF">Min</Label>
+                <Label Grid.Column="5" Grid.Row="1" Content="{Binding MinValue.Value2}" ContentStringFormat="{}{0:0.0000}" Background="#FFACB3F5" BorderThickness="0,0,0,1" BorderBrush="#FF00020C"></Label>
+                <Label Grid.Column="6" Grid.Row="1" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF07001D" Foreground="#FFFFFF">Max</Label>
+                <Label Grid.Column="7" Grid.Row="1" Content="{Binding MaxValue.Value2}" ContentStringFormat="{}{0:0.0000}" Background="#FFACB3F5" BorderThickness="0,0,0,1" BorderBrush="#FF00020C"></Label>
+
+                <Label Grid.Column="8" HorizontalContentAlignment="Center" Background="#FF07001D" Foreground="#FFFFFF">ø</Label>
+                <Label Grid.Column="9" Content="{Binding AverageValue.Value1}" ContentStringFormat="{}{0:0.0000}" Background="#FFACB3F5" BorderThickness="0,1" BorderBrush="#FF00020C"></Label>
+                <Label Grid.Column="10" HorizontalContentAlignment="Center" Background="#FF07001D" Foreground="#FFFFFF">σ</Label>
+                <Label Grid.Column="11" Content="{Binding StandardDeviation.Value3}" ContentStringFormat="{}{0:0.0000}" Background="#FFACB3F5" BorderThickness="0,1" BorderBrush="#FF00020C"></Label>
+                <Label Grid.Column="8" Grid.Row="1" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF07001D" Foreground="#FFFFFF">Min</Label>
+                <Label Grid.Column="9" Grid.Row="1" Content="{Binding MinValue.Value3}" ContentStringFormat="{}{0:0.0000}" Background="#FFACB3F5" BorderThickness="0,0,0,1" BorderBrush="#FF00020C"></Label>
+                <Label Grid.Column="10" Grid.Row="1" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF07001D" Foreground="#FFFFFF">Max</Label>
+                <Label Grid.Column="11" Grid.Row="1" Content="{Binding MaxValue.Value3}" ContentStringFormat="{}{0:0.0000}" Background="#FFACB3F5" BorderThickness="0,0,0,1" BorderBrush="#FF00020C"></Label>
+            </Grid>
+        </Grid>
+
+
+
+        <!--________________________________________Inhaltsview Weg-Zeit________________________________________-->
+        <Grid Grid.Row="1" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=WegZeitMessung}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--________________________________________Actions________________________________________-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Background="#FFAAAA" Grid.RowSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label HorizontalAlignment="Center" Margin="0,5,0,0">Live-Sensor</Label>
+                    <TextBlock Grid.Row="1" Text="{Binding Live.Value1}" HorizontalAlignment="Center" Margin="0,0,0,10"></TextBlock>
+                </Grid>
+                <Grid Grid.Column="1" Background="#AAAAFF" Grid.RowSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label HorizontalAlignment="Center" Margin="0,5,0,0">Timer</Label>
+                    <TextBlock Grid.Row="1" Text="{Binding Timer}" HorizontalAlignment="Center" Margin="0,0,0,10"></TextBlock>
+                </Grid>
+                <Button Grid.Column="2" Command="{Binding StartCommand}" IsEnabled="{Binding StartEnabled}" Visibility="{Binding StartStop,Converter={StaticResource BooleanToVisibilityConverter}}" ToolTip="Starten der Weg-Zeit-Messung">Start</Button>
+                <Button Grid.Column="2" Command="{Binding StopCommand}" Visibility="{Binding StartStop,Converter={StaticResource InverseBooleanToVisibilityConverter}}" ToolTip="Beenden der aktuellen Weg-Zeit-Messung">Stop</Button>
+                <Button Grid.Column="2" Grid.Row="1" Command="{Binding CalibrateCommand}" ToolTip="Festlegen des aktuellen Messwerts als Ausgangswert (0 mm) für die weiteren Messungen">Kalibrieren</Button>
+            </Grid>
+
+            <!--________________________________________Value Table________________________________________-->
+            <TabControl Grid.ColumnSpan="2" Grid.Row="1">
+                <TabItem Header="Weg-Zeit">
+                    <sparrow:SparrowChart Margin="0,20,20,0">
+                        <sparrow:SparrowChart.XAxis>
+                            <sparrow:LinearXAxis/>
+                        </sparrow:SparrowChart.XAxis>
+                        <sparrow:SparrowChart.YAxis>
+                            <sparrow:LinearYAxis/>
+                        </sparrow:SparrowChart.YAxis>
+                        <sparrow:SplineSeries>
+                            <sparrow:SplineSeries.Points>
+                                <sparrow:DoublePoint Data="0" Value="1"/>
+                                <sparrow:DoublePoint Data="1" Value="3"/>
+                                <sparrow:DoublePoint Data="2" Value="2"/>
+                                <sparrow:DoublePoint Data="3" Value="4"/>
+                            </sparrow:SplineSeries.Points>
+                        </sparrow:SplineSeries>
+                    </sparrow:SparrowChart>
+                </TabItem>
+                <TabItem Header="Geschwindigkeit-Zeit"></TabItem>
+                <TabItem Header="Beschleunigung-Zeit"></TabItem>
+            </TabControl>
+        </Grid>
+
+        <!--________________________________________AppUser Verwaltung________________________________________-->
+        <Border Grid.Column="1" Grid.Row="1" BorderBrush="#FF00020C" BorderThickness="2,0,0,2">
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Background="#FF051C27" Grid.ColumnSpan="2">
+                    <Label HorizontalAlignment="Center" Foreground="White" Margin="0,3,0,0">App-Code</Label>
+                    <TextBlock HorizontalAlignment="Center" Text="{Binding AppCode}" Margin="0,0,0,10" Foreground="White"></TextBlock>
+                </StackPanel>
+                <ItemsControl Grid.ColumnSpan="2" Grid.Row="1" ItemsSource="{Binding Users}" Background="#FF1B2323" Padding="3,5,0,0">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <Image Source="/View/Images/Filled Flag-96.png" Height="15" Margin="2,2,6,5" Visibility="{Binding IsTriggerer,Converter={StaticResource BooleanToVisibilityConverter}}"></Image>
+                                <Image Source="/View/Images/Visible-96.png" Height="15" Margin="2,2,6,5" Visibility="{Binding IsTriggerer,Converter={StaticResource InverseBooleanToVisibilityConverter}}"></Image>
+                                <Button DockPanel.Dock="Right" ToolTip="Benennung eines Zuschauers zum Auslöser, um Messungen starten zu können" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.ChangeTriggererCommand}" CommandParameter="{Binding Id}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/View/Images/Filled Flag Plus-96.png" Height="15" Margin="4,0"></Image>
+                                    </StackPanel>
+                                </Button>
+                                <TextBlock Text="{Binding Name}" Foreground="White"></TextBlock>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
