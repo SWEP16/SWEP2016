@@ -23,7 +23,7 @@ namespace SensorGUI.MVVM {
         #endregion
         private void InitCommands() 
             {
-            /*this.ChangeConfigCommand = new RelayCommand(ChangeConfigExecute, ChangeConfigCanExecute);
+            this.ChangeConfigCommand = new RelayCommand(ChangeConfigExecute, ChangeConfigCanExecute);
             this.ChangeTriggererCommand = new RelayCommand(ChangeTriggererExecute, ChangeTriggererCanExecute);
             this.MeasurementNewCommand = new RelayCommand(MeasurementNewExecute, MeasurementNewCanExcecute);
             this.MeasurementCancelCommand = new RelayCommand(MeasurementCancelExecute, MeasurementCancelCanExcecute);
@@ -35,7 +35,7 @@ namespace SensorGUI.MVVM {
             this.CalibrateCommand = new RelayCommand(CalibrateExecute, CalibrateCanExecute);
             this.DeleteTriggeredValueCommand = new RelayCommand(DeleteTriggeredValueExecute, DeleteTriggeredValueCanExecute);
             this.StartCommand = new RelayCommand(StartExecute, StartCanExecute);
-            this.StopCommand = new RelayCommand(StopExecute);*/
+            this.StopCommand = new RelayCommand(StopExecute);
         }
 
         #region -----Executes-----
@@ -80,7 +80,7 @@ namespace SensorGUI.MVVM {
         }
 
         private void MeasurementSaveExecute(object obj) {
-            //ShowSaveDialog(ViewModel => DialogService.ShowDialog<SensorGUI.MVVM.Views.SaveWindow>(this, ViewModel));
+            //ShowSaveDialog(ViewModel => DialogService.ShowDialog<SensorGUI.MVVM.View.Views.SaveWindow>(this, ViewModel));
         }
         private void ShowSaveDialog(Func<SaveWindowViewModel, bool?> showDialog) {
             /*var DialogViewModel = new SaveWindowViewModel();
@@ -107,7 +107,25 @@ namespace SensorGUI.MVVM {
         }
 
         private void ExportExecute(object obj) {
-            // TODO: Popup, Call Export Function
+            ShowExportDialog(ViewModel => DialogService.ShowDialog<SensorGUI.MVVM.View.Views.ExportWindow>(this, ViewModel));
+        }
+
+        private void ShowExportDialog(Func<ExportWindowViewModel, bool?> showDialog) {
+            var DialogViewModel = new ExportWindowViewModel();
+
+             bool? success = showDialog(DialogViewModel);
+             if (success == true) {
+                this.ConfigEnabled = true;
+                this.SeriesEnabled = true;
+                foreach(var item in MeasurementSeries)
+                {
+                    if(item.ExportChecked)
+                    {
+                        //TODO: Call Export to Excel
+                    }
+                }
+                State = ApplicationState.Ready;
+               }
         }
 
         private void NewConfigExecute(object obj) {
@@ -205,14 +223,14 @@ namespace SensorGUI.MVVM {
             return State == ApplicationState.Measuring && this.CurrentMeasurementSeries.Measurements.Count != 0 && this.StartEnabled == false;
         }
         private bool ExportCanExecute(object obj) {
-            return State == ApplicationState.Ready;
+            return State == ApplicationState.Ready && this.MeasurementSeries.Count != 0;
         }
         private bool NewConfigCanExecute(object obj) {
             return State == ApplicationState.Idle || State == ApplicationState.Ready;
         }
         private bool ChangeMeasurementSeriesCanExecute(object obj) {
-            // return this.MeasurementSeries.Count != 0 && State == ApplicationState.Ready;
-            return true; // damits lauffähig ist (Florian)
+            return this.MeasurementSeries.Count != 0 && State == ApplicationState.Ready;
+            //return true; // damits lauffähig ist (Florian)
         }
         private bool TriggerCanExecute(object obj) {
             return State == ApplicationState.Measuring;

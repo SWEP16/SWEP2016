@@ -14,11 +14,15 @@ using System.Windows.Shapes;
 
 namespace SensorGUI.MVVM.View.Views {
     /// <summary>
-    /// Interaktionslogik für SaveWindow.xaml
+    /// Interaktionslogik für ExportWindow.xaml
     /// </summary>
-    public partial class SaveWindow : Window {
-        public SaveWindow() {
+    public partial class ExportWindow : Window {
+        public ExportWindow() {
             InitializeComponent();
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e) {
+
         }
     }
 }

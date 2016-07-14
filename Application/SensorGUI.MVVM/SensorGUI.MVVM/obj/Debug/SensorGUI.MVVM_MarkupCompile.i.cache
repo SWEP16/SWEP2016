@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\App.xaml
-32050718256
+4-1843904598
 
-39-672454575
+41-1052107989
 75647651498
-View\Views\CancelWindow.xaml;View\Views\MainWindow.xaml;View\Views\SaveWindow.xaml;
+View\Views\CancelWindow.xaml;View\Views\ExportWindow.xaml;View\Views\MainWindow.xaml;View\Views\SaveWindow.xaml;
 
-True
+False
 

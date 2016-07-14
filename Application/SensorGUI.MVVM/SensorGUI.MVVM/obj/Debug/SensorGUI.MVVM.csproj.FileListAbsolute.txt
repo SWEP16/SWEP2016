@@ -76,3 +76,5 @@ C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM
 C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\CancelWindow.baml
 C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\MainWindow.baml
 C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\SaveWindow.baml
+C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\ExportWindow.g.cs
+C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\ExportWindow.baml

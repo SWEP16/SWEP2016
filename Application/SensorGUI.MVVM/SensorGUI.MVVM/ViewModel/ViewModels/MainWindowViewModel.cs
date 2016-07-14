@@ -32,7 +32,7 @@ namespace SensorGUI.MVVM {
         public int SelectedIndex { get; set; }
         public MeasurementSeriesWrapper CurrentMeasurementSeries { get; set; }
         public ObservableCollection<User> Users { get; set; }
-        //public ObservableCollection<MeasurementSeries> MeasurementSeries { get; set; }
+        public ObservableCollection<MeasurementSeriesWrapper> MeasurementSeries { get; set; }
         public ObservableCollection<Configuration> Configs { get; set; }
         public DispatcherTimer DispatcherTimer { get; set; }
         public Stopwatch Stopwatch { get; set; }
@@ -95,13 +95,10 @@ namespace SensorGUI.MVVM {
         }*/
 
         private void UpdateExtraValues() {
-            /*
             this.AverageValue = MathHelper.CalculateAverage(this.CurrentMeasurementSeries.Measurements);
             this.StandardDeviation = MathHelper.CalculateStandardDeviation(this.CurrentMeasurementSeries.Measurements);
             this.MaxValue = MathHelper.GetMaximum(this.CurrentMeasurementSeries.Measurements);
             this.MinValue = MathHelper.GetMinimum(this.CurrentMeasurementSeries.Measurements);
-            */
         }
-
     }
 }

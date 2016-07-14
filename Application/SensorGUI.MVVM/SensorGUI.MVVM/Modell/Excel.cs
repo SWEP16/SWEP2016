@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using usingExcel = Microsoft.Office.Interop.Excel;
 
 namespace model {
-    class Excel {
+    public class Excel {
         public void createExcel(MeasurementSeriesCollection msc) {
             Microsoft.Office.Interop.Excel.Application excelApp = null;
             usingExcel.Workbook workbook = null;

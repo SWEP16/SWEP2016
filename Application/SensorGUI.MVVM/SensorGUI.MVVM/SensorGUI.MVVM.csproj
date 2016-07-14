@@ -109,6 +109,7 @@
     <Compile Include="Modell\RepeatingAccuracyMeasurement.cs" />
     <Compile Include="Modell\RepeatingAccuracyMeasurementSeries.cs" />
     <Compile Include="ViewModel\ModelToWrappedModelParser.cs" />
+    <Compile Include="ViewModel\ViewModels\ExportWindowViewModel.cs" />
     <Compile Include="View\Converter\EnumToVisibilityConverter.cs" />
     <Compile Include="Helper\MathHelper.cs" />
     <Compile Include="ViewModel\ModelWrapper\Configuration.cs" />
@@ -122,12 +123,19 @@
     <Compile Include="ViewModel\ModelWrapper\User.cs" />
     <Compile Include="Helper\VisualTreeExtensions.cs" />
     <Compile Include="ViewModel\ViewModels\SaveWindowViewModel.cs" />
+    <Compile Include="View\Views\ExportWindow.xaml.cs">
+      <DependentUpon>ExportWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Views\SaveWindow.xaml.cs">
       <DependentUpon>SaveWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modell\WayTimeMeasurement.cs" />
     <Compile Include="Modell\WayTimeMeasurementSeries.cs" />
     <Page Include="View\Views\CancelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\ExportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

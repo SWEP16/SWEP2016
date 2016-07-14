@@ -34,6 +34,7 @@ namespace SensorGUI.MVVM {
         public int Id { get; set; }
         public double Time { get; set; }
         public ConfigView Config { get; set; }
+        public bool ExportChecked { get; set; }
         public ObservableCollection<ValueSet> Measurements { get; set; }
         public MeasurementSeriesWrapper(RepeatingAccuracyMeasurementSeries orginalMeasurementSeries) 
         {

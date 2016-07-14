@@ -9,10 +9,13 @@ namespace SensorGUI.MVVM.Helper {
     public static class MathHelper {
 
         public static ValueSet CalculateAverage(IEnumerable<ValueSet> items) {
-            return new ValueSet(new RepeatingAccuracyMeasurement(1, 1, 1)); /*new ValueSet
+            return new ValueSet(new RepeatingAccuracyMeasurement(
+                items.Select(i => i.Value1).DefaultIfEmpty(0).Average(),
+                items.Select(i => i.Value2).DefaultIfEmpty(0).Average(),
+                items.Select(i => i.Value3).DefaultIfEmpty(0).Average()));/*new ValueSet
             {
-                Value1 = items.Select(i => i.Value1).DefaultIfEmpty(0).Average(),
-                Value2 = items.Select(i => i.Value2).DefaultIfEmpty(0).Average(),
+                Value1 = ,
+                Value2 = ,
                 Value3 = items.Select(i => i.Value3).DefaultIfEmpty(0).Average()
             };*/
         }
@@ -45,7 +48,7 @@ namespace SensorGUI.MVVM.Helper {
             y2 = Math.Sqrt(y2);
             z2 = Math.Sqrt(z2);
 
-            return new ValueSet(new RepeatingAccuracyMeasurement(1, 1, 1));
+            return new ValueSet(new RepeatingAccuracyMeasurement(x2, y2, z2));
                 /*new ValueSet
             {
                 Value1 = (float)x2,
