@@ -1,0 +1,6 @@
+c:\users\t\documents\visual studio 2015\Projects\SerialConsoleApplication\SerialConsoleApplication\bin\Debug\SerialConsoleApplication.exe.config
+c:\users\t\documents\visual studio 2015\Projects\SerialConsoleApplication\SerialConsoleApplication\bin\Debug\SerialConsoleApplication.exe
+c:\users\t\documents\visual studio 2015\Projects\SerialConsoleApplication\SerialConsoleApplication\bin\Debug\SerialConsoleApplication.pdb
+c:\users\t\documents\visual studio 2015\Projects\SerialConsoleApplication\SerialConsoleApplication\obj\Debug\SerialConsoleApplication.csprojResolveAssemblyReference.cache
+c:\users\t\documents\visual studio 2015\Projects\SerialConsoleApplication\SerialConsoleApplication\obj\Debug\SerialConsoleApplication.exe
+c:\users\t\documents\visual studio 2015\Projects\SerialConsoleApplication\SerialConsoleApplication\obj\Debug\SerialConsoleApplication.pdb
