@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace model{
-    class WayTimeMeasurement{
+    public class WayTimeMeasurement{
         private List<Tuple<double, double>> values;
 
         public WayTimeMeasurement(List<Tuple<double, double>> values){

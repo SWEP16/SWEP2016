@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace model {
-    class RepeatingAccuracyMeasurementSeries : MeasurementSeries{
+    public class RepeatingAccuracyMeasurementSeries : MeasurementSeries{
         private List<RepeatingAccuracyMeasurement> measurements;
 
         public RepeatingAccuracyMeasurementSeries(string name) : base(name) {

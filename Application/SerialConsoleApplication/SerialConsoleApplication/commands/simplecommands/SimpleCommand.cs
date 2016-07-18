@@ -5,9 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace commands
-{ 
-    public interface SimpleCommand
+{
+    namespace simplecommands
     {
-        void execute();
+        public interface SimpleCommand
+        {
+            void execute();
+        }
     }
 }

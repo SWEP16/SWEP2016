@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace model {
-    class WayTimeMeasurementSeries : MeasurementSeries{
+    public class WayTimeMeasurementSeries : MeasurementSeries{
         private List<WayTimeMeasurement> measurements;
 
         public WayTimeMeasurementSeries(string name) : base(name) {

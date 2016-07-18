@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace model {
-    class MeasurementSeriesCollection {
+    public class MeasurementSeriesCollection {
         private List<MeasurementSeries> measurementSeries = new List<MeasurementSeries>();
 
         public MeasurementSeriesCollection()

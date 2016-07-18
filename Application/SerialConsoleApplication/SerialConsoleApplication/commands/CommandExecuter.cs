@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using commands.reactivecommands;
+using commands.simplecommands;
 
 namespace commands
 {
@@ -26,7 +28,8 @@ namespace commands
             }
             catch (Exception e)
             {
-                Console.Write("Simple Command ist fehlgeschlagen...");
+                Console.Write("Simple Command ist fehlgeschlagen...\n");
+                Console.Write(e.Message + "\n");
             }
         }
 
@@ -39,7 +42,8 @@ namespace commands
             }
             catch (Exception e)
             {
-                Console.Write("Reactive Command ist im Anfrageverhalten fehlgeschlagen...");
+                Console.Write("Reactive Command ist im Anfrageverhalten fehlgeschlagen...\n");
+                Console.Write(e.Message + "\n");
             }
         }
 
@@ -58,7 +62,8 @@ namespace commands
                 }
                 catch (Exception e)
                 {
-                    Console.Write("Reactive Command ist im Antwortverhalten fehlgeschlagen...");
+                    Console.Write("Reactive Command ist im Antwortverhalten fehlgeschlagen...\n");
+                    Console.Write(e.Message + "\n");
                 }
             }
         }

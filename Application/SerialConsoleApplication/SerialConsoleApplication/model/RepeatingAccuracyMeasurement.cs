@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace model {
-    class RepeatingAccuracyMeasurement {
+    public class RepeatingAccuracyMeasurement {
         public double value1 { get; set; }
         public double value2 { get; set; }
         public double value3 { get; set; }
