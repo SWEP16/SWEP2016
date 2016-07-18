@@ -27,7 +27,6 @@ namespace model {
 
         public override int getMeasurementsLength() {
             return this.measurements.Count();
-        }
-        
+        }        
     }
 }

@@ -45,6 +45,10 @@
   <ItemGroup>
     <Compile Include="commands\reactivecommands\ReactiveCommand.cs" />
     <Compile Include="commands\CommandExecuter.cs" />
+    <Compile Include="commands\reactivecommands\InitAccumulation.cs" />
+    <Compile Include="commands\reactivecommands\OutputAccumulation.cs" />
+    <Compile Include="commands\reactivecommands\StopAccumulation.cs" />
+    <Compile Include="commands\reactivecommands\StartAccumulation.cs" />
     <Compile Include="commands\simplecommands\LoadConfigCommand.cs" />
     <Compile Include="commands\reactivecommands\TriggerValueCommand.cs" />
     <Compile Include="model\MeasurementDoesntExistException.cs" />

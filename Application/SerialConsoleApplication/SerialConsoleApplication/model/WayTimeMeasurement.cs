@@ -11,7 +11,7 @@ namespace model{
         public WayTimeMeasurement(List<Tuple<double, double>> values){
             this.values = values;
         }
-        public int getValuesLegth(){
+        public int getValuesLength(){
             return this.values.Count();
         }
         public Tuple<double, double> getValue(int valueIndex) {
