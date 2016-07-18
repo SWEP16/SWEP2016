@@ -58,7 +58,7 @@
 
 
         <!--________________________________________Ribbon Menu________________________________________-->
-        <Ribbon Grid.ColumnSpan="2" Loaded="Ribbon_Loaded" Background="#FF1C4355" BorderBrush="#FF00020C">
+        <Ribbon Grid.ColumnSpan="2" Loaded="Ribbon_Loaded" Background="White" BorderBrush="#FF00020C">
             <RibbonTab>
                 <RibbonGroup>
                     <RibbonMenuButton Label="{Binding ConfigName}" IsEnabled="{Binding ConfigEnabled}" ItemsSource="{Binding Configs}" ToolTip="Auswählen der Konfiguration für Genauigkeitsmessungen oder Weg-Zeit-Messungen" LargeImageSource="/View/Images/Services-96.png" SmallImageSource="/View/Images/Services-96.png">
