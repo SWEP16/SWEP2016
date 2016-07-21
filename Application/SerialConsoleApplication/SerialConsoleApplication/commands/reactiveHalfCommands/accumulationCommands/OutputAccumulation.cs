@@ -7,7 +7,7 @@ namespace commands
 {
     namespace reactivecommands
     {
-        public class OutputAccumulation : ReactiveCommand
+        public class OutputAccumulation : ReactiveHalfCommand
         {
             private WayTimeMeasurementSeries series;
 
@@ -16,17 +16,16 @@ namespace commands
                 this.series = series;
             }
 
-            public void execute(System.IO.Ports.SerialPort port1, System.IO.Ports.SerialPort port2)
+            public override void execute(System.IO.Ports.SerialPort port)
             {
                 Console.Write("excute outputAcc ");
-                port1.Write(new byte[] { 0x41, 0x4f, 0x2c, 0x31, 0x0D }, 0, 5);
-                port2.Write(new byte[] { 0x4D, 0x31, 0x0D }, 0, 3);//dummy Befehl (nur ein Laser in Verwendung)
+                port.Write(new byte[] { 0x41, 0x4f, 0x2c, 0x31, 0x0D }, 0, 5);
             }
 
-            public void react(char[] answerData1, char[] answerData2)
+            public override void react(char[] answerData)
             {
                 Console.WriteLine("answer output");
-                Console.WriteLine("answer OutputAcc: " + new String(answerData1));
+                Console.WriteLine("answer OutputAcc: " + new String(answerData));
                 /*
                 if(answStrArray1[0] != "AO")
                 {
@@ -34,7 +33,7 @@ namespace commands
                 }
                 */
 
-                string answString1 = new string(answerData1);
+                string answString1 = new string(answerData);
                 answString1 = answString1.Replace(',', ';');
                 answString1 = answString1.Replace('.', ',');
                 string[] answStrArray1 = answString1.Split(';');
@@ -57,7 +56,7 @@ namespace commands
                 this.series.addMeasurement(new WayTimeMeasurement(values));
             }
 
-            public bool isCorrectAnswerFormat(char[] answerData)
+            public override bool isCorrectAnswerFormat(char[] answerData)
             {
                 return true;
             }

@@ -7,20 +7,19 @@ namespace commands
 {
     namespace reactivecommands
     {
-        public class InitAccumulation : ReactiveCommand
+        public class InitAccumulation : ReactiveHalfCommand
         {
             public InitAccumulation()
             {                
             }
 
-            public void execute(System.IO.Ports.SerialPort port1, System.IO.Ports.SerialPort port2)
+            public override void execute(System.IO.Ports.SerialPort port)
             {
                 Console.Write("excute initAcc ");
-                port1.Write(new byte[] { 0x41, 0x51, 0x0D }, 0, 3);
-                port2.Write(new byte[] { 0x4D, 0x31, 0x0D }, 0, 3);//dummy Befehl (nur ein Laser in Verwendung)
+                port.Write(new byte[] { 0x41, 0x51, 0x0D }, 0, 3);
             }
 
-            public void react(char[] answerData1, char[] answerData2)
+            public override void react(char[] answerData1)
             {
                 Console.WriteLine("answer initAcc: "+ new String(answerData1));
                 /*
@@ -31,7 +30,7 @@ namespace commands
                 */
             }            
 
-            public bool isCorrectAnswerFormat(char[] answerData)
+            public override bool isCorrectAnswerFormat(char[] answerData)
             {
                 return true;
             }

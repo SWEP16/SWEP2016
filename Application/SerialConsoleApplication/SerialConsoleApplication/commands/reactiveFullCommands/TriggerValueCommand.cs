@@ -7,7 +7,7 @@ namespace commands
 {
     namespace reactivecommands
     {
-        public class TriggerValueCommand : ReactiveCommand
+        public class TriggerValueCommand : ReactiveFullCommand
         {
             private RepeatingAccuracyMeasurementSeries series;
 
@@ -16,14 +16,17 @@ namespace commands
                 this.series = series;
             }
 
-            public void execute(System.IO.Ports.SerialPort port1, System.IO.Ports.SerialPort port2)
+            public override void executeOnPort1(System.IO.Ports.SerialPort port1)
             {
                 port1.Write(new byte[] { 0x4D, 0x30, 0x0D }, 0, 3);
-                port2.Write(new byte[] { 0x4D, 0x30, 0x0D }, 0, 3);
-
             }
 
-            public void react(char[] answerData1, char[] answerData2)
+            public override void executeOnPort2(System.IO.Ports.SerialPort port2)
+            {
+                port2.Write(new byte[] { 0x4D, 0x30, 0x0D }, 0, 3);
+            }
+
+            public override void react(char[] answerData1, char[] answerData2)
             {
                 string answString1 = new string(answerData1);
                 answString1 = answString1.Replace(',', ';');
@@ -66,7 +69,7 @@ namespace commands
             }
             
 
-            public bool isCorrectAnswerFormat(char[] answerData)
+            public override bool isCorrectAnswerFormat(char[] answerData)
             {
                 return true;
             }

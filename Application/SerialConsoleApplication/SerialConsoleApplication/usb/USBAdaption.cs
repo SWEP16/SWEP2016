@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using commands;
+using System.Runtime.CompilerServices;
 
 namespace usb
 {
@@ -12,10 +13,7 @@ namespace usb
 
         private static Queue<char> queue1 = new Queue<char>();
         private static Queue<char> queue2 = new Queue<char>();
-
-        private static char[] received1 = null;
-        private static char[] received2 = null;
-
+        
         private static CommandExecuter commandExecuter;
 
         public static void init()
@@ -56,18 +54,10 @@ namespace usb
 
         public static void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-
             char[] receivedData = USBAdaption.dataReceived(USBAdaption.serialPort1, USBAdaption.queue1);
-            if(receivedData != null)
+            if (receivedData != null)
             {
-                
-                USBAdaption.received1 = receivedData;
-                if (USBAdaption.received1 != null && USBAdaption.received2 != null)
-                {
-                    USBAdaption.commandExecuter.notify(USBAdaption.received1, USBAdaption.received2);
-                    USBAdaption.received1 = null;
-                    USBAdaption.received2 = null;
-                }
+                USBAdaption.commandExecuter.notifyOnPort1(receivedData);
             }
         }
 
@@ -76,16 +66,12 @@ namespace usb
             char[] receivedData = USBAdaption.dataReceived(USBAdaption.serialPort2, USBAdaption.queue2);
             if (receivedData != null)
             {
-                USBAdaption.received2 = receivedData;
-                if (USBAdaption.received1 != null && USBAdaption.received2 != null)
-                {
-                    USBAdaption.commandExecuter.notify(USBAdaption.received1, USBAdaption.received2);
-                    USBAdaption.received1 = null;
-                    USBAdaption.received2 = null;
-                }
+                USBAdaption.commandExecuter.notifyOnPort2(receivedData);
+                
             }
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public static char[] dataReceived(System.IO.Ports.SerialPort port, Queue<char> queue)
         {
             // Stueck fuer Stueck aus Serial auslesen

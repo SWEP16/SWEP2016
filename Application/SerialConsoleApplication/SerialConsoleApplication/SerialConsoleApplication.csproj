@@ -43,23 +43,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="commands\reactivecommands\ReactiveCommand.cs" />
+    <Compile Include="commands\reactiveHalfCommands\configurationCommands\CalcConfigurationCommand.cs" />
+    <Compile Include="commands\reactiveFullCommands\ReactiveFullCommand\ReactiveFullCommand.cs" />
     <Compile Include="commands\CommandExecuter.cs" />
-    <Compile Include="commands\reactivecommands\accumulationCommands\InitAccumulation.cs" />
-    <Compile Include="commands\reactivecommands\accumulationCommands\OutputAccumulation.cs" />
-    <Compile Include="commands\reactivecommands\accumulationCommands\StopAccumulation.cs" />
-    <Compile Include="commands\reactivecommands\accumulationCommands\StartAccumulation.cs" />
+    <Compile Include="commands\reactiveHalfCommands\accumulationCommands\InitAccumulation.cs" />
+    <Compile Include="commands\reactiveHalfCommands\accumulationCommands\OutputAccumulation.cs" />
+    <Compile Include="commands\reactiveHalfCommands\accumulationCommands\StopAccumulation.cs" />
+    <Compile Include="commands\reactiveHalfCommands\accumulationCommands\StartAccumulation.cs" />
+    <Compile Include="commands\reactiveFullCommands\ReactiveFullCommand\ReactiveHalfCommandForFullCommandOnPort2.cs" />
+    <Compile Include="commands\reactiveHalfCommands\ReactiveHalfCommand.cs" />
+    <Compile Include="commands\reactiveFullCommands\ReactiveFullCommand\ReactiveHalfCommandForFullCommandOnPort1.cs" />
     <Compile Include="commands\simplecommands\LoadConfigCommand.cs" />
-    <Compile Include="commands\reactivecommands\TriggerValueCommand.cs" />
+    <Compile Include="commands\reactiveFullCommands\TriggerValueCommand.cs" />
     <Compile Include="model\MeasurementDoesntExistException.cs" />
     <Compile Include="model\MeasurementSeries.cs" />
     <Compile Include="model\MeasurementSeriesCollection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="commands\reactivecommands\ReadValueCommand.cs" />
+    <Compile Include="commands\reactiveFullCommands\ReadValueCommand.cs" />
     <Compile Include="commands\simplecommands\SimpleCommand.cs" />
     <Compile Include="model\RepeatingAccuracyMeasurement.cs" />
     <Compile Include="model\RepeatingAccuracyMeasurementSeries.cs" />
+    <Compile Include="usb\StringToHexParser.cs" />
     <Compile Include="usb\USBAdaption.cs" />
     <Compile Include="model\WayTimeMeasurement.cs" />
     <Compile Include="model\WayTimeMeasurementSeries.cs" />
@@ -68,7 +73,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="commands\reactivecommands\configurationCommands\" />
+    <Folder Include="commands\reactivecommands\accumulationCommands\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

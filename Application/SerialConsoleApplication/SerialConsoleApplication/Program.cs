@@ -20,25 +20,22 @@ class Program
 
         CommandExecuter executer = USBAdaption.getCommandExecuter();
         
-        /*
+        
         while (true)
         {
             executer.execute(new ReadValueCommand());
             System.Threading.Thread.Sleep(1000);
         }
-        */
         
-
-        
-        
-        executer.execute(new InitAccumulation());
-        executer.execute(new StartAccumulation());
+       /*
+        executer.executeOnPort1(new InitAccumulation());
+        executer.executeOnPort1(new StartAccumulation());
         System.Threading.Thread.Sleep(1000);
         //doStupidshitOflife();
-        executer.execute(new StopAccumulation());
+        executer.executeOnPort1(new StopAccumulation());
         System.Threading.Thread.Sleep(1000);
         //doStupidshitOflife();
-        executer.execute(new OutputAccumulation(series));
+        executer.executeOnPort1(new OutputAccumulation(series));
         
 
         List<Tuple<double, double>> values = new List<Tuple<double, double>>();
@@ -51,7 +48,7 @@ class Program
 
 
         Program.printWayTimeMeasurementSeries(series);
-        
+        */
         //Console.Clear();
         
 

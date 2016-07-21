@@ -8,7 +8,8 @@ namespace commands
 {
     public class CommandExecuter
     {
-        private Queue<ReactiveCommand> commandQueue = new Queue<ReactiveCommand>();
+        private Queue<ReactiveHalfCommand> halfCommandQueuePort1 = new Queue<ReactiveHalfCommand>();
+        private Queue<ReactiveHalfCommand> halfCommandQueuePort2 = new Queue<ReactiveHalfCommand>();
 
         private System.IO.Ports.SerialPort serialPort1;
         private System.IO.Ports.SerialPort serialPort2;
@@ -33,31 +34,84 @@ namespace commands
             }
         }
 
-        public void execute(ReactiveCommand command)
+        public void executeOnPort1(ReactiveHalfCommand command)
         {
             try
             {
-                command.execute(this.serialPort1, this.serialPort2);
-                this.commandQueue.Enqueue(command);
+                command.execute(this.serialPort1);
+                this.halfCommandQueuePort1.Enqueue(command);
             }
             catch (Exception e)
             {
-                Console.Write("Reactive Command ist im Anfrageverhalten fehlgeschlagen...\n");
+                Console.Write("Half Reactive Command ist fehlgeschlagen...\n");
                 Console.Write(e.Message + "\n");
             }
         }
 
-        public void notify(char[] answerData1, char[] answerData2)
+        public void executeOnPort2(ReactiveHalfCommand command)
         {
-            ReactiveCommand command = this.commandQueue.Peek();
-            if (command.isCorrectAnswerFormat(answerData1) && command.isCorrectAnswerFormat(answerData1))
+            try
+            {
+                command.execute(this.serialPort2);
+                this.halfCommandQueuePort2.Enqueue(command);
+            }
+            catch (Exception e)
+            {
+                Console.Write("Half Reactive Command ist fehlgeschlagen...\n");
+                Console.Write(e.Message + "\n");
+            }
+        }
+
+        public void execute(ReactiveFullCommand command)
+        {
+            ReactiveHalfCommandForFullCommandOnPort1 halfCommand1 = command.getHalfCommand1();
+            ReactiveHalfCommandForFullCommandOnPort2 halfCommand2 = command.getHalfCommand2();
+
+            try
+            {
+                command.execute(this.serialPort1, this.serialPort2);
+                this.halfCommandQueuePort1.Enqueue(halfCommand1);
+                this.halfCommandQueuePort2.Enqueue(halfCommand2);
+            }
+            catch (Exception e)
+            {
+                Console.Write("Reactive Full Command ist im Anfrageverhalten fehlgeschlagen...\n");
+                Console.Write(e.Message + "\n");
+            }
+        }
+
+        public void notifyOnPort1(char[] answerData)
+        {
+            ReactiveHalfCommand command = this.halfCommandQueuePort1.Peek();
+            if (command.isCorrectAnswerFormat(answerData) && command.isCorrectAnswerFormat(answerData))
             {
                 try
                 {
-                    command.react(answerData1, answerData2);
-                    if (this.commandQueue.Count != 0)
+                    command.react(answerData);
+                    if (this.halfCommandQueuePort1.Count != 0)
                     {
-                        this.commandQueue.Dequeue();
+                        this.halfCommandQueuePort1.Dequeue();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.Write("Reactive Command ist im Antwortverhalten fehlgeschlagen...\n");
+                    Console.Write(e.Message + "\n");
+                }
+            }
+        }
+
+        public void notifyOnPort2(char[] answerData)
+        {
+            ReactiveHalfCommand command = this.halfCommandQueuePort2.Peek();
+            if (command.isCorrectAnswerFormat(answerData) && command.isCorrectAnswerFormat(answerData))
+            {
+                try
+                {
+                    command.react(answerData);
+                    if (this.halfCommandQueuePort2.Count != 0)
+                    {
+                        this.halfCommandQueuePort2.Dequeue();
                     }
                 }
                 catch (Exception e)
