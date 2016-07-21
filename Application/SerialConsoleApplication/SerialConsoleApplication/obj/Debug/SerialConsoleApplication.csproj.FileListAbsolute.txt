@@ -4,3 +4,9 @@ c:\users\t\documents\visual studio 2015\Projects\SerialConsoleApplication\Serial
 c:\users\t\documents\visual studio 2015\Projects\SerialConsoleApplication\SerialConsoleApplication\obj\Debug\SerialConsoleApplication.csprojResolveAssemblyReference.cache
 c:\users\t\documents\visual studio 2015\Projects\SerialConsoleApplication\SerialConsoleApplication\obj\Debug\SerialConsoleApplication.exe
 c:\users\t\documents\visual studio 2015\Projects\SerialConsoleApplication\SerialConsoleApplication\obj\Debug\SerialConsoleApplication.pdb
+D:\aMEGA\6]\SWE\Github SWEP16_2\SWEP2016\Application\SerialConsoleApplication\SerialConsoleApplication\bin\Debug\SerialConsoleApplication.exe.config
+D:\aMEGA\6]\SWE\Github SWEP16_2\SWEP2016\Application\SerialConsoleApplication\SerialConsoleApplication\obj\Debug\SerialConsoleApplication.exe
+D:\aMEGA\6]\SWE\Github SWEP16_2\SWEP2016\Application\SerialConsoleApplication\SerialConsoleApplication\obj\Debug\SerialConsoleApplication.pdb
+D:\aMEGA\6]\SWE\Github SWEP16_2\SWEP2016\Application\SerialConsoleApplication\SerialConsoleApplication\obj\Debug\SerialConsoleApplication.csprojResolveAssemblyReference.cache
+D:\aMEGA\6]\SWE\Github SWEP16_2\SWEP2016\Application\SerialConsoleApplication\SerialConsoleApplication\bin\Debug\SerialConsoleApplication.exe
+D:\aMEGA\6]\SWE\Github SWEP16_2\SWEP2016\Application\SerialConsoleApplication\SerialConsoleApplication\bin\Debug\SerialConsoleApplication.pdb

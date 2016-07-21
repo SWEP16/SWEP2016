@@ -19,17 +19,25 @@ class Program
         WayTimeMeasurementSeries series = new WayTimeMeasurementSeries("Meine Messung 1");
 
         CommandExecuter executer = USBAdaption.getCommandExecuter();
-        //while(true)
-        //{
-        //executer.execute(new ReadValueCommand());
+        
+        /*
+        while (true)
+        {
+            executer.execute(new ReadValueCommand());
+            System.Threading.Thread.Sleep(1000);
+        }
+        */
+        
+
+        
         
         executer.execute(new InitAccumulation());
         executer.execute(new StartAccumulation());
-        //System.Threading.Thread.Sleep(5000);
-        doStupidshitOflife();
+        System.Threading.Thread.Sleep(1000);
+        //doStupidshitOflife();
         executer.execute(new StopAccumulation());
-        //System.Threading.Thread.Sleep(5000);
-        doStupidshitOflife();
+        System.Threading.Thread.Sleep(1000);
+        //doStupidshitOflife();
         executer.execute(new OutputAccumulation(series));
         
 
@@ -43,8 +51,9 @@ class Program
 
 
         Program.printWayTimeMeasurementSeries(series);
+        
         //Console.Clear();
-        //}
+        
 
         Console.WriteLine("Ende");
         int line = Console.Read();
