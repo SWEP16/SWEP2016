@@ -17,7 +17,7 @@ namespace commands {
 
             public override void execute(System.IO.Ports.SerialPort port) {
                 Console.Write("excute SmallestDisplayUnit Config ");
-                string command = "SW,OG," + OUTNr.ToString() + "," + smallestDisplayUnit.ToString() + "/r";
+                string command = "SW,OG," + OUTNr.ToString() + "," + smallestDisplayUnit.ToString() + "\r";
                 port.Write(usb.StringToHexParser.parse(command), 0, command.Length);
             }
 

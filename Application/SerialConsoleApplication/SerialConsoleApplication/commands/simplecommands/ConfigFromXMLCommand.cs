@@ -2,19 +2,30 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Xml;
 
 namespace commands {
     namespace simplecommands {
-        class ConfigFromXMLCommand : SimpleCommand {
-            string path;
-            CommandExecuter commandExecuter;
-            ConfigFromXMLCommand(CommandExecuter ce, string path) {
+        public class ConfigFromXMLCommand : SimpleCommand {
+            private string path;
+            private CommandExecuter commandExecuter;
+
+            private int tempFilterDet11 = 0;
+            private int tempFilterDet12 = 0;
+            private int tempFilterDet21 = 0;
+            private int dspoints1 = 0;
+            private int dspoints2 = 0;
+
+            public ConfigFromXMLCommand(CommandExecuter ce, string path) {
                 this.path = path;
                 this.commandExecuter = ce;
             }
 
-            public void execute() {
+            public void execute()
+            {
+                this.commandExecuter.execute(new SwitchModeToCommunicationCommand());
+
                 XmlReader reader = XmlReader.Create(this.path);
                 List<string> paths = new List<string>();
 
@@ -29,19 +40,14 @@ namespace commands {
                         this.configurationCommand(paths.ToArray(), int.Parse(reader.Value));
                     }
                 }
-                // ... lade configuration via Filepfad "path"
+                
+                this.commandExecuter.execute(new SwitchModeToNormalCommand());
             }
 
 
             private void configurationCommand(string[] paths, int value) {
                 string selector = string.Join(".", paths);
-                int tempFilterDet11 = 0;
-                int tempFilterDet12 = 0;
-                int tempFilterDet21 = 0;
-                int dspoints1 = 0;
-                int dspoints2 = 0;
-
-                Console.WriteLine(selector);
+               
                 switch (selector) {
                     //unit1 out1
                     case "units.unit1.out1.calc":
@@ -51,11 +57,11 @@ namespace commands {
                         this.commandExecuter.executeOnPort1(new MeasureModeConfigurationCommand(1, value));
                         break;
                     case "units.unit1.out1.filterdet":
-                        tempFilterDet11 = value;
+                        this.tempFilterDet11 = value;
                         //zwischen speichern
                         break;
                     case "units.unit1.out1.filtertype":
-                        this.commandExecuter.executeOnPort1(new FilterConfigurationCommand(1, tempFilterDet11, value));
+                        this.commandExecuter.executeOnPort1(new FilterConfigurationCommand(1, this.tempFilterDet11, value));
                         break;
                     case "units.unit1.out1.dispdigit":
                         this.commandExecuter.executeOnPort1(new SmallestDisplayUnitConfigurationCommand(1, value));
@@ -68,10 +74,10 @@ namespace commands {
                         this.commandExecuter.executeOnPort1(new MeasureModeConfigurationCommand(2, value));
                         break;
                     case "units.unit1.out2.filterdet":
-                        tempFilterDet12 = value;
+                        this.tempFilterDet12 = value;
                         break;
                     case "units.unit1.out2.filtertype":
-                        this.commandExecuter.executeOnPort1(new FilterConfigurationCommand(2, tempFilterDet12, value));
+                        this.commandExecuter.executeOnPort1(new FilterConfigurationCommand(2, this.tempFilterDet12, value));
                         break;
                     case "units.unit1.out2.dispdigit":
                         this.commandExecuter.executeOnPort1(new SmallestDisplayUnitConfigurationCommand(2, value));
@@ -84,8 +90,8 @@ namespace commands {
                         dspoints1 = value;
                         break;
                     case "units.unit1.common.dsfreq":
-                        this.commandExecuter.executeOnPort1(new AmountOfDataConfigurationCommand(1, dspoints1, value));
-                        this.commandExecuter.executeOnPort1(new AmountOfDataConfigurationCommand(2, dspoints1, value));
+                        this.commandExecuter.executeOnPort1(new AmountOfDataConfigurationCommand(1, this.dspoints1, value));
+                        this.commandExecuter.executeOnPort1(new AmountOfDataConfigurationCommand(2, this.dspoints1, value));
                         break;
                     //unit2 out1
                     case "units.unit2.out1.calc":
@@ -95,10 +101,11 @@ namespace commands {
                         this.commandExecuter.executeOnPort2(new MeasureModeConfigurationCommand(1, value));
                         break;
                     case "units.unit2.out1.filterdet":
-                        tempFilterDet21 = value;
+                        this.tempFilterDet21 = value;
+                        
                         break;
                     case "units.unit2.out1.filtertype":
-                        this.commandExecuter.executeOnPort2(new FilterConfigurationCommand(1, tempFilterDet12, value));
+                        this.commandExecuter.executeOnPort2(new FilterConfigurationCommand(1, this.tempFilterDet12, value));
                         break;
                     case "units.unit2.out1.dispdigit":
                         this.commandExecuter.executeOnPort2(new SmallestDisplayUnitConfigurationCommand(1, value));
@@ -108,10 +115,10 @@ namespace commands {
                         this.commandExecuter.executeOnPort2(new SamplingRateConfigurationCommand(value));
                         break;
                     case "units.unit2.common.dspoints":
-                        dspoints2 = value;
+                        this.dspoints2 = value;
                         break;
                     case "units.unit2.common.dsfreq":
-                        this.commandExecuter.executeOnPort2(new AmountOfDataConfigurationCommand(1, dspoints1, value));
+                        this.commandExecuter.executeOnPort2(new AmountOfDataConfigurationCommand(1, this.dspoints2, value));
                         break;
                 }
             }

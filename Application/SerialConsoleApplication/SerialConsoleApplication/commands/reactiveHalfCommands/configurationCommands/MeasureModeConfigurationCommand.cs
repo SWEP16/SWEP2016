@@ -18,7 +18,7 @@ namespace commands {
 
             public override void execute(System.IO.Ports.SerialPort port) {
                 Console.Write("excute MeasureMode Config ");
-                string command = "SW,OD," + OUTNr.ToString() + "," + messmodus.ToString() + "/r";
+                string command = "SW,OD," + OUTNr.ToString() + "," + messmodus.ToString() + "\r";
                 port.Write(usb.StringToHexParser.parse(command), 0, command.Length);
             }
 

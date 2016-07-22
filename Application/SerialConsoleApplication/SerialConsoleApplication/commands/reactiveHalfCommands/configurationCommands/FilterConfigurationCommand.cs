@@ -20,7 +20,7 @@ namespace commands {
 
             public override void execute(System.IO.Ports.SerialPort port) {
                 Console.Write("excute Filter Config ");
-                string command = "SW,OC," + OUTNr.ToString() + "," + filtermodus.ToString() + "," + anzahlMittelungen.ToString() + "/r";
+                string command = "SW,OC," + OUTNr.ToString() + "," + filtermodus.ToString() + "," + anzahlMittelungen.ToString() + "\r";
                 port.Write(usb.StringToHexParser.parse(command), 0, command.Length);
             }
 

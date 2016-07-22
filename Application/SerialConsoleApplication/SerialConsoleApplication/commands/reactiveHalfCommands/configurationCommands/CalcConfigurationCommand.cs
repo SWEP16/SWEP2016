@@ -26,7 +26,7 @@ namespace commands
             public override void execute(System.IO.Ports.SerialPort port)
             {
                 Console.Write("excute Calc Config ");
-                string command = "SW,OA," + OUTNr.ToString() + "," + berechnungsmethode.ToString() + "," + berechnungWellenform.ToString() + "/r";
+                string command = "SW,OA," + OUTNr.ToString() + "," + berechnungsmethode.ToString() + "," + berechnungWellenform.ToString() + "\r";
                 port.Write(usb.StringToHexParser.parse(command), 0, command.Length);
             }
 

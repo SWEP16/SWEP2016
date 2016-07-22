@@ -19,7 +19,7 @@ namespace commands {
 
             public override void execute(System.IO.Ports.SerialPort port) {
                 Console.Write("excute AmountOfData Config ");
-                string command = "SW,CI," + OUTNr.ToString() + "," + dspoints.ToString() + "," + dsfreq.ToString() + "/r";
+                string command = "SW,CI," + OUTNr.ToString() + "," + dspoints.ToString() + "," + dsfreq.ToString() + "\r";
                 port.Write(usb.StringToHexParser.parse(command), 0, command.Length);
             }
 

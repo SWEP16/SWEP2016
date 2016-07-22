@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using commands.reactivecommands;
 using commands.simplecommands;
+using System.Threading;
 
 namespace commands
 {
@@ -38,8 +39,11 @@ namespace commands
         {
             try
             {
-                command.execute(this.serialPort1);
                 this.halfCommandQueuePort1.Enqueue(command);
+                if (this.halfCommandQueuePort1.Count == 1)
+                {
+                    command.execute(this.serialPort1);
+                }
             }
             catch (Exception e)
             {
@@ -52,8 +56,11 @@ namespace commands
         {
             try
             {
-                command.execute(this.serialPort2);
                 this.halfCommandQueuePort2.Enqueue(command);
+                if (this.halfCommandQueuePort2.Count == 1)
+                {
+                    command.execute(this.serialPort2);
+                }
             }
             catch (Exception e)
             {
@@ -64,38 +71,28 @@ namespace commands
 
         public void execute(ReactiveFullCommand command)
         {
-            ReactiveHalfCommandForFullCommandOnPort1 halfCommand1 = command.getHalfCommand1();
-            ReactiveHalfCommandForFullCommandOnPort2 halfCommand2 = command.getHalfCommand2();
-
-            try
-            {
-                command.execute(this.serialPort1, this.serialPort2);
-                this.halfCommandQueuePort1.Enqueue(halfCommand1);
-                this.halfCommandQueuePort2.Enqueue(halfCommand2);
-            }
-            catch (Exception e)
-            {
-                Console.Write("Reactive Full Command ist im Anfrageverhalten fehlgeschlagen...\n");
-                Console.Write(e.Message + "\n");
-            }
+            this.executeOnPort1(command.getHalfCommand1());
+            this.executeOnPort2(command.getHalfCommand2());
         }
 
         public void notifyOnPort1(char[] answerData)
         {
-            ReactiveHalfCommand command = this.halfCommandQueuePort1.Peek();
-            if (command.isCorrectAnswerFormat(answerData) && command.isCorrectAnswerFormat(answerData))
+            ReactiveHalfCommand command = this.halfCommandQueuePort1.Dequeue();
+            if (command.isCorrectAnswerFormat(answerData))
             {
                 try
                 {
                     command.react(answerData);
-                    if (this.halfCommandQueuePort1.Count != 0)
+                   
+                    if(this.halfCommandQueuePort1.Count != 0)
                     {
-                        this.halfCommandQueuePort1.Dequeue();
+                        command = this.halfCommandQueuePort1.Peek();
+                        command.execute(this.serialPort1);
                     }
                 }
                 catch (Exception e)
                 {
-                    Console.Write("Reactive Command ist im Antwortverhalten fehlgeschlagen...\n");
+                    Console.Write("Reactive Half Command ist im Antwortverhalten fehlgeschlagen...\n");
                     Console.Write(e.Message + "\n");
                 }
             }
@@ -103,20 +100,24 @@ namespace commands
 
         public void notifyOnPort2(char[] answerData)
         {
-            ReactiveHalfCommand command = this.halfCommandQueuePort2.Peek();
-            if (command.isCorrectAnswerFormat(answerData) && command.isCorrectAnswerFormat(answerData))
+            ReactiveHalfCommand command = this.halfCommandQueuePort2.Dequeue();
+
+            
+            if (command.isCorrectAnswerFormat(answerData))
             {
                 try
                 {
                     command.react(answerData);
+
                     if (this.halfCommandQueuePort2.Count != 0)
                     {
-                        this.halfCommandQueuePort2.Dequeue();
+                        command = this.halfCommandQueuePort2.Peek();
+                        command.execute(this.serialPort2);
                     }
                 }
                 catch (Exception e)
                 {
-                    Console.Write("Reactive Command ist im Antwortverhalten fehlgeschlagen...\n");
+                    Console.Write("Reactive Half Command ist im Antwortverhalten fehlgeschlagen...\n");
                     Console.Write(e.Message + "\n");
                 }
             }

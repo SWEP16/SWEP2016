@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="commands\reactiveFullCommands\SwitchModeToCommunicationCommand.cs" />
+    <Compile Include="commands\reactiveFullCommands\SwitchModeToNormalCommand.cs" />
     <Compile Include="commands\reactiveHalfCommands\configurationCommands\AmountOfDataConfigurationCommand.cs" />
     <Compile Include="commands\reactiveHalfCommands\configurationCommands\CalcConfigurationCommand.cs" />
     <Compile Include="commands\reactiveFullCommands\ReactiveFullCommand\ReactiveFullCommand.cs" />
@@ -59,7 +61,6 @@
     <Compile Include="commands\reactiveHalfCommands\ReactiveHalfCommand.cs" />
     <Compile Include="commands\reactiveFullCommands\ReactiveFullCommand\ReactiveHalfCommandForFullCommandOnPort1.cs" />
     <Compile Include="commands\simplecommands\ConfigFromXMLCommand.cs" />
-    <Compile Include="commands\simplecommands\LoadConfigCommand.cs" />
     <Compile Include="commands\reactiveFullCommands\TriggerValueCommand.cs" />
     <Compile Include="model\MeasurementDoesntExistException.cs" />
     <Compile Include="model\MeasurementSeries.cs" />

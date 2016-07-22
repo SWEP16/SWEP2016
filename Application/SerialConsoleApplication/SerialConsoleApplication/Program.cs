@@ -19,38 +19,43 @@ class Program
         WayTimeMeasurementSeries series = new WayTimeMeasurementSeries("Meine Messung 1");
 
         CommandExecuter executer = USBAdaption.getCommandExecuter();
-        
-        
+
+
+        executer.execute(new ConfigFromXMLCommand(executer, "D:/aMEGA/6]/SWE/Github SWEP16_3/SWEP2016/konfig.xml"));
+
         while (true)
         {
             executer.execute(new ReadValueCommand());
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(100);
         }
-        
-       /*
-        executer.executeOnPort1(new InitAccumulation());
-        executer.executeOnPort1(new StartAccumulation());
-        System.Threading.Thread.Sleep(1000);
-        //doStupidshitOflife();
-        executer.executeOnPort1(new StopAccumulation());
-        System.Threading.Thread.Sleep(1000);
-        //doStupidshitOflife();
-        executer.executeOnPort1(new OutputAccumulation(series));
-        
 
-        List<Tuple<double, double>> values = new List<Tuple<double, double>>();
-        Tuple<double, double> tuple = new Tuple<double, double>(0, 5.0001);
-        Tuple<double, double> tuple2 = new Tuple<double, double>(0, 4.0008);
-        values.Add(tuple);
-        values.Add(tuple2);
-        WayTimeMeasurement w1 = new WayTimeMeasurement(values);
-        series.addMeasurement(w1);
+       
+        //executer.execute(new ReadValueCommand());
+
+        /*
+         executer.executeOnPort1(new InitAccumulation());
+         executer.executeOnPort1(new StartAccumulation());
+         System.Threading.Thread.Sleep(1000);
+         //doStupidshitOflife();
+         executer.executeOnPort1(new StopAccumulation());
+         System.Threading.Thread.Sleep(1000);
+         //doStupidshitOflife();
+         executer.executeOnPort1(new OutputAccumulation(series));
 
 
-        Program.printWayTimeMeasurementSeries(series);
-        */
+         List<Tuple<double, double>> values = new List<Tuple<double, double>>();
+         Tuple<double, double> tuple = new Tuple<double, double>(0, 5.0001);
+         Tuple<double, double> tuple2 = new Tuple<double, double>(0, 4.0008);
+         values.Add(tuple);
+         values.Add(tuple2);
+         WayTimeMeasurement w1 = new WayTimeMeasurement(values);
+         series.addMeasurement(w1);
+
+
+         Program.printWayTimeMeasurementSeries(series);
+         */
         //Console.Clear();
-        
+
 
         Console.WriteLine("Ende");
         int line = Console.Read();

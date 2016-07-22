@@ -51,7 +51,7 @@ namespace usb
             if (serialPort2.IsOpen) serialPort2.Close();
         }
 
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public static void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             char[] receivedData = USBAdaption.dataReceived(USBAdaption.serialPort1, USBAdaption.queue1);
@@ -61,6 +61,7 @@ namespace usb
             }
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public static void serialPort2_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             char[] receivedData = USBAdaption.dataReceived(USBAdaption.serialPort2, USBAdaption.queue2);
