@@ -15,7 +15,7 @@ namespace commands
             public int berechnungsmethode { get; set; }
             public int berechnungWellenform { get; set; }
 
-            public CalcConfigurationCommand(int OUTNr, int berechnungsmethode)
+            public CalcConfigurationCommand(int OUTNr, int berechnungsmethode) 
             {
                 this.OUTNr = OUTNr;
                 this.berechnungsmethode = berechnungsmethode;

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="commands\reactiveHalfCommands\configurationCommands\AmountOfDataConfigurationCommand.cs" />
     <Compile Include="commands\reactiveHalfCommands\configurationCommands\CalcConfigurationCommand.cs" />
     <Compile Include="commands\reactiveFullCommands\ReactiveFullCommand\ReactiveFullCommand.cs" />
     <Compile Include="commands\CommandExecuter.cs" />
@@ -51,8 +52,13 @@
     <Compile Include="commands\reactiveHalfCommands\accumulationCommands\StopAccumulation.cs" />
     <Compile Include="commands\reactiveHalfCommands\accumulationCommands\StartAccumulation.cs" />
     <Compile Include="commands\reactiveFullCommands\ReactiveFullCommand\ReactiveHalfCommandForFullCommandOnPort2.cs" />
+    <Compile Include="commands\reactiveHalfCommands\configurationCommands\FilterConfigurationCommand.cs" />
+    <Compile Include="commands\reactiveHalfCommands\configurationCommands\MeasureModeConfigurationCommand.cs" />
+    <Compile Include="commands\reactiveHalfCommands\configurationCommands\SamplingRateConfigurationCommand.cs" />
+    <Compile Include="commands\reactiveHalfCommands\configurationCommands\SmallestDisplayUnitConfigurationCommand.cs" />
     <Compile Include="commands\reactiveHalfCommands\ReactiveHalfCommand.cs" />
     <Compile Include="commands\reactiveFullCommands\ReactiveFullCommand\ReactiveHalfCommandForFullCommandOnPort1.cs" />
+    <Compile Include="commands\simplecommands\ConfigFromXMLCommand.cs" />
     <Compile Include="commands\simplecommands\LoadConfigCommand.cs" />
     <Compile Include="commands\reactiveFullCommands\TriggerValueCommand.cs" />
     <Compile Include="model\MeasurementDoesntExistException.cs" />
