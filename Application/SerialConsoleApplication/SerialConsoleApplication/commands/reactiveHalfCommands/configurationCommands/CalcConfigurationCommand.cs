@@ -8,16 +8,26 @@ namespace commands
 {
     namespace reactivecommands
     {
+        //Berechnungsverfahren
         public class CalcConfigurationCommand : ReactiveHalfCommand
         {
-            public CalcConfigurationCommand()
+            public int OUTNr { get; set; }
+            public int berechnungsmethode { get; set; }
+            public int berechnungWellenform { get; set; }
+
+            public CalcConfigurationCommand(int OUTNr, int berechnungsmethode)
             {
+                this.OUTNr = OUTNr;
+                this.berechnungsmethode = berechnungsmethode;
+                // in diesem Fall immer 0
+                this.berechnungWellenform = 0;
             }
 
             public override void execute(System.IO.Ports.SerialPort port)
             {
                 Console.Write("excute Calc Config ");
-                port.Write(new byte[] { 0x41, 0x51, 0x0D }, 0, 3);
+                string command = "SW,OA," + OUTNr.ToString() + "," + berechnungsmethode.ToString() + "," + berechnungWellenform.ToString() + "/r";
+                port.Write(usb.StringToHexParser.parse(command), 0, command.Length);
             }
 
             public override void react(char[] answerData1)

@@ -2,11 +2,11 @@
 <units>
     <unit1>
         <out1>
-            <calc>0</calc> 
+            <calc>0</calc>
             <!--
-                Berechnungsverfahren 
-                0-Messkopf A, 
-                1-Messkopf B, 
+                Berechnungsverfahren
+                0-Messkopf A,
+                1-Messkopf B,
                 2-[Messkopf A]+[Messkopf B],
                 3-[Messkopf A]-[Messkopf B],
                 4-Messkopf-A Transparentes Objekt,
@@ -16,8 +16,8 @@
             <outmsrmode>5</outmsrmode>
             <!--
                 Messmodus
-                0-NORMAL, 
-                1-SPITZENWERT HALTEN, 
+                0-NORMAL,
+                1-SPITZENWERT HALTEN,
                 2-TIEFSTWERT HALTEN,
                 3-SPITZE-SPITZE-HALTEN,
                 4-ABTAST-HALTEN,
@@ -26,9 +26,9 @@
 
             <filterdet>5</filterdet>
             <!--
-                Anzahl Messungen zur Mittelwertbildung 
-                0-1, 
-                1-4, 
+                Anzahl Messungen zur Mittelwertbildung
+                0-1,
+                1-4,
                 2-16,
                 3-64,
                 4-256,
@@ -41,17 +41,17 @@
 
             <filtertype>0</filtertype>
             <!--
-                Anzahl Messungen zur Mittelwertbildung 
-                0-Gleitender Mittelwert, 
-                1-TIEFPASSFILTER, 
+                Typ
+                0-Gleitender Mittelwert,
+                1-TIEFPASSFILTER,
                 2-HOCHPASSFILTER
             -->
 
             <dispdigit>2</dispdigit>
             <!--
-                Kleinste Anzeigeeinheit 
-                0-0.01(mm), 
-                1-0.001(mm), 
+                Kleinste Anzeigeeinheit
+                0-0.01(mm),
+                1-0.001(mm),
                 2-0.0001(mm),
                 3-0.00001(mm),
                 4-0.1(um),
@@ -62,9 +62,9 @@
         <out2>
             <calc>0</calc>
             <!--
-                Berechnungsverfahren 
-                0-Messkopf A, 
-                1-Messkopf B, 
+                Berechnungsverfahren
+                0-Messkopf A,
+                1-Messkopf B,
                 2-[Messkopf A]+[Messkopf B],
                 3-[Messkopf A]-[Messkopf B],
                 4-Messkopf-A Transparentes Objekt,
@@ -74,8 +74,8 @@
             <outmsrmode>5</outmsrmode>
             <!--
                 Messmodus
-                0-NORMAL, 
-                1-SPITZENWERT HALTEN, 
+                0-NORMAL,
+                1-SPITZENWERT HALTEN,
                 2-TIEFSTWERT HALTEN,
                 3-SPITZE-SPITZE-HALTEN,
                 4-ABTAST-HALTEN,
@@ -84,9 +84,9 @@
 
             <filterdet>5</filterdet>
             <!--
-                Anzahl Messungen zur Mittelwertbildung 
-                0-1, 
-                1-4, 
+                Anzahl Messungen zur Mittelwertbildung
+                0-1,
+                1-4,
                 2-16,
                 3-64,
                 4-256,
@@ -99,17 +99,17 @@
 
             <filtertype>0</filtertype>
             <!--
-                Anzahl Messungen zur Mittelwertbildung 
-                0-Gleitender Mittelwert, 
-                1-TIEFPASSFILTER, 
+                Typ
+                0-Gleitender Mittelwert,
+                1-TIEFPASSFILTER,
                 2-HOCHPASSFILTER
             -->
 
             <dispdigit>2</dispdigit>
             <!--
-                Kleinste Anzeigeeinheit 
-                0-0.01(mm), 
-                1-0.001(mm), 
+                Kleinste Anzeigeeinheit
+                0-0.01(mm),
+                1-0.001(mm),
                 2-0.0001(mm),
                 3-0.00001(mm),
                 4-0.1(um),
@@ -142,7 +142,7 @@
                 4-20
                 5-50
                 6-100
-                7-200  
+                7-200
                 8-500
                 9-1000
             -->
@@ -151,11 +151,11 @@
     </unit1>
     <unit2>
         <out1>
-            <calc>0</calc> 
+            <calc>0</calc>
             <!--
-                Berechnungsverfahren 
-                0-Messkopf A, 
-                1-Messkopf B, 
+                Berechnungsverfahren
+                0-Messkopf A,
+                1-Messkopf B,
                 2-[Messkopf A]+[Messkopf B],
                 3-[Messkopf A]-[Messkopf B],
                 4-Messkopf-A Transparentes Objekt,
@@ -165,8 +165,8 @@
             <outmsrmode>5</outmsrmode>
             <!--
                 Messmodus
-                0-NORMAL, 
-                1-SPITZENWERT HALTEN, 
+                0-NORMAL,
+                1-SPITZENWERT HALTEN,
                 2-TIEFSTWERT HALTEN,
                 3-SPITZE-SPITZE-HALTEN,
                 4-ABTAST-HALTEN,
@@ -175,9 +175,9 @@
 
             <filterdet>5</filterdet>
             <!--
-                Anzahl Messungen zur Mittelwertbildung 
-                0-1, 
-                1-4, 
+                Anzahl Messungen zur Mittelwertbildung
+                0-1,
+                1-4,
                 2-16,
                 3-64,
                 4-256,
@@ -190,17 +190,17 @@
 
             <filtertype>0</filtertype>
             <!--
-                Anzahl Messungen zur Mittelwertbildung 
-                0-Gleitender Mittelwert, 
-                1-TIEFPASSFILTER, 
+                Anzahl Messungen zur Mittelwertbildung
+                0-Gleitender Mittelwert,
+                1-TIEFPASSFILTER,
                 2-HOCHPASSFILTER
             -->
 
             <dispdigit>1</dispdigit>
             <!--
-                Kleinste Anzeigeeinheit 
-                0-0.01(mm), 
-                1-0.001(mm), 
+                Kleinste Anzeigeeinheit
+                0-0.01(mm),
+                1-0.001(mm),
                 2-0.0001(mm),
                 3-0.00001(mm),
                 4-0.1(um),
@@ -233,7 +233,7 @@
                 4-20
                 5-50
                 6-100
-                7-200  
+                7-200
                 8-500
                 9-1000
             -->

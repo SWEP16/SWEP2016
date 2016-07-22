@@ -10,3 +10,4 @@ D:\aMEGA\6]\SWE\Github SWEP16_2\SWEP2016\Application\SerialConsoleApplication\Se
 D:\aMEGA\6]\SWE\Github SWEP16_2\SWEP2016\Application\SerialConsoleApplication\SerialConsoleApplication\obj\Debug\SerialConsoleApplication.csprojResolveAssemblyReference.cache
 D:\aMEGA\6]\SWE\Github SWEP16_2\SWEP2016\Application\SerialConsoleApplication\SerialConsoleApplication\bin\Debug\SerialConsoleApplication.exe
 D:\aMEGA\6]\SWE\Github SWEP16_2\SWEP2016\Application\SerialConsoleApplication\SerialConsoleApplication\bin\Debug\SerialConsoleApplication.pdb
+\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SerialConsoleApplication\SerialConsoleApplication\bin\Debug\SerialConsoleApplication.exe.config

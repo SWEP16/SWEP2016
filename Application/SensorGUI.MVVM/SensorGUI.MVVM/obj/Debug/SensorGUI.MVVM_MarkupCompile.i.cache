@@ -16,5 +16,5 @@ DEBUG;TRACE
 751783369607
 View\Views\CancelWindow.xaml;View\Views\ExportWindow.xaml;View\Views\MainWindow.xaml;View\Views\SaveWindow.xaml;
 
-True
+False
 

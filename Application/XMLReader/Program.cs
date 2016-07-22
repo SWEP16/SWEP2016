@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 using System.Xml;
 
 namespace ConsoleApplication3 {
+
     class Program {
 
         static void configurationCommand(string[] paths, string value) {
             string selector = string.Join(".", paths);
+            int tempFilterDet = 0;
 
             Console.WriteLine(selector);
             switch (selector) {
@@ -19,6 +21,7 @@ namespace ConsoleApplication3 {
                 case "units.unit1.out1.outmsrmode":
                     break;
                 case "units.unit1.out1.filterdet":
+                    //zwischen speichern
                     break;
                 case "units.unit1.out1.filtertype":
                     break;
@@ -63,6 +66,7 @@ namespace ConsoleApplication3 {
             }
                 
         }
+
         static void Main(string[] args) {
             XmlReader reader = XmlReader.Create("\\\\vmware-host\\Shared Folders\\Dokumente\\Programmierung\\GitProjects\\SWEP2016\\konfig.xml");
             List<string> paths = new List<string>();
