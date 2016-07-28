@@ -1,0 +1,453 @@
+nav ul a,
+body{
+  background-color: #212121;
+}
+
+body{
+   background: url(.../crap/back.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+nav .brand-logo {
+  color: #a7ffeb;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.button-collapse {
+  color: #a7ffeb;
+}
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+
+.tabs .tab a{
+  color: #26a69a;
+}
+
+.tabs .tab a:hover{
+  color: #26a69a;
+}
+
+.tabs{
+    background-color: #f5f5f5;
+    border-bottom-color: #f5f5f5;
+    border-radius: 1px 1px 1px 1px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.tabs .indicator{
+  background-color: #26a69a;
+}
+
+.side-nav a{
+  background-color: #ffa726;
+  color: #212121;
+}
+
+.side-nav li:hover > a {
+  background-color: #212121;
+  color: #a7ffeb;
+}
+
+.btn{
+  background-color: #26a69a ;
+  color: #a7ffeb;
+}
+
+.btn3{
+    width: 100%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+nav ul a{
+  background-color: #26a69a;
+  color: #212121;
+}
+
+nav ul a:hover{
+  background-color: #212121;
+  color:#a7ffeb;
+}
+
+.side-nav li:hover, .side-nav li.active{
+  background-color: #212121;
+}
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+/*Login*/
+.card .card-content .card-title{
+  color:#a7ffeb;
+}
+
+.input-field label{
+  color:#a7ffeb;
+}
+
+.input-field input[type=text]:focus + label {
+  color: #a7ffeb;
+}
+
+.input-field input[type=text] {
+  border-bottom: 1px solid #a7ffeb;
+}
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #a7ffeb;
+}
+.input-field input[type=text].valid {
+  border-bottom: 1px solid #a7ffeb;
+  box-shadow: 0 0px 0 0;
+}
+.input-field input[type=text].invalid {
+  border-bottom: 1px solid #a7ffeb;
+  box-shadow: 0 0px 0 0;
+}
+
+.input-field input[type=password]:focus + label {
+  color: #a7ffeb;
+}
+
+.input-field input[type=password]:focus {
+  border-bottom: 1px solid #a7ffeb;
+}
+.input-field input[type=password]{
+  border-bottom: 1px solid #a7ffeb;
+}
+.input-field input[type=password].valid {
+  border-bottom: 1px solid #a7ffeb;
+  box-shadow: 0 0px 0 0;
+}
+.input-field input[type=password].invalid {
+  border-bottom: 1px solid #a7ffeb;
+  box-shadow: 0 0px 0 0;
+}
+
+.input-field .prefix.active {
+  color: #a7ffeb;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover{
+  color: #a7ffeb;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating){
+  color: #26a69a;
+  font-weight: bold;
+}
+
+.btn2{
+  color: #26a69a ;
+  background-color: #a7ffeb;
+}
+
+.btn2:hover{
+  background-color: #26a69a;
+  color: #a7ffeb;
+}
+
+.toast{
+    background-color: #e65100;
+    color: #212121;
+}
+
+.nav{
+    background-color: transparent;
+    border-radius: 1px 1px 1px 1px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.myNav{
+    background-color: transparent;
+    border-radius: 1px 1px 1px 1px;
+    margin-top: 10px;
+}
+
+.nav-wrapper{
+    border-radius: 1px 1px 1px 1px;
+}
+
+.input-field{
+    background-color: #26a69a;
+    border-radius: 1px 1px 1px 1px;
+    height: 50px;
+    
+}
+
+.small-Input{
+    height: 50px;
+}
+
+nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i{
+    height: 50px;
+    line-height: 50px;
+}
+
+.searchBar{
+    border-radius: 1px 1px 1px 1px;
+}
+
+#searchContent{
+    margin-top: 10px;
+    min-width: 100%;
+}
+
+#myContent{
+    margin-top: 10px;
+    min-width: 100%;
+}
+
+#newestContent{
+    margin-top: 10px;
+    min-width: 100%;
+}
+
+.voting-home-main{
+    max-width: 100%;
+    height: 80px;
+    background-color: #f5f5f5;
+    border-radius: 0px 0px 1px 1px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+    //text-overflow: ellipsis;
+    //white-space: nowrap;
+}
+
+.voting-home-head{
+    height: 40px;
+    border-radius: 1px 1px 0px 0px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.voting-home-description{
+    height: 50px;
+    border-bottom: solid #e1e1e1;
+    border-width: 1px;
+    overflow:hidden;
+}
+
+.voting-home-effect{
+    position: absolute;
+    height: 10px;
+    width:95%;
+    margin-top: -10px;
+    z-index: 2;
+    border-bottom: solid #e1e1e1;
+    border-width: 1px;
+    background-image: url(.../crap/gradient.png);
+    background-repeat: repeat-x;
+}
+
+@media only screen and (max-width: 992px) {
+    .voting-home-description{
+        height: 38px;
+    }
+    
+    .voting-home-main{
+        height: 68px;
+    }
+}
+
+.voting-home-right{
+    height: 30px;
+}
+
+.voting-home-left{
+    height: 30px;
+}
+
+.voting-home{
+    cursor: pointer;
+    width: 100%;
+}
+
+.voting-home > *{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.modal.bottom-sheet{
+    height: 45%;
+    max-height: 45%;
+    border-radius: 1px 1px 0px 0px;
+    background-color: rgb(206, 147, 216);
+}
+
+.voting-modal{
+    //height: 45%;
+}
+
+.voting-modal-colorBar{
+    margin-top: 0px;
+    background-color:  rgb(206, 147, 216);
+    height: 100;
+}
+.voting-modal-colorBar .card-panel{
+    color: black;
+    background-color: white;
+}
+.voting-modal-buttonBar{
+    max-height: 100%;
+    background-color: rgb(206, 147, 216);
+}
+
+.voting-modal-votingdescription label{
+    color: black;
+}
+
+.voting-modal-buttonBar > a.waves-effect.btn{
+    background-color: white;
+    color: rgb(206, 147, 216);
+    width: 100%;
+    text-align: left;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.card-panel{
+    padding: 10px;
+}
+
+@media only screen and (max-width: 992px) {
+    .modal.bottom-sheet{
+        height: 70%;
+        max-height: 70%;
+    }
+    
+    .voting-modal-buttonBar{
+        max-height: 160px;
+    }
+}
+
+.voting-modal-steps .modal{
+    //height: 100%;
+    max-height: 80%;
+    height: 600px;
+    background-color: white;
+    position: absolute
+}
+
+.voting-modal-steps .modal .modal-content{
+    background-color: white;
+    min-height: 485px; 
+}
+
+.voting-modal-steps .modal .modal-footer{
+    background-color: #26a69a ;
+    position: absolute;
+    bottom: 0;
+    color: #a7ffeb;
+}
+
+.voting-modal-steps .modal .sticked .modal-footer {
+    background-color: #26a69a ;
+    position: relative;
+    bottom: 0;
+    color: #a7ffeb;
+}
+
+.voting-modal-steps .modal .modal-footer a{
+    color: #a7ffeb;
+}
+
+.voting-modal-steps textarea.materialize-textarea:focus:not([readonly]) + label{
+    color: black;
+}
+
+.voting-modal-steps textarea.materialize-textarea:focus:not([readonly]){
+    border-bottom: 1px solid black;
+    box-shadow: 0 0px 0 0;
+}
+
+.voting-modal-steps textarea.materialize-textarea{
+    border-bottom: 1px solid black;
+    box-shadow: 0 0px 0 0;
+}
+
+.voting-modal-steps .modal .modal-content .step3Check [type="checkbox"]:checked + label:before{
+    border-right: 2px solid #26a69a;
+    border-bottom: 2px solid #26a69a;
+}
+
+.voting-modal-steps .modal .modal-content .step3Check [type="checkbox"] + label{
+    color: black;
+}
+
+[type="radio"]:checked + label:after{
+    border: 2px solid #26a69a;
+    background-color: #26a69a;
+}
+
+[type="radio"]:checked + label{
+    color: #26a69a;
+}
+
+[type="radio"]:not(:checked) + label{
+    color: black;
+}
+
+.voting-modal-steps .modal .modal-content h4{
+    color: black;
+}
+
+.voting-modal-steps .modal .modal-content h6{
+    color: black;
+}
+
+.voting-modal-steps .input-field input[type=text]{
+    border-bottom: 1px solid black;
+}
+
+.voting-modal-steps .input-field{
+    background-color: white;
+}
+.voting-modal-steps .input-field label{
+    color: black;
+}
+
+.voting-modal-steps .input-field input[type=text]:focus + label{
+    color: black;
+}
+
+.voting-modal-steps input[type=text]:focus:not([readonly]){
+    border-bottom: 1px solid black;
+    box-shadow: 0 0 0 0 black;
+}
+
+.shiftLeft{
+    margin-left: 20px;
+}

@@ -70,12 +70,10 @@ namespace commands
                         newSheet.Cells[1, 1] = "s";
                         newSheet.Cells[1, 2] = "t";
 
-                        for (int j = 0; j < wts.getMeasurementsLength(); j++) {
-                            for(int k = 0; k < wts.getMeasurement(j).getValuesLegth(); k++) {
-                                newSheet.Cells[row, col + 0] = wts.getMeasurement(j).getValue(k).Item1;
-                                newSheet.Cells[row, col + 1] = wts.getMeasurement(j).getValue(k).Item2;
-                                row++;
-                            }
+                        for (int j = 0; j < wts.getValuesLength(); j++) {
+                            newSheet.Cells[row, col + 0] = wts.getValue(k).Item1;
+                            newSheet.Cells[row, col + 1] = wts.getValue(k).Item2;
+                            row++;                             
                         }
                         row = 1;
                         col = 1;
