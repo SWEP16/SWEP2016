@@ -9,11 +9,9 @@ namespace SensorGUI.MVVM {
         public event EventHandler<NameChangedEventArgs> NameChanged;
         public string Name { get; set; }
         public bool IsTriggerer { get; set; }
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
-        public User() {
-            this.Id = Guid.NewGuid();
-        }
+        public User() { }
 
         public void ChangeName(string name) {
             Name = name;

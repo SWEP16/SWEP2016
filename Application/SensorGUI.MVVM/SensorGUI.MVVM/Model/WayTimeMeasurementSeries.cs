@@ -25,7 +25,10 @@ namespace model {
                 throw new MeasurementDoesntExistException();
                 //return 0;
             }
-            else {
+            else 
+            {
+                Console.WriteLine(index);
+
                 return this.measurements.ElementAt(index);
             }
         }

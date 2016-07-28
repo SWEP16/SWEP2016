@@ -33,9 +33,35 @@ namespace SensorGUI.MVVM {
         public ValueSet Live { get; set; }
         public ValueSet SelectedMeasurement { get; set; }
         public int SelectedIndex { get; set; }
-        public RepeatingAccuracyMeasurementSeriesWrapper CurrentMeasurementSeries { get; set; }
+        public MeasurementSeriesWrapper CurrentMeasurementSeries { get; set; }
+        public WayTimeMeasurementSeriesWrapper TestSeries { get; set; }
+        public RepeatingAccuracyMeasurementSeriesWrapper RASeries { get; set; }
+        /*public RepeatingAccuracyMeasurementSeriesWrapper CurrentMeasurementSeriesAsRepeatingAccurcyMeasurementSeries 
+        {
+            get 
+            {
+                if(CurrentMeasurementSeriesAsRepeatingAccurcyMeasurementSeries is RepeatingAccuracyMeasurementSeriesWrapper)
+                {
+                    return (RepeatingAccuracyMeasurementSeriesWrapper)(this.CurrentMeasurementSeries);
+                }
+                return new RepeatingAccuracyMeasurementSeriesWrapper(new RepeatingAccuracyMeasurementSeries("Messreihe um Rendering der View nicht zu behindern."));
+            }
+        }
+
+        public WayTimeMeasurementSeriesWrapper CurrentMeasurementSeriesAsWayTimeMeasurementSeries 
+        {
+            get 
+            {
+                if(CurrentMeasurementSeriesAsRepeatingAccurcyMeasurementSeries is RepeatingAccuracyMeasurementSeriesWrapper) {
+                    return (WayTimeMeasurementSeriesWrapper)(this.CurrentMeasurementSeries);
+                }
+                return new WayTimeMeasurementSeriesWrapper(new WayTimeMeasurementSeries("Messreihe um Rendering der View nicht zu behindern."));
+            }
+            set { }
+        }*/
+
         public ObservableCollection<User> Users { get; set; }
-        public ObservableCollection<RepeatingAccuracyMeasurementSeriesWrapper> MeasurementSeries { get; set; }
+        public ObservableCollection<MeasurementSeriesWrapper> MeasurementSeries { get; set; }
         public ObservableCollection<Configuration> Configs { get; set; }
         public DispatcherTimer DispatcherTimer { get; set; }
         public Stopwatch Stopwatch { get; set; }
@@ -53,16 +79,16 @@ namespace SensorGUI.MVVM {
             this.DialogService = DialogService;
             this.Users = new ObservableCollection<User>();
             this.Configs = new ObservableCollection<Configuration>();
-            this.MeasurementSeries = new ObservableCollection<RepeatingAccuracyMeasurementSeriesWrapper>();
+            this.MeasurementSeries = new ObservableCollection<MeasurementSeriesWrapper>();
 
-
+            
             USBAdaption.init(this);
 
             Console.WriteLine("After Init");
 
             this.executer = USBAdaption.getCommandExecuter();
             this.measurementSeriesCollection = new MeasurementSeriesCollection();
-            this.CurrentMeasurementSeries = new RepeatingAccuracyMeasurementSeriesWrapper(new RepeatingAccuracyMeasurementSeries("Initial Series"));
+            //this.CurrentMeasurementSeries = new RepeatingAccuracyMeasurementSeriesWrapper(new RepeatingAccuracyMeasurementSeries("Initial Series"));
             //this.measurementSeriesCollection.addMeasurementSeries(new RepeatingAccuracyMeasurementSeries("Neuer Messvorgang"));
 
             Console.WriteLine("After get Command Executer");
@@ -79,12 +105,12 @@ namespace SensorGUI.MVVM {
             this.StartStop = true;
             this.GraphVisible = false;
             this.ConfigName = "Konfiguration auswählen...";
-            this.Timer = "00:00";
+            this.Timer = "00:00:00";
             this.IDCounter = 0;
             this.AppCode = "1337";
             this.DispatcherTimer = new DispatcherTimer();
             this.DispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
-            this.DispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            this.DispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             Configuration c1 = new Configuration { Name = "Genauigkeitsmessung", Id = 0, Config = ConfigView.Genauigkeitsmessung };
             Configuration c2 = new Configuration { Name = "Weg-Zeit Messung", Id = 1, Config = ConfigView.WegZeitMessung };
             this.Configs.Add(c1);
@@ -98,7 +124,7 @@ namespace SensorGUI.MVVM {
             u1.NameChanged += U1_NameChanged;
 
             //var _ = UpdateValue();
-            var _ = UpdateLiveValues();
+            //var _ = UpdateLiveValues();
         }
 
         /*private async Task UpdateValue() {
@@ -107,7 +133,7 @@ namespace SensorGUI.MVVM {
                 AppCode = i.ToString();
             }
         }*/
-        private async Task UpdateLiveValues() {
+        /*private async Task UpdateLiveValues() {
             while(true) {
                 await Task.Delay(250);
                 for(int i = 0; i < this.CurrentMeasurementSeries.Measurements.Count; i++) {
@@ -116,39 +142,48 @@ namespace SensorGUI.MVVM {
                     this.Live.Value3 = this.CurrentMeasurementSeries.Measurements[i].Value3;
                 }
             }
-        }
+        }*/
         public string Path {
             get { return _path; }
             private set { Set(() => Path, ref _path, value); }
         }
 
-        public void update() 
-        {
+        public void update() {
             Console.WriteLine("Update!");
 
-            if(this.measurementSeriesCollection.getMeasurementSeriesLength() > 0) 
-            {
+            if(this.measurementSeriesCollection.getMeasurementSeriesLength() > 0) {
                 this.MeasurementSeries = ModelToWrappedModelParser.parse(this.measurementSeriesCollection);
                 int lastIndex = this.MeasurementSeries.Count - 1;
 
                 this.CurrentMeasurementSeries = this.MeasurementSeries[lastIndex];
                 this.Title = CurrentMeasurementSeries.Name;
+                if(this.CurrentMeasurementSeries is RepeatingAccuracyMeasurementSeriesWrapper) {
+                    this.TestSeries = new WayTimeMeasurementSeriesWrapper(new WayTimeMeasurementSeries("Error"));
+                    RepeatingAccuracyMeasurementSeriesWrapper currentMeasurementSeriesAsRepeatingAccuracyMeasurementSeries = (RepeatingAccuracyMeasurementSeriesWrapper)(this.CurrentMeasurementSeries);
+                    this.RASeries = currentMeasurementSeriesAsRepeatingAccuracyMeasurementSeries;
+                } else {
+                    this.RASeries = new RepeatingAccuracyMeasurementSeriesWrapper(new RepeatingAccuracyMeasurementSeries("Error"));
+                    WayTimeMeasurementSeriesWrapper currentMeasurementSeriesAsWayTimeMeasurementSeries = (WayTimeMeasurementSeriesWrapper)(this.CurrentMeasurementSeries);
+                    this.TestSeries = currentMeasurementSeriesAsWayTimeMeasurementSeries;
+                }
+                
             }
-            else 
-            {
+            else {
                 this.Title = "";
             }
             this.UpdateExtraValues();
         }
 
         private void UpdateExtraValues() {
-            ObservableCollection<ValueSet> values = RepeatingAccuracyMeasurementToValueSetParser.parse(this.CurrentMeasurementSeries);
+            if(this.CurrentMeasurementSeries is RepeatingAccuracyMeasurementSeriesWrapper) {
+                RepeatingAccuracyMeasurementSeriesWrapper currentMeasurementSeriesAsRepeatingMeasurementSeries = (RepeatingAccuracyMeasurementSeriesWrapper)(this.CurrentMeasurementSeries);
+                ObservableCollection<ValueSet> values = RepeatingAccuracyMeasurementToValueSetParser.parse(currentMeasurementSeriesAsRepeatingMeasurementSeries);
 
-            this.AverageValue = MathHelper.CalculateAverage(values);
-            this.StandardDeviation = MathHelper.CalculateStandardDeviation(values);
-            this.MaxValue = MathHelper.GetMaximum(values);
-            this.MinValue = MathHelper.GetMinimum(values);
+                this.AverageValue = MathHelper.CalculateAverage(values);
+                this.StandardDeviation = MathHelper.CalculateStandardDeviation(values);
+                this.MaxValue = MathHelper.GetMaximum(values);
+                this.MinValue = MathHelper.GetMinimum(values);
+            }
         }
-
     }
 }

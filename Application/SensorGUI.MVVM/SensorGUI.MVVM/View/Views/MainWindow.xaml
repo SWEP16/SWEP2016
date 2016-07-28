@@ -138,7 +138,7 @@
             </Grid>
 
             <!--________________________________________Value Table________________________________________-->
-            <DataGrid Grid.Row="2" Grid.ColumnSpan="3" AutoGenerateColumns="False" HeadersVisibility="Column" ItemsSource="{Binding CurrentMeasurementSeries.Measurements}" SelectedIndex="{Binding SelectedIndex}" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid Grid.Row="2" Grid.ColumnSpan="3" AutoGenerateColumns="False" HeadersVisibility="Column" ItemsSource="{Binding RASeries.Measurements}" SelectedIndex="{Binding SelectedIndex}" CanUserAddRows="False" CanUserDeleteRows="False">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Background" Value="#FF344A6E"/>
@@ -280,17 +280,17 @@
                             </sparrow:SplineSeries.Points>
                         </sparrow:SplineSeries>
                     </-->
-                    <!--DVC:Chart>
+                    <DVC:Chart>
                         <DVC:Chart.Series>
-                            <DVC:LineSeries Visibility="{Binding GraphVisible,Converter={StaticResource BooleanToVisibilityConverter}}" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}" ItemsSource="{Binding CurrentMeasurementSeries.WayTime}">
+                            <DVC:LineSeries Visibility="{Binding GraphVisible,Converter={StaticResource BooleanToVisibilityConverter}}" IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}" ItemsSource="{Binding TestSeries.WayTimeMeasurements}">
                             </DVC:LineSeries>
                         </DVC:Chart.Series>
-                    </-->
-                    <d3:ChartPlotter Margin="20">
+                    </DVC:Chart>
+                    <!--d3:ChartPlotter Margin="20">
                         <d3:LineGraph>
                             
                         </d3:LineGraph>
-                    </d3:ChartPlotter>
+                    </-->
                 </TabItem>
                 <TabItem Header="Geschwindigkeit-Zeit"></TabItem>
                 <TabItem Header="Beschleunigung-Zeit"></TabItem>

@@ -8,9 +8,9 @@ using System.Collections.ObjectModel;
 
 namespace SensorGUI.MVVM {
     public class ModelToWrappedModelParser {
-        public static ObservableCollection<RepeatingAccuracyMeasurementSeriesWrapper> parse(MeasurementSeriesCollection measurementSeriesCollection) {
+        public static ObservableCollection<MeasurementSeriesWrapper> parse(MeasurementSeriesCollection measurementSeriesCollection) {
 
-            ObservableCollection<RepeatingAccuracyMeasurementSeriesWrapper> wrapperObservableCollection = new ObservableCollection<RepeatingAccuracyMeasurementSeriesWrapper>();
+            ObservableCollection<MeasurementSeriesWrapper> wrapperObservableCollection = new ObservableCollection<MeasurementSeriesWrapper>();
 
             for (int i=0; i<measurementSeriesCollection.getMeasurementSeriesLength(); i++)
             {
@@ -18,7 +18,7 @@ namespace SensorGUI.MVVM {
 
                 if (measurementSeries is RepeatingAccuracyMeasurementSeries)
                 {
-                    RepeatingAccuracyMeasurementSeries series = (RepeatingAccuracyMeasurementSeries)measurementSeries;
+                    RepeatingAccuracyMeasurementSeries series = (RepeatingAccuracyMeasurementSeries) measurementSeries;
                     RepeatingAccuracyMeasurementSeriesWrapper wrappedSeries = new RepeatingAccuracyMeasurementSeriesWrapper(series);
 
                     for (int j = 0; j < measurementSeries.getMeasurementsLength(); j++)
@@ -27,6 +27,13 @@ namespace SensorGUI.MVVM {
                         RepeatingAccuracyMeasurementWrapper wrappedRepeatingAccuracyMeasurement = new RepeatingAccuracyMeasurementWrapper(measurement);
                         wrappedSeries.addRepeatingAccuracyMeasurement(wrappedRepeatingAccuracyMeasurement);
                     }
+
+                    wrapperObservableCollection.Add(wrappedSeries);
+                }
+                else 
+                {
+                    WayTimeMeasurementSeries series = (WayTimeMeasurementSeries) measurementSeries;
+                    WayTimeMeasurementSeriesWrapper wrappedSeries = new WayTimeMeasurementSeriesWrapper(series);
 
                     wrapperObservableCollection.Add(wrappedSeries);
                 }
