@@ -11,8 +11,14 @@ namespace SensorGUI.MVVM {
         public ViewModelLocator() {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainWindowViewModel>();
+            SimpleIoc.Default.Register<SaveWindowViewModel>();
+            SimpleIoc.Default.Register<CancelWindowViewModel>();
+            SimpleIoc.Default.Register<ExportWindowViewModel>();
         }
 
         public MainWindowViewModel MainWindow => ServiceLocator.Current.GetInstance<MainWindowViewModel>();
+        public SaveWindowViewModel SaveWindow => ServiceLocator.Current.GetInstance<SaveWindowViewModel>();
+        public CancelWindowViewModel CancelWindow => ServiceLocator.Current.GetInstance<CancelWindowViewModel>();
+        public ExportWindowViewModel ExportWindow => ServiceLocator.Current.GetInstance<ExportWindowViewModel>();
     }
 }

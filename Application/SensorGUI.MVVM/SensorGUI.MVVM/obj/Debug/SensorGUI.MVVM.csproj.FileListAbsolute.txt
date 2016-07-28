@@ -1,28 +1,19 @@
-c:\users\marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.exe.config
-c:\users\marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.exe
-c:\users\marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.pdb
-c:\users\marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.csprojResolveAssemblyReference.cache
-c:\users\marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\App.g.cs
-c:\users\marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM_MarkupCompile.cache
-c:\users\marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM_MarkupCompile.lref
-c:\users\marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.g.resources
-c:\users\marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.Properties.Resources.resources
-c:\users\marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.csproj.GenerateResource.Cache
-c:\users\marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.exe
-c:\users\marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.pdb
-c:\users\marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\FontAwesome.WPF.dll
-c:\users\marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\FontAwesome.WPF.xml
-c:\users\marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\Views\MainWindow.g.cs
-C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\Views\MainWindow.baml
-C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Sparrow.Chart.Wpf.40.dll
-C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Sparrow.Chart.Wpf.40.xml
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.exe.config
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.exe
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.pdb
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\FontAwesome.WPF.dll
 C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.dll
 C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Extras.dll
 C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Platform.dll
 C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Microsoft.Practices.ServiceLocation.dll
 C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\MvvmDialogs.dll
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Sparrow.Chart.Wpf.40.dll
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
 C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\WPFToolkit.dll
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\FontAwesome.WPF.xml
 C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.pdb
 C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.xml
 C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
@@ -32,112 +23,74 @@ C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.M
 C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
 C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Microsoft.Practices.ServiceLocation.xml
 C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\MvvmDialogs.xml
-C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\App.baml
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Sparrow.Chart.Wpf.40.xml
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.csprojResolveAssemblyReference.cache
 C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\Views\CancelWindow.g.cs
-C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\Views\CancelWindow.baml
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\Views\MainWindow.g.cs
 C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\Views\SaveWindow.g.cs
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\App.g.cs
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM_MarkupCompile.cache
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM_MarkupCompile.lref
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\App.baml
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\Views\CancelWindow.baml
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\Views\MainWindow.baml
 C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\Views\SaveWindow.baml
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.g.resources
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.Properties.Resources.resources
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.csproj.GenerateResource.Cache
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.exe
+C:\Users\Marcel\documents\visual studio 2015\Projects\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.pdb
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.exe.config
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.exe
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.pdb
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.exe
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.pdb
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\FontAwesome.WPF.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Extras.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\MvvmDialogs.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Sparrow.Chart.Wpf.40.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\WPFToolkit.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\FontAwesome.WPF.xml
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.pdb
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.xml
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\MvvmDialogs.xml
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Sparrow.Chart.Wpf.40.xml
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.csprojResolveAssemblyReference.cache
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\App.g.cs
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM_MarkupCompile.cache
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM_MarkupCompile.lref
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\App.baml
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.g.resources
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.Properties.Resources.resources
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.csproj.GenerateResource.Cache
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\CancelWindow.g.cs
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\MainWindow.g.cs
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\SaveWindow.g.cs
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\CancelWindow.baml
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\MainWindow.baml
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\SaveWindow.baml
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\ExportWindow.g.cs
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\ExportWindow.baml
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\DynamicDataDisplay.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\DynamicDataDisplay.Maps.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\DynamicDataDisplay.Markers.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\DynamicDataDisplay.Markers2.dll
+C:\Users\Marcel\Documents\SWE\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Parser.dll
 C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.exe.config
 C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.exe
 C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.pdb
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.exe
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.pdb
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\FontAwesome.WPF.dll
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.dll
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Extras.dll
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Platform.dll
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Microsoft.Practices.ServiceLocation.dll
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\MvvmDialogs.dll
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Sparrow.Chart.Wpf.40.dll
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\System.Windows.Interactivity.dll
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\FontAwesome.WPF.xml
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.pdb
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.xml
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Extras.xml
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Platform.xml
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Microsoft.Practices.ServiceLocation.xml
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\MvvmDialogs.xml
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Sparrow.Chart.Wpf.40.xml
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.csprojResolveAssemblyReference.cache
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\App.g.cs
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM_MarkupCompile.cache
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM_MarkupCompile.lref
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\App.baml
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.g.resources
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.Properties.Resources.resources
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.csproj.GenerateResource.Cache
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\CancelWindow.g.cs
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\MainWindow.g.cs
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\SaveWindow.g.cs
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\CancelWindow.baml
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\MainWindow.baml
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\SaveWindow.baml
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\ExportWindow.g.cs
-C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\ExportWindow.baml
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.exe.config
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.exe
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.pdb
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.csprojResolveAssemblyReference.cache
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\CancelWindow.g.cs
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\ExportWindow.g.cs
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\MainWindow.g.cs
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\SaveWindow.g.cs
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\App.g.cs
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\GeneratedInternalTypeHelper.g.cs
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM_MarkupCompile.cache
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM_MarkupCompile.lref
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\App.baml
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\CancelWindow.baml
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\ExportWindow.baml
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\MainWindow.baml
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\SaveWindow.baml
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.g.resources
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.Properties.Resources.resources
-Z:\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.csproj.GenerateResource.Cache
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.exe.config
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.exe
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.pdb
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.exe
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\SensorGUI.MVVM.pdb
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\FontAwesome.WPF.dll
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.dll
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Extras.dll
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Platform.dll
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Microsoft.Practices.ServiceLocation.dll
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\MvvmDialogs.dll
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\PropertyChanged.dll
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Sparrow.Chart.Wpf.40.dll
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\System.Windows.Interactivity.dll
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\FontAwesome.WPF.xml
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.pdb
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.xml
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Extras.xml
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\GalaSoft.MvvmLight.Platform.xml
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Microsoft.Practices.ServiceLocation.xml
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\MvvmDialogs.xml
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\PropertyChanged.xml
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\bin\Debug\Sparrow.Chart.Wpf.40.xml
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.csprojResolveAssemblyReference.cache
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\CancelWindow.g.cs
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\ExportWindow.g.cs
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\MainWindow.g.cs
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\SaveWindow.g.cs
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\App.g.cs
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\GeneratedInternalTypeHelper.g.cs
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM_MarkupCompile.cache
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM_MarkupCompile.lref
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\App.baml
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\CancelWindow.baml
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\ExportWindow.baml
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\MainWindow.baml
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\View\Views\SaveWindow.baml
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.g.resources
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.Properties.Resources.resources
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\SensorGUI.MVVM.csproj.GenerateResource.Cache

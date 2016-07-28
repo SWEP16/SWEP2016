@@ -10,6 +10,7 @@ namespace SensorGUI.MVVM {
         public string Name { get; set; }
         public bool IsTriggerer { get; set; }
         public Guid Id { get; set; }
+
         public User() {
             this.Id = Guid.NewGuid();
         }

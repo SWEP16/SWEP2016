@@ -7,8 +7,11 @@
         xmlns:converter="clr-namespace:SensorGUI.MVVM.Converter"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:sparrow="http://sparrowtoolkit.codeplex.com/wpf"
-        mc:Ignorable="d"
+        xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
         xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+        xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        mc:Ignorable="d"
         md:DialogServiceViews.IsRegistered="True"
         WindowStartupLocation="CenterScreen"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainWindow}"
@@ -19,29 +22,6 @@
             <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" True="Visible" False="Collapsed" />
             <converter:BooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" True="Collapsed" False="Visible" />
             <converter:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
-            <Style TargetType="Button">
-                <Setter Property="Background" Value="#CCCCFF"></Setter>
-                <Setter Property="Foreground" Value="Black"></Setter>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border Background="{TemplateBinding Background}" BorderBrush="#444444" BorderThickness="1,1,0,1">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#FFF1B340"/>
-                    </Trigger>
-                    <Trigger Property="IsEnabled" Value="False">
-                        <Setter Property="Background" Value="#FFADADAD"></Setter>
-                        <Setter Property="Foreground" Value="#FF7A7A7A"></Setter>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
         </ResourceDictionary>
     </Window.Resources>
 
@@ -58,10 +38,11 @@
 
 
         <!--________________________________________Ribbon Menu________________________________________-->
-        <Ribbon Grid.ColumnSpan="2" Loaded="Ribbon_Loaded" Background="White" BorderBrush="#FF00020C">
+        <Ribbon Grid.ColumnSpan="2" Loaded="Ribbon_Loaded" Background="#FF1C4355" BorderBrush="#FF00020C">
             <RibbonTab>
                 <RibbonGroup>
-                    <RibbonMenuButton Label="{Binding ConfigName}" IsEnabled="{Binding ConfigEnabled}" ItemsSource="{Binding Configs}" ToolTip="Auswählen der Konfiguration für Genauigkeitsmessungen oder Weg-Zeit-Messungen" LargeImageSource="/View/Images/Services-96.png" SmallImageSource="/View/Images/Services-96.png">
+                    <RibbonButton Label="{Binding ConfigName}" IsEnabled="{Binding ConfigEnabled}" Command="{Binding ChangeConfigCommand}" ToolTip="Auswählen der Konfiguration für Genauigkeitsmessungen oder Weg-Zeit-Messungen" LargeImageSource="/View/images/Services-96.png" SmallImageSource="/View/images/Services-96.png"></RibbonButton>
+                    <!--RibbonMenuButton Label="{Binding ConfigName}" IsEnabled="{Binding ConfigEnabled}" ItemsSource="{Binding Configs}" ToolTip="Auswählen der Konfiguration für Genauigkeitsmessungen oder Weg-Zeit-Messungen" LargeImageSource="/View/images/Services-96.png" SmallImageSource="/View/images/Services-96.png">
                         <RibbonMenuButton.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Margin="3,0,0,0" Text="{Binding Name}"></TextBlock>
@@ -73,17 +54,17 @@
                                 <Setter Property="CommandParameter" Value="{Binding Id}" />
                             </Style>
                         </RibbonMenuButton.ItemContainerStyle>
-                    </RibbonMenuButton>
+                    </-->
                 </RibbonGroup>
                 <RibbonGroup>
-                    <RibbonButton Label="Messvorgang starten" Command="{Binding MeasurementNewCommand}" ToolTip="Starten des Messvorgangs zur Durchführung der Messungen" LargeImageSource="/View/Images/Document-96.png" SmallImageSource="/View/Images/Document-96.png"/>
-                    <RibbonButton Label="Messvorgang abbrechen" Command="{Binding MeasurementCancelCommand}" ToolTip="Verwerfen des aktuellen Messvorgangs mit allen Messungen" LargeImageSource="/View/Images/Delete-96.png" SmallImageSource="/View/Images/Delete-96.png"/>
-                    <RibbonButton Label="Messvorgang beenden" Command="{Binding MeasurementSaveCommand}" ToolTip="Speichern des aktuellen Messvorgangs mit allen Messungen" LargeImageSource="/View/Images/Save as-96.png" SmallImageSource="/View/Images/Save as-96.png"/>
+                    <RibbonButton Label="Messvorgang starten" Command="{Binding MeasurementNewCommand}" ToolTip="Starten des Messvorgangs zur Durchführung der Messungen" LargeImageSource="/View/images/Document-96.png" SmallImageSource="/View/images/Document-96.png"/>
+                    <RibbonButton Label="Messvorgang abbrechen" Command="{Binding MeasurementCancelCommand}" ToolTip="Verwerfen des aktuellen Messvorgangs mit allen Messungen" LargeImageSource="/View/images/Delete-96.png" SmallImageSource="/View/images/Delete-96.png"/>
+                    <RibbonButton Label="Messvorgang beenden" Command="{Binding MeasurementSaveCommand}" ToolTip="Speichern des aktuellen Messvorgangs mit allen Messungen" LargeImageSource="/View/images/Save as-96.png" SmallImageSource="/View/images/Save as-96.png"/>
                 </RibbonGroup>
                 <RibbonGroup>
-                    <RibbonButton Label="Exportieren..." Command="{Binding ExportCommand}" ToolTip="Exportieren der ausgewählten Messvorgänge nach Excel" LargeImageSource="/View/Images/Export-96.png" SmallImageSource="/View/Images/Export-96.png"/>
-                    <RibbonButton Label="Konfiguration erstellen" Command="{Binding NewConfigCommand}" ToolTip="Erstellen einer Konfiguration für eigene Messvorgänge" LargeImageSource="/View/Images/Support-96.png" SmallImageSource="/View/Images/Support-96.png"/>
-                    <RibbonMenuButton Label="Messvorgänge ansehen" ItemsSource="{Binding MeasurementSeries}" IsEnabled="{Binding SeriesEnabled}" ToolTip="Auflisten der zuletzt durchgeführten Messvorgänge" LargeImageSource="/View/Images/Show Property-96.png" SmallImageSource="/View/Images/Show Property-96.png">
+                    <RibbonButton Label="Exportieren..." Command="{Binding ExportCommand}" ToolTip="Exportieren der ausgewählten Messvorgänge nach Excel" LargeImageSource="/View/images/Export-96.png" SmallImageSource="/View/images/Export-96.png"/>
+                    <RibbonButton Label="Konfiguration erstellen" Command="{Binding NewConfigCommand}" ToolTip="Erstellen einer Konfiguration für eigene Messvorgänge" LargeImageSource="/View/images/Support-96.png" SmallImageSource="/View/images/Support-96.png"/>
+                    <RibbonMenuButton Label="Messvorgänge ansehen" ItemsSource="{Binding MeasurementSeries}" IsEnabled="{Binding SeriesEnabled}" ToolTip="Auflisten der zuletzt durchgeführten Messvorgänge" LargeImageSource="/View/images/Show Property-96.png" SmallImageSource="/View/images/Show Property-96.png">
                         <RibbonMenuButton.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Margin="3,0,0,0" Text="{Binding Name}"></TextBlock>
@@ -99,14 +80,13 @@
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
-        <Grid Grid.Row="1" Visibility="Hidden">
-        <!--Grid Grid.Row="1" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Idle}"-->
-            <Image Source="https://login.hs-osnabrueck.de/nidp/View/Images/hsos-logo.jpg" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+
+        <Grid Grid.Row="1" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Idle}">
+            <Image Source="https://login.hs-osnabrueck.de/nidp/images/hsos-logo.jpg" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
         </Grid>
 
         <!--________________________________________Inhaltsview Wiederholgenauigkeit________________________________________-->
-        <Grid Grid.Row="1" Visibility="Visible">
-        <!--Grid Grid.Row="1" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Genauigkeitsmessung}"-->
+        <Grid Grid.Row="1" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Genauigkeitsmessung}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -254,9 +234,12 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
                 <Grid Background="#FFAAAA" Grid.RowSpan="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
@@ -275,13 +258,13 @@
                 </Grid>
                 <Button Grid.Column="2" Command="{Binding StartCommand}" IsEnabled="{Binding StartEnabled}" Visibility="{Binding StartStop,Converter={StaticResource BooleanToVisibilityConverter}}" ToolTip="Starten der Weg-Zeit-Messung">Start</Button>
                 <Button Grid.Column="2" Command="{Binding StopCommand}" Visibility="{Binding StartStop,Converter={StaticResource InverseBooleanToVisibilityConverter}}" ToolTip="Beenden der aktuellen Weg-Zeit-Messung">Stop</Button>
-                <Button Grid.Column="3" Grid.Row="1" Command="{Binding CalibrateCommand}" ToolTip="Festlegen des aktuellen Messwerts als Ausgangswert (0 mm) für die weiteren Messungen">Kalibrieren</Button>
+                <Button Grid.Column="2" Grid.Row="1" Command="{Binding CalibrateCommand}" ToolTip="Festlegen des aktuellen Messwerts als Ausgangswert (0 mm) für die weiteren Messungen">Kalibrieren</Button>
             </Grid>
 
             <!--________________________________________Value Table________________________________________-->
             <TabControl Grid.ColumnSpan="2" Grid.Row="1">
                 <TabItem Header="Weg-Zeit">
-                    <sparrow:SparrowChart Margin="0,20,20,0">
+                    <!--sparrow:SparrowChart Margin="0,20,20,0">
                         <sparrow:SparrowChart.XAxis>
                             <sparrow:LinearXAxis/>
                         </sparrow:SparrowChart.XAxis>
@@ -296,7 +279,18 @@
                                 <sparrow:DoublePoint Data="3" Value="4"/>
                             </sparrow:SplineSeries.Points>
                         </sparrow:SplineSeries>
-                    </sparrow:SparrowChart>
+                    </-->
+                    <!--DVC:Chart>
+                        <DVC:Chart.Series>
+                            <DVC:LineSeries Visibility="{Binding GraphVisible,Converter={StaticResource BooleanToVisibilityConverter}}" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}" ItemsSource="{Binding CurrentMeasurementSeries.WayTime}">
+                            </DVC:LineSeries>
+                        </DVC:Chart.Series>
+                    </-->
+                    <d3:ChartPlotter Margin="20">
+                        <d3:LineGraph>
+                            
+                        </d3:LineGraph>
+                    </d3:ChartPlotter>
                 </TabItem>
                 <TabItem Header="Geschwindigkeit-Zeit"></TabItem>
                 <TabItem Header="Beschleunigung-Zeit"></TabItem>

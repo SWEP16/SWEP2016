@@ -6,8 +6,10 @@ using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using System.Diagnostics;
 using System.Windows.Threading;
+using commands;
+using usb;
 using model;
-using SensorGUI.MVVM.ViewModel;
+using System.Threading.Tasks;
 
 namespace SensorGUI.MVVM {
     [ImplementPropertyChanged]
@@ -23,6 +25,7 @@ namespace SensorGUI.MVVM {
         public bool SeriesEnabled { get; set; }
         public bool StartEnabled { get; set; }
         public bool StartStop { get; set; }
+        public bool GraphVisible { get; set; }
         public ValueSet AverageValue { get; set; }
         public ValueSet StandardDeviation { get; set; }
         public ValueSet MaxValue { get; set; }
@@ -30,30 +33,39 @@ namespace SensorGUI.MVVM {
         public ValueSet Live { get; set; }
         public ValueSet SelectedMeasurement { get; set; }
         public int SelectedIndex { get; set; }
-        public MeasurementSeriesWrapper CurrentMeasurementSeries { get; set; }
+        public RepeatingAccuracyMeasurementSeriesWrapper CurrentMeasurementSeries { get; set; }
         public ObservableCollection<User> Users { get; set; }
-        public ObservableCollection<MeasurementSeriesWrapper> MeasurementSeries { get; set; }
+        public ObservableCollection<RepeatingAccuracyMeasurementSeriesWrapper> MeasurementSeries { get; set; }
         public ObservableCollection<Configuration> Configs { get; set; }
         public DispatcherTimer DispatcherTimer { get; set; }
         public Stopwatch Stopwatch { get; set; }
         public TimeSpan TimeSpan { get; set; }
         public int IDCounter { get; set; }
 
+        private CommandExecuter executer;
+        private MeasurementSeriesCollection measurementSeriesCollection;
+
         private readonly IDialogService DialogService;
+        private string _path;
         #endregion
         public MainWindowViewModel(IDialogService DialogService) {
             #region Beispieldaten
             this.DialogService = DialogService;
             this.Users = new ObservableCollection<User>();
             this.Configs = new ObservableCollection<Configuration>();
-            //this.MeasurementSeries = new ObservableCollection<MeasurementSeries>();
+            this.MeasurementSeries = new ObservableCollection<RepeatingAccuracyMeasurementSeriesWrapper>();
 
-            /* Florians Model Tests Start*/
-            RepeatingAccuracyMeasurementSeries series = new RepeatingAccuracyMeasurementSeries("Series 1");
-            series.addMeasurement(new RepeatingAccuracyMeasurement(1, 1, 1));
-            ViewModel.ModelToWrappedModelParser parser = new ModelToWrappedModelParser();
-            this.CurrentMeasurementSeries = parser.parse(series);
-            /* Florians Model Tests Ende */
+
+            USBAdaption.init(this);
+
+            Console.WriteLine("After Init");
+
+            this.executer = USBAdaption.getCommandExecuter();
+            this.measurementSeriesCollection = new MeasurementSeriesCollection();
+            this.CurrentMeasurementSeries = new RepeatingAccuracyMeasurementSeriesWrapper(new RepeatingAccuracyMeasurementSeries("Initial Series"));
+            //this.measurementSeriesCollection.addMeasurementSeries(new RepeatingAccuracyMeasurementSeries("Neuer Messvorgang"));
+
+            Console.WriteLine("After get Command Executer");
 
             User u1 = new User { Name = "User 1", IsTriggerer = true };
             User u2 = new User { Name = "User 2", IsTriggerer = false };
@@ -65,6 +77,7 @@ namespace SensorGUI.MVVM {
             this.SeriesEnabled = false;
             this.StartEnabled = true;
             this.StartStop = true;
+            this.GraphVisible = false;
             this.ConfigName = "Konfiguration auswählen...";
             this.Timer = "00:00";
             this.IDCounter = 0;
@@ -76,15 +89,16 @@ namespace SensorGUI.MVVM {
             Configuration c2 = new Configuration { Name = "Weg-Zeit Messung", Id = 1, Config = ConfigView.WegZeitMessung };
             this.Configs.Add(c1);
             this.Configs.Add(c2);
-            this.Live = new ValueSet(new RepeatingAccuracyMeasurement(1, 1, 1)); //new ValueSet { Value1 = 0.1234f, Value2 = 9.7654f, Value3 = 5.9182f };
+            this.Live = new ValueSet { Value1 = 0.1234f, Value2 = 9.7654f, Value3 = 5.9182f };
             #endregion
 
             InitCommands();
-            UpdateExtraValues();
+            update();
 
             u1.NameChanged += U1_NameChanged;
 
             //var _ = UpdateValue();
+            var _ = UpdateLiveValues();
         }
 
         /*private async Task UpdateValue() {
@@ -93,12 +107,48 @@ namespace SensorGUI.MVVM {
                 AppCode = i.ToString();
             }
         }*/
+        private async Task UpdateLiveValues() {
+            while(true) {
+                await Task.Delay(250);
+                for(int i = 0; i < this.CurrentMeasurementSeries.Measurements.Count; i++) {
+                    this.Live.Value1 = this.CurrentMeasurementSeries.Measurements[i].Value1;
+                    this.Live.Value2 = this.CurrentMeasurementSeries.Measurements[i].Value2;
+                    this.Live.Value3 = this.CurrentMeasurementSeries.Measurements[i].Value3;
+                }
+            }
+        }
+        public string Path {
+            get { return _path; }
+            private set { Set(() => Path, ref _path, value); }
+        }
+
+        public void update() 
+        {
+            Console.WriteLine("Update!");
+
+            if(this.measurementSeriesCollection.getMeasurementSeriesLength() > 0) 
+            {
+                this.MeasurementSeries = ModelToWrappedModelParser.parse(this.measurementSeriesCollection);
+                int lastIndex = this.MeasurementSeries.Count - 1;
+
+                this.CurrentMeasurementSeries = this.MeasurementSeries[lastIndex];
+                this.Title = CurrentMeasurementSeries.Name;
+            }
+            else 
+            {
+                this.Title = "";
+            }
+            this.UpdateExtraValues();
+        }
 
         private void UpdateExtraValues() {
-            this.AverageValue = MathHelper.CalculateAverage(this.CurrentMeasurementSeries.Measurements);
-            this.StandardDeviation = MathHelper.CalculateStandardDeviation(this.CurrentMeasurementSeries.Measurements);
-            this.MaxValue = MathHelper.GetMaximum(this.CurrentMeasurementSeries.Measurements);
-            this.MinValue = MathHelper.GetMinimum(this.CurrentMeasurementSeries.Measurements);
+            ObservableCollection<ValueSet> values = RepeatingAccuracyMeasurementToValueSetParser.parse(this.CurrentMeasurementSeries);
+
+            this.AverageValue = MathHelper.CalculateAverage(values);
+            this.StandardDeviation = MathHelper.CalculateStandardDeviation(values);
+            this.MaxValue = MathHelper.GetMaximum(values);
+            this.MinValue = MathHelper.GetMinimum(values);
         }
+
     }
 }

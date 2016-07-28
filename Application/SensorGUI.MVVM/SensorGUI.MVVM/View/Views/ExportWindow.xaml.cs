@@ -12,17 +12,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SensorGUI.MVVM.View.Views {
+namespace SensorGUI.MVVM.Views {
     /// <summary>
     /// Interaktionslogik für ExportWindow.xaml
     /// </summary>
     public partial class ExportWindow : Window {
         public ExportWindow() {
             InitializeComponent();
-        }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e) {
-
         }
     }
 }

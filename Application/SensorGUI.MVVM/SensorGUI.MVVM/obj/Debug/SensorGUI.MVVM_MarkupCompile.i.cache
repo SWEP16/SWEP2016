@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\
+C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\obj\Debug\
 SensorGUI.MVVM
 none
 false
 DEBUG;TRACE
-\\vmware-host\Shared Folders\Dokumente\Programmierung\GitProjects\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\App.xaml
+C:\Users\Marcel\Documents\UNI\SWEP2016\Application\SensorGUI.MVVM\SensorGUI.MVVM\App.xaml
 4-1843904598
 
-411680907558
-751783369607
+71-743368451
+84-879338594
 View\Views\CancelWindow.xaml;View\Views\ExportWindow.xaml;View\Views\MainWindow.xaml;View\Views\SaveWindow.xaml;
 
-False
+True
 
