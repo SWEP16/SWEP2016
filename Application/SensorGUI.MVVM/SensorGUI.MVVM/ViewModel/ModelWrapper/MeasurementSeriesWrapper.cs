@@ -20,14 +20,26 @@ namespace SensorGUI.MVVM {
         }
         public int Id { get; set; }
         public bool ExportChecked { get; set; }
-        public ConfigView Config { get; set; }
-        public MeasurementSeries getOriginal() 
-        {
+        public ConfigView Config {
+
+            get 
+            {
+                if(this is RepeatingAccuracyMeasurementSeriesWrapper) 
+                {
+                    return ConfigView.Genauigkeitsmessung;
+                }
+                else 
+                {
+                    return ConfigView.WegZeitMessung;
+                }
+            }
+            set { }
+        }
+        public MeasurementSeries getOriginal() {
             return this.originalMeasurementSeries;
         }
 
-        public MeasurementSeriesWrapper(MeasurementSeries original) 
-        {
+        public MeasurementSeriesWrapper(MeasurementSeries original) {
             this.originalMeasurementSeries = original;       
         }
     }

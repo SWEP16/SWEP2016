@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SensorGUI.MVVM;
+using SensorGUI.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,14 +21,9 @@ namespace commands {
                 port.Write(usb.StringToHexParser.parse(command), 0, command.Length);
             }
 
-            public override void react(char[] answerData1) {
+            public override void react(char[] answerData1, MainWindowViewModel viewModel) {
                 Console.WriteLine("answer SamplingRate Config: " + new String(answerData1));
-                /*
-                if(answStrArray1[0] != "AO")
-                {
-                    //mach iwas fehlerl ER oderso
-                }
-                */
+                viewModel.update();
             }
 
             public override bool isCorrectAnswerFormat(char[] answerData) {

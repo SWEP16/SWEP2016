@@ -5,6 +5,7 @@ using commands.reactivecommands;
 using commands.simplecommands;
 using System.Threading;
 using SensorGUI.MVVM;
+using System.Runtime.CompilerServices;
 
 namespace commands
 {
@@ -26,6 +27,7 @@ namespace commands
             this.serialPort2 = serialPort2;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void execute(SimpleCommand command)
         {
             try
@@ -40,6 +42,7 @@ namespace commands
             }
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void executeOnPort1(ReactiveHalfCommand command)
         {
             try
@@ -54,9 +57,11 @@ namespace commands
             {
                 Console.Write("Half Reactive Command ist fehlgeschlagen auf Port1...\n");
                 Console.Write(e.Message + "\n");
+                this.viewModel.DisplayErrorMessage(e.Message);
             }
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void executeOnPort2(ReactiveHalfCommand command)
         {
             try
@@ -71,15 +76,26 @@ namespace commands
             {
                 Console.Write("Half Reactive Command ist fehlgeschlagen auf Port2...\n");
                 Console.Write(e.Message + "\n");
+                this.viewModel.DisplayErrorMessage(e.Message);
             }
         }
 
+        public bool areQueuesEmpty() 
+        {
+            bool queue1Empty = this.halfCommandQueuePort1.Count == 0;
+            bool queue2Empty = this.halfCommandQueuePort2.Count == 0;
+
+            return queue1Empty && queue2Empty;
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void execute(ReactiveFullCommand command)
         {
             this.executeOnPort1(command.getHalfCommand1());
             this.executeOnPort2(command.getHalfCommand2());
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void notifyOnPort1(char[] answerData)
         {
             ReactiveHalfCommand command = this.halfCommandQueuePort1.Dequeue();
@@ -87,8 +103,7 @@ namespace commands
             {
                 try
                 {
-                    command.react(answerData);
-                    viewModel.update();
+                    command.react(answerData, this.viewModel);
                    
                     if(this.halfCommandQueuePort1.Count != 0)
                     {
@@ -100,10 +115,12 @@ namespace commands
                 {
                     Console.Write("Reactive Half Command ist im Antwortverhalten fehlgeschlagen...\n");
                     Console.Write(e.Message + "\n");
+                    this.viewModel.DisplayErrorMessage(e.Message);
                 }
             }
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void notifyOnPort2(char[] answerData)
         {
             ReactiveHalfCommand command = this.halfCommandQueuePort2.Dequeue();
@@ -113,8 +130,7 @@ namespace commands
             {
                 try
                 {
-                    command.react(answerData);
-                    viewModel.update();
+                    command.react(answerData, this.viewModel);
 
                     if (this.halfCommandQueuePort2.Count != 0)
                     {
@@ -126,6 +142,7 @@ namespace commands
                 {
                     Console.Write("Reactive Half Command ist im Antwortverhalten fehlgeschlagen...\n");
                     Console.Write(e.Message + "\n");
+                    this.viewModel.DisplayErrorMessage(e.Message);
                 }
             }
         }

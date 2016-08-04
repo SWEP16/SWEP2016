@@ -25,6 +25,7 @@ namespace SensorGUI.MVVM.Helper {
                 z += item.Value3;
             }
             int count = items.Count();
+            
             x /= count;
             y /= count;
             z /= count;

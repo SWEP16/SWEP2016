@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SensorGUI.MVVM;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
@@ -26,7 +27,7 @@ namespace commands {
                 Console.WriteLine("EXECUTE AUTO ZERO OFF COMMAND on Port 2");
             }
 
-            public override void react(char[] answerData1, char[] answerData2) {
+            public override void react(char[] answerData1, char[] answerData2, MainWindowViewModel viewModel) {
                 Console.WriteLine("REACT AutoZeroOffCommand");
                 Console.WriteLine(answerData1);
                 Console.WriteLine(answerData2);

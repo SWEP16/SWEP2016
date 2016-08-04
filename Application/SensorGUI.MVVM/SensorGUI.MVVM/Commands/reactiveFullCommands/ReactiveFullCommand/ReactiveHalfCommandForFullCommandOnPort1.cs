@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SensorGUI.MVVM;
+using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
@@ -24,9 +25,9 @@ namespace commands
                 this.fullCommand.executeOnPort1(port);
             }
 
-            public override void react(char[] answerData)
+            public override void react(char[] answerData, MainWindowViewModel viewModel)
             {
-                this.fullCommand.reactOnPort1(answerData);
+                this.fullCommand.reactOnPort1(answerData, viewModel);
             }
 
             public override bool isCorrectAnswerFormat(char[] answerData)

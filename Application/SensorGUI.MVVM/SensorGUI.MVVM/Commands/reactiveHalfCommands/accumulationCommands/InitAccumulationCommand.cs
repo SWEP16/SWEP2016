@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using model;
+using SensorGUI.MVVM.ViewModel;
+using SensorGUI.MVVM;
 
 namespace commands {
     namespace reactivecommands {
@@ -14,8 +16,8 @@ namespace commands {
                 port.Write(new byte[] { 0x41, 0x51, 0x0D }, 0, 3);
             }
 
-            public override void react(char[] answerData1) {
-                Console.WriteLine("answer initAcc: " + new String(answerData1));
+            public override void react(char[] answerData, MainWindowViewModel viewModel) {
+                Console.WriteLine("answer initAcc: " + new String(answerData));
                 /*
                 if(answStrArray1[0] != "AO")
                 {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SensorGUI.MVVM;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
@@ -32,7 +33,7 @@ namespace commands
                 Console.WriteLine("EXECUTE SWITCH IN NORMAL MODE Port 2");
             }
 
-            public override void react(char[] answerData1, char[] answerData2)
+            public override void react(char[] answerData1, char[] answerData2, MainWindowViewModel viewModel)
             {
                 Console.WriteLine("REACT Normal Mode switch!!!!!");
                 Console.WriteLine(answerData1);

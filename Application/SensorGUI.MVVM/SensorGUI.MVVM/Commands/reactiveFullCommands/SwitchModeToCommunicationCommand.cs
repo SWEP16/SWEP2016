@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SensorGUI.MVVM;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using usb;
@@ -31,7 +32,7 @@ namespace commands
                 port2.Write(commandByteArray, 0, commandByteArray.Length);
             }
 
-            public override void react(char[] answerData1, char[] answerData2)
+            public override void react(char[] answerData1, char[] answerData2, MainWindowViewModel viewModel)
             {
                 Console.WriteLine(answerData1);
                 Console.WriteLine(answerData2);

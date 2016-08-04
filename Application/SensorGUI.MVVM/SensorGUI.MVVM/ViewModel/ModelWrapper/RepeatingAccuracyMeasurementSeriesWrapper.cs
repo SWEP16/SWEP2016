@@ -11,13 +11,11 @@ namespace SensorGUI.MVVM {
     [ImplementPropertyChanged]
     public class RepeatingAccuracyMeasurementSeriesWrapper : MeasurementSeriesWrapper{
 
-        private RepeatingAccuracyMeasurementSeries originalRepeatingAccuracyMeasurementSeriesWrapper;
+       // private RepeatingAccuracyMeasurementSeries originalRepeatingAccuracyMeasurementSeriesWrapper;
 
-        public ObservableCollection<KeyValuePair<double, double>> WayTime { get; set; }
         public ObservableCollection<RepeatingAccuracyMeasurementWrapper> Measurements { get; set; }
 
-        public RepeatingAccuracyMeasurementSeriesWrapper(RepeatingAccuracyMeasurementSeries original) : base(original)
-        {
+        public RepeatingAccuracyMeasurementSeriesWrapper(RepeatingAccuracyMeasurementSeries original) : base(original) {
             this.Measurements = new ObservableCollection<RepeatingAccuracyMeasurementWrapper>();
         }
 

@@ -27,7 +27,6 @@ namespace model {
             }
             else 
             {
-                Console.WriteLine(index);
 
                 return this.measurements.ElementAt(index);
             }

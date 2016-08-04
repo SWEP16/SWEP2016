@@ -15,9 +15,29 @@ namespace SensorGUI.MVVM {
             for (int i=0; i < series.Measurements.Count; i++)
             {
                 ValueSet valueSet = new ValueSet();
-                valueSet.Value1 = (float)(series.Measurements[i].Value1);
-                valueSet.Value2 = (float)(series.Measurements[i].Value2);
-                valueSet.Value3 = (float)(series.Measurements[i].Value3);
+
+                float result;
+                if(float.TryParse(series.Measurements[i].Value1, out result))
+                {
+                    valueSet.Value1 = result;
+                }
+                else 
+                {
+                    valueSet.Value1 = float.PositiveInfinity;
+                }
+
+                if(float.TryParse(series.Measurements[i].Value2, out result)) {
+                    valueSet.Value2 = result;
+                } else {
+                    valueSet.Value2 = float.PositiveInfinity;
+                }
+
+                if(float.TryParse(series.Measurements[i].Value3, out result)) {
+                    valueSet.Value3 = result;
+                } else {
+                    valueSet.Value3 = float.PositiveInfinity;
+                }
+
                 valueSets.Add(valueSet);
             }
 

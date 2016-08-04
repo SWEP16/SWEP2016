@@ -22,19 +22,5 @@ namespace SensorGUI.MVVM {
         {
             SimpleIoc.Default.Register<IDialogService>(() => new DialogService());
         }
-
-        private void printRepeatingAccuracyMeasurementSeries(RepeatingAccuracyMeasurementSeries series) {
-            for (int i = 0; i < series.getMeasurementsLength(); i++)
-            {
-                Console.Write(series.getMeasurement(i).value1 + " " + series.getMeasurement(i).value2 + " " + series.getMeasurement(i).value3 + "\n");
-            }
-        }
-
-        private void printWayTimeMeasurementSeries(WayTimeMeasurementSeries series) {
-            for (int i = 0; i < series.getMeasurementsLength(); i++)
-            {
-                 Console.Write(series.getMeasurement(i).Item1 + " -> " + series.getMeasurement(i).Item2 + "; ");
-            }
-        }
     }
 }

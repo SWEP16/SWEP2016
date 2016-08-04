@@ -6,22 +6,26 @@
         xmlns:local="clr-namespace:SensorGUI.MVVM"
         xmlns:converter="clr-namespace:SensorGUI.MVVM.Converter"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
-        xmlns:sparrow="http://sparrowtoolkit.codeplex.com/wpf"
         xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
         xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
         xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
         md:DialogServiceViews.IsRegistered="True"
         WindowStartupLocation="CenterScreen"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainWindow}"
         Title="{Binding Title, StringFormat=SensorGUI - {0}}" Icon="/View/Images/Robot-96.png"
-        Height="600" Width="800" MinHeight="450" MinWidth="600">
+        Height="660" Width="880" MinHeight="450" MinWidth="650">
     <Window.Resources>
         <ResourceDictionary>
             <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" True="Visible" False="Collapsed" />
             <converter:BooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" True="Collapsed" False="Visible" />
             <converter:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
+            <Style x:Key="LineDataPointStyle" TargetType="{x:Type DVC:LineDataPoint}">
+                <Setter Property="Background" Value="Blue" ></Setter>
+                <Setter Property="Opacity" Value="0" />
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
 
@@ -33,38 +37,27 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
 
         <!--________________________________________Ribbon Menu________________________________________-->
-        <Ribbon Grid.ColumnSpan="2" Loaded="Ribbon_Loaded" Background="#FF1C4355" BorderBrush="#FF00020C">
+        <Border Grid.ColumnSpan="2" BorderThickness="0,1,0,0" BorderBrush="#FF4E8C9E"></Border>
+        <Ribbon Grid.Row="1" Grid.ColumnSpan="2" Loaded="Ribbon_Loaded" BorderBrush="#FF4E8C9E">
             <RibbonTab>
                 <RibbonGroup>
-                    <RibbonButton Label="{Binding ConfigName}" IsEnabled="{Binding ConfigEnabled}" Command="{Binding ChangeConfigCommand}" ToolTip="Auswählen der Konfiguration für Genauigkeitsmessungen oder Weg-Zeit-Messungen" LargeImageSource="/View/images/Services-96.png" SmallImageSource="/View/images/Services-96.png"></RibbonButton>
-                    <!--RibbonMenuButton Label="{Binding ConfigName}" IsEnabled="{Binding ConfigEnabled}" ItemsSource="{Binding Configs}" ToolTip="Auswählen der Konfiguration für Genauigkeitsmessungen oder Weg-Zeit-Messungen" LargeImageSource="/View/images/Services-96.png" SmallImageSource="/View/images/Services-96.png">
-                        <RibbonMenuButton.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Margin="3,0,0,0" Text="{Binding Name}"></TextBlock>
-                            </DataTemplate>
-                        </RibbonMenuButton.ItemTemplate>
-                        <RibbonMenuButton.ItemContainerStyle>
-                            <Style TargetType="{x:Type MenuItem}">
-                                <Setter Property="Command" Value="{Binding DataContext.ChangeConfigCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
-                                <Setter Property="CommandParameter" Value="{Binding Id}" />
-                            </Style>
-                        </RibbonMenuButton.ItemContainerStyle>
-                    </-->
+                    <RibbonButton Label="{Binding ConfigName}" IsEnabled="{Binding ConfigEnabled}" Command="{Binding ChangeConfigCommand}" ToolTip="Auswählen der Konfiguration für Genauigkeitsmessungen oder Weg-Zeit-Messungen" LargeImageSource="/View/Images/Services-96.png" SmallImageSource="/View/Images/Services-96.png" Margin="5,0"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup>
-                    <RibbonButton Label="Messvorgang starten" Command="{Binding MeasurementNewCommand}" ToolTip="Starten des Messvorgangs zur Durchführung der Messungen" LargeImageSource="/View/images/Document-96.png" SmallImageSource="/View/images/Document-96.png"/>
-                    <RibbonButton Label="Messvorgang abbrechen" Command="{Binding MeasurementCancelCommand}" ToolTip="Verwerfen des aktuellen Messvorgangs mit allen Messungen" LargeImageSource="/View/images/Delete-96.png" SmallImageSource="/View/images/Delete-96.png"/>
-                    <RibbonButton Label="Messvorgang beenden" Command="{Binding MeasurementSaveCommand}" ToolTip="Speichern des aktuellen Messvorgangs mit allen Messungen" LargeImageSource="/View/images/Save as-96.png" SmallImageSource="/View/images/Save as-96.png"/>
+                    <RibbonButton Label="Messvorgang starten" Command="{Binding MeasurementNewCommand}" ToolTip="Starten des Messvorgangs zur Durchführung der Messungen" LargeImageSource="/View/Images/Document-96.png" SmallImageSource="/View/Images/Document-96.png" Margin="5,0,0,0"/>
+                    <RibbonButton Label="Messvorgang abbrechen" Command="{Binding MeasurementCancelCommand}" ToolTip="Verwerfen des aktuellen Messvorgangs mit allen Messungen" LargeImageSource="/View/Images/Delete-96.png" SmallImageSource="/View/Images/Delete-96.png" Margin="5,0,0,0"/>
+                    <RibbonButton Label="Messvorgang beenden" Command="{Binding MeasurementSaveCommand}" ToolTip="Speichern des aktuellen Messvorgangs mit allen Messungen" LargeImageSource="/View/Images/Save as-96.png" SmallImageSource="/View/Images/Save as-96.png" Margin="5,0"/>
                 </RibbonGroup>
                 <RibbonGroup>
-                    <RibbonButton Label="Exportieren..." Command="{Binding ExportCommand}" ToolTip="Exportieren der ausgewählten Messvorgänge nach Excel" LargeImageSource="/View/images/Export-96.png" SmallImageSource="/View/images/Export-96.png"/>
-                    <RibbonButton Label="Konfiguration erstellen" Command="{Binding NewConfigCommand}" ToolTip="Erstellen einer Konfiguration für eigene Messvorgänge" LargeImageSource="/View/images/Support-96.png" SmallImageSource="/View/images/Support-96.png"/>
-                    <RibbonMenuButton Label="Messvorgänge ansehen" ItemsSource="{Binding MeasurementSeries}" IsEnabled="{Binding SeriesEnabled}" ToolTip="Auflisten der zuletzt durchgeführten Messvorgänge" LargeImageSource="/View/images/Show Property-96.png" SmallImageSource="/View/images/Show Property-96.png">
+                    <RibbonButton Label="Exportieren..." Command="{Binding ExportCommand}" ToolTip="Exportieren der ausgewählten Messvorgänge nach Excel" LargeImageSource="/View/Images/Export-96.png" SmallImageSource="/View/Images/Export-96.png" Margin="5,0,0,0"/>
+                    <RibbonMenuButton Label="Messvorgänge ansehen" ItemsSource="{Binding MeasurementSeries}" IsEnabled="{Binding SeriesEnabled}" ToolTip="Auflisten der zuletzt durchgeführten Messvorgänge" LargeImageSource="/View/Images/Show Property-96.png" SmallImageSource="/View/Images/Show Property-96.png" Margin="5,0">
                         <RibbonMenuButton.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Margin="3,0,0,0" Text="{Binding Name}"></TextBlock>
@@ -73,20 +66,23 @@
                         <RibbonMenuButton.ItemContainerStyle>
                             <Style TargetType="{x:Type MenuItem}">
                                 <Setter Property="Command" Value="{Binding DataContext.ChangeMeasurementSeriesCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
-                                <Setter Property="CommandParameter" Value="{Binding Id}" />
+                                <Setter Property="CommandParameter" Value="{Binding Id}"/>
                             </Style>
                         </RibbonMenuButton.ItemContainerStyle>
                     </RibbonMenuButton>
                 </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="Hilfe" Command="{Binding HelpCommand}" ToolTip="Anzeige einer Bedienungsanleitung für die Applikation" LargeImageSource="/View/Images/Help-96.png" SmallImageSource="/View/Images/Help-96.png" Margin="5,0"/>
+                </RibbonGroup>
             </RibbonTab>
         </Ribbon>
 
-        <Grid Grid.Row="1" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Idle}">
-            <Image Source="https://login.hs-osnabrueck.de/nidp/images/hsos-logo.jpg" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+        <Grid Grid.Row="2" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Idle}">
+            <Image Source="/View/Images/logo.jpg" Width="500" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
         </Grid>
 
         <!--________________________________________Inhaltsview Wiederholgenauigkeit________________________________________-->
-        <Grid Grid.Row="1" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Genauigkeitsmessung}">
+        <Grid Grid.Row="2" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Genauigkeitsmessung}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -112,56 +108,56 @@
             </Grid>
 
             <!--________________________________________Live Werte________________________________________-->
-            <Grid Grid.Row="1" Background="#ffaaaa">
+            <Grid Grid.Row="1" Background="#FF061A1D">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label HorizontalAlignment="Center" Margin="0,5,0,0">Live-Sensor 1</Label>
-                <TextBlock Grid.Row="1" Text="{Binding Live.Value1}" HorizontalAlignment="Center" Margin="0,0,0,10"></TextBlock>
+                
+                <TextBlock Text="{Binding Live.Value1}" HorizontalAlignment="Center" Margin="0,10,0,0" FontFamily="Digital-7" Foreground="#FFD60000" FontSize="36" FontWeight="Bold"></TextBlock>
+                <Border Grid.Row="1" BorderThickness="0,0,0,2" BorderBrush="DarkRed" Margin="20,0,20,10"></Border>
             </Grid>
-            <Grid Grid.Row="1" Grid.Column="1" Background="#aaffaa">
+            <Grid Grid.Row="1" Grid.Column="1" Background="#FF061A1D">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label HorizontalAlignment="Center" Margin="0,5,0,0">Live-Sensor 2</Label>
-                <TextBlock Grid.Row="1" Text="{Binding Live.Value2}" HorizontalAlignment="Center" Margin="0,0,0,10"></TextBlock>
-            </Grid>
-            <Grid Grid.Row="1" Grid.Column="2" Background="#aaaaff">
+                <TextBlock Text="{Binding Live.Value2}" HorizontalAlignment="Center" Margin="0,10,0,0" FontFamily="Digital-7" Foreground="#FFD60000" FontSize="36" FontWeight="Bold"></TextBlock>
+                <Border Grid.Row="1" BorderThickness="0,0,0,2" BorderBrush="DarkGreen" Margin="20,0,20,10"></Border>            </Grid>
+            <Grid Grid.Row="1" Grid.Column="2" Background="#FF061A1D">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label HorizontalAlignment="Center" Margin="0,5,0,0">Live-Sensor 3</Label>
-                <TextBlock Grid.Row="1" Text="{Binding Live.Value3}" HorizontalAlignment="Center" Margin="0,0,0,10"></TextBlock>
-            </Grid>
+                <TextBlock Text="{Binding Live.Value3}" HorizontalAlignment="Center" Margin="0,10,0,0" FontFamily="Digital-7" Foreground="#FFD60000" FontSize="36" FontWeight="Bold"></TextBlock>
+                <Border Grid.Row="1" BorderThickness="0,0,0,2" BorderBrush="#FF0000C1" Margin="20,0,20,10"></Border>            </Grid>
 
             <!--________________________________________Value Table________________________________________-->
-            <DataGrid Grid.Row="2" Grid.ColumnSpan="3" AutoGenerateColumns="False" HeadersVisibility="Column" ItemsSource="{Binding RASeries.Measurements}" SelectedIndex="{Binding SelectedIndex}" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid Grid.Row="2" Grid.ColumnSpan="3" AutoGenerateColumns="False" HeadersVisibility="Column" ItemsSource="{Binding CurrentAccuracySeries.Measurements}" SelectedIndex="{Binding SelectedIndex}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserResizeRows="False">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="Background" Value="#FF344A6E"/>
+                        <Setter Property="Background" Value="#FF223555"/>
                         <Setter Property="Foreground" Value="#FFFFFF" />
+                        <Setter Property="BorderBrush" Value="#FF223555"/>
                         <Setter Property="HorizontalContentAlignment" Value="Center" />
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Wert 1" Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Sensor 1" Width="*" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Value1}" HorizontalAlignment="Center"></TextBlock>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Wert 2" Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Sensor 2" Width="*" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Value2}" HorizontalAlignment="Center"></TextBlock>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Wert 3" Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Senspr 3" Width="*" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Value3}" HorizontalAlignment="Center"></TextBlock>
@@ -223,7 +219,7 @@
 
 
         <!--________________________________________Inhaltsview Weg-Zeit________________________________________-->
-        <Grid Grid.Row="1" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=WegZeitMessung}">
+        <Grid Grid.Row="2" Visibility="{Binding ConfigView, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=WegZeitMessung}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -240,22 +236,24 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid Background="#FFAAAA" Grid.RowSpan="2">
+                <Grid Background="#FF061A1D" Grid.RowSpan="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label HorizontalAlignment="Center" Margin="0,5,0,0">Live-Sensor</Label>
-                    <TextBlock Grid.Row="1" Text="{Binding Live.Value1}" HorizontalAlignment="Center" Margin="0,0,0,10"></TextBlock>
+                    <TextBlock Text="{Binding Live.Value3}" HorizontalAlignment="Center" Margin="0,11,0,0" FontFamily="Digital-7" Foreground="#FFD60000" FontSize="36" FontWeight="Bold"></TextBlock>
+                    <Border Grid.Row="1" BorderThickness="0,0,0,2" BorderBrush="DarkRed" Margin="20,0,20,16"></Border>
                 </Grid>
-                <Grid Grid.Column="1" Background="#AAAAFF" Grid.RowSpan="2">
+
+                <Grid Grid.Column="1" Background="#FF061A1D" Grid.RowSpan="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label HorizontalAlignment="Center" Margin="0,5,0,0">Timer</Label>
-                    <TextBlock Grid.Row="1" Text="{Binding Timer}" HorizontalAlignment="Center" Margin="0,0,0,10"></TextBlock>
-                </Grid>
+                    <TextBlock Text="{Binding Timer}" HorizontalAlignment="Center" Margin="0,10,0,0" FontFamily="Digital-7" Foreground="#FF0081EC" FontSize="36" FontWeight="Bold"></TextBlock>
+                    <TextBlock Grid.Row="1" Margin="20,0,20,5" HorizontalAlignment="Center" Foreground="#FF0081EC" FontFamily="Digital-7" FontSize="16">Time</TextBlock>
+            </Grid>
+        
                 <Button Grid.Column="2" Command="{Binding StartCommand}" IsEnabled="{Binding StartEnabled}" Visibility="{Binding StartStop,Converter={StaticResource BooleanToVisibilityConverter}}" ToolTip="Starten der Weg-Zeit-Messung">Start</Button>
                 <Button Grid.Column="2" Command="{Binding StopCommand}" Visibility="{Binding StartStop,Converter={StaticResource InverseBooleanToVisibilityConverter}}" ToolTip="Beenden der aktuellen Weg-Zeit-Messung">Stop</Button>
                 <Button Grid.Column="2" Grid.Row="1" Command="{Binding CalibrateCommand}" ToolTip="Festlegen des aktuellen Messwerts als Ausgangswert (0 mm) für die weiteren Messungen">Kalibrieren</Button>
@@ -264,41 +262,84 @@
             <!--________________________________________Value Table________________________________________-->
             <TabControl Grid.ColumnSpan="2" Grid.Row="1">
                 <TabItem Header="Weg-Zeit">
-                    <!--sparrow:SparrowChart Margin="0,20,20,0">
-                        <sparrow:SparrowChart.XAxis>
-                            <sparrow:LinearXAxis/>
-                        </sparrow:SparrowChart.XAxis>
-                        <sparrow:SparrowChart.YAxis>
-                            <sparrow:LinearYAxis/>
-                        </sparrow:SparrowChart.YAxis>
-                        <sparrow:SplineSeries>
-                            <sparrow:SplineSeries.Points>
-                                <sparrow:DoublePoint Data="0" Value="1"/>
-                                <sparrow:DoublePoint Data="1" Value="3"/>
-                                <sparrow:DoublePoint Data="2" Value="2"/>
-                                <sparrow:DoublePoint Data="3" Value="4"/>
-                            </sparrow:SplineSeries.Points>
-                        </sparrow:SplineSeries>
-                    </-->
-                    <DVC:Chart>
-                        <DVC:Chart.Series>
-                            <DVC:LineSeries Visibility="{Binding GraphVisible,Converter={StaticResource BooleanToVisibilityConverter}}" IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}" ItemsSource="{Binding TestSeries.WayTimeMeasurements}">
-                            </DVC:LineSeries>
-                        </DVC:Chart.Series>
-                    </DVC:Chart>
-                    <!--d3:ChartPlotter Margin="20">
-                        <d3:LineGraph>
-                            
-                        </d3:LineGraph>
-                    </-->
+                    <Grid>
+                        <Image gif:ImageBehavior.AnimatedSource="/View/Images/loading.gif" Width="65" Visibility="{Binding Loading,Converter={StaticResource BooleanToVisibilityConverter}}" Panel.ZIndex="1"/>
+                        <DVC:Chart Margin="0,-15,10,-5">
+                            <DVC:Chart.BorderBrush>
+                                <SolidColorBrush Color="Black" Opacity="0"/>
+                            </DVC:Chart.BorderBrush>
+                            <DVC:Chart.Series>
+                                <DVC:LineSeries DataPointStyle="{StaticResource LineDataPointStyle}" Visibility="{Binding GraphVisible,Converter={StaticResource BooleanToVisibilityConverter}}" IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}" ItemsSource="{Binding CurrentWayTimeSeries.WayTimeMeasurements}">
+                                </DVC:LineSeries>
+                            </DVC:Chart.Series>
+                            <DVC:Chart.LegendStyle>
+                                <Style TargetType="Control">
+                                    <Setter Property="Width" Value="0"/>
+                                    <Setter Property="Height" Value="0"/>
+                                </Style>
+                            </DVC:Chart.LegendStyle>
+                            <DVC:Chart.Axes>
+                                <DVC:LinearAxis Orientation="X" Title="Zeit in s"/>
+                                <DVC:LinearAxis Orientation="Y" Title="Weg"/>
+                            </DVC:Chart.Axes>
+                            </DVC:Chart>
+                    </Grid>
                 </TabItem>
-                <TabItem Header="Geschwindigkeit-Zeit"></TabItem>
-                <TabItem Header="Beschleunigung-Zeit"></TabItem>
+                
+                <TabItem Header="Geschwindigkeit-Zeit">
+                    <Grid>
+                        <Image gif:ImageBehavior.AnimatedSource="/View/Images/loading.gif" Width="65" Visibility="{Binding Loading,Converter={StaticResource BooleanToVisibilityConverter}}" Panel.ZIndex="1"/>
+                        <DVC:Chart Margin="0,-15,10,-5">
+                            <DVC:Chart.BorderBrush>
+                                <SolidColorBrush Color="Black" Opacity="0"/>
+                            </DVC:Chart.BorderBrush>
+                            <DVC:Chart.Series>
+                                <DVC:LineSeries DataPointStyle="{StaticResource LineDataPointStyle}" Visibility="{Binding GraphVisible,Converter={StaticResource BooleanToVisibilityConverter}}" IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}" ItemsSource="{Binding CurrentWayTimeSeries.VelocityTimeMeasurements}" Title="{Binding CurrentMeasurementSeries.Name}">
+                                </DVC:LineSeries>
+                            </DVC:Chart.Series>
+                            <DVC:Chart.LegendStyle>
+                                <Style TargetType="Control">
+                                    <Setter Property="Width" Value="0"/>
+                                    <Setter Property="Height" Value="0"/>
+                                </Style>
+                            </DVC:Chart.LegendStyle>
+                            <DVC:Chart.Axes>
+                                <DVC:LinearAxis Orientation="X" Title="Zeit in s"/>
+                                <DVC:LinearAxis Orientation="Y" Title="Geschwindigkeit"/>
+                            </DVC:Chart.Axes>
+                        </DVC:Chart>
+                    </Grid>
+                </TabItem>
+                    
+                <TabItem Header="Beschleunigung-Zeit">
+                    <Grid>
+                        <Image gif:ImageBehavior.AnimatedSource="/View/Images/loading.gif" Width="65" Visibility="{Binding Loading,Converter={StaticResource BooleanToVisibilityConverter}}" Panel.ZIndex="1"/>
+                        <DVC:Chart Margin="0,-15,10,-5">
+                            <DVC:Chart.BorderBrush>
+                                <SolidColorBrush Color="Black" Opacity="0"/>
+                            </DVC:Chart.BorderBrush>
+                            <DVC:Chart.Series>
+                                <DVC:LineSeries DataPointStyle="{StaticResource LineDataPointStyle}" Visibility="{Binding GraphVisible,Converter={StaticResource BooleanToVisibilityConverter}}" IndependentValueBinding="{Binding Path=Item1}" DependentValueBinding="{Binding Path=Item2}" ItemsSource="{Binding CurrentWayTimeSeries.AccelerationTimeMeasurements}">
+                                </DVC:LineSeries>
+                            </DVC:Chart.Series>
+                            <DVC:Chart.LegendStyle>
+                                <Style TargetType="Control">
+                                    <Setter Property="Width" Value="0"/>
+                                    <Setter Property="Height" Value="0"/>
+                                </Style>
+                            </DVC:Chart.LegendStyle>
+                            <DVC:Chart.Axes>
+                                <DVC:LinearAxis Orientation="X" Title="Zeit in s"/>
+                                <DVC:LinearAxis Orientation="Y" Title="Beschleunigung"/>
+                            </DVC:Chart.Axes>
+                        </DVC:Chart>
+                    </Grid>
+                </TabItem>
             </TabControl>
         </Grid>
 
         <!--________________________________________AppUser Verwaltung________________________________________-->
-        <Border Grid.Column="1" Grid.Row="1" BorderBrush="#FF00020C" BorderThickness="2,0,0,2">
+        <Border Grid.Column="1" Grid.Row="2" BorderBrush="#FF00020C" BorderThickness="2,0,0,2">
             <Grid Grid.Column="1" Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -332,5 +373,23 @@
                 </ItemsControl>
             </Grid>
         </Border>
+        <Grid Grid.ColumnSpan="2" Grid.Row="4" Background="#FF1B2323" Visibility="{Binding ErrorVisible,Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="#FFBF0000" FontFamily="Sitka Display" TextWrapping="WrapWithOverflow" FontSize="13" Margin="5,4,0,3"></TextBlock>
+                <Button Grid.Column="1" Command="{Binding HideErrorMessageCommand}" Width="20" Height="20" Margin="1" VerticalAlignment="Top">
+                    <Button.BorderBrush>
+                        <SolidColorBrush Color="Black" Opacity="0"/>
+                    </Button.BorderBrush>
+                    <Button.Background>
+                        <SolidColorBrush Color="Black" Opacity="0"/>
+                    </Button.Background>
+                    <Image Source="/View/Images/Delete-96.png"></Image>
+                </Button>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SensorGUI.MVVM;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,6 +15,8 @@ namespace commands
             private char[] bufferedAnswerData1;
             private char[] bufferedAnswerData2;
 
+            private MainWindowViewModel viewModel;
+
             public ReactiveFullCommand()
             {
                 this.halfCommand1 = new ReactiveHalfCommandForFullCommandOnPort1(this);
@@ -21,11 +24,14 @@ namespace commands
 
                 this.bufferedAnswerData1 = null;
                 this.bufferedAnswerData2 = null;
+
+                this.viewModel = null;
             }
 
             abstract public void executeOnPort1(System.IO.Ports.SerialPort port);
             abstract public void executeOnPort2(System.IO.Ports.SerialPort port);
-            abstract public void react(char[] answerData1, char[] answerData2);
+
+            abstract public void react(char[] answerData1, char[] answerData2, MainWindowViewModel viewModel);
             abstract public bool isCorrectAnswerFormat(char[] answerData);
 
             public void execute(System.IO.Ports.SerialPort port1, System.IO.Ports.SerialPort port2)
@@ -34,23 +40,23 @@ namespace commands
                 this.halfCommand2.execute(port2);
             }
 
-            public void reactOnPort1(char[] answerData)
+            public void reactOnPort1(char[] answerData, MainWindowViewModel viewModel)
             {
                 this.bufferedAnswerData1 = answerData;
                 if (this.bufferedAnswerData2 != null)
                 {
-                    this.react(answerData, bufferedAnswerData2);
+                    this.react(answerData, bufferedAnswerData2, viewModel);
                     this.bufferedAnswerData1 = null;
                     this.bufferedAnswerData2 = null;
                 }
             }
 
-            public void reactOnPort2(char[] answerData)
+            public void reactOnPort2(char[] answerData, MainWindowViewModel viewModel)
             {
                 this.bufferedAnswerData2 = answerData;
                 if (this.bufferedAnswerData1 != null)
                 {
-                    this.react(bufferedAnswerData1, answerData);
+                    this.react(bufferedAnswerData1, answerData, viewModel);
                     this.bufferedAnswerData1 = null;
                     this.bufferedAnswerData2 = null;
                 }

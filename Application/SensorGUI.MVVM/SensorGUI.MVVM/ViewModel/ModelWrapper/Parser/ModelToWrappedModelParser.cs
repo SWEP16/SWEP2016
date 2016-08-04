@@ -20,6 +20,7 @@ namespace SensorGUI.MVVM {
                 {
                     RepeatingAccuracyMeasurementSeries series = (RepeatingAccuracyMeasurementSeries) measurementSeries;
                     RepeatingAccuracyMeasurementSeriesWrapper wrappedSeries = new RepeatingAccuracyMeasurementSeriesWrapper(series);
+                    wrappedSeries.Id = i;
 
                     for (int j = 0; j < measurementSeries.getMeasurementsLength(); j++)
                     {
@@ -34,7 +35,14 @@ namespace SensorGUI.MVVM {
                 {
                     WayTimeMeasurementSeries series = (WayTimeMeasurementSeries) measurementSeries;
                     WayTimeMeasurementSeriesWrapper wrappedSeries = new WayTimeMeasurementSeriesWrapper(series);
-
+                    wrappedSeries.Id = i;
+                    
+                    for(int j=0; j < series.getMeasurementsLength(); j++) 
+                    {
+                        Tuple<double, double> measurement = series.getMeasurement(j);
+                        wrappedSeries.addMeasurement(measurement);
+                    }
+                    
                     wrapperObservableCollection.Add(wrappedSeries);
                 }
             }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using model;
+using SensorGUI.MVVM;
 
 namespace commands
 {
@@ -26,64 +27,67 @@ namespace commands
                 port2.Write(new byte[] { 0x4D, 0x30, 0x0D }, 0, 3);
             }
 
-            public override void react(char[] answerData1, char[] answerData2)
+            public override void react(char[] answerData1, char[] answerData2, MainWindowViewModel viewModel)
             {
                 Console.WriteLine(answerData1);
                 Console.WriteLine(answerData2);
 
-                string answString1 = new string(answerData1);
+                String answString1 = new String(answerData1);
                 answString1 = answString1.Replace(',', ';');
                 answString1 = answString1.Replace('.', ',');
-                string[] answStrArray1 = answString1.Split(';');
+                String[] answStrArray1 = answString1.Split(';');
 
-                string answString2 = new string(answerData2);
+                String answString2 = new String(answerData2);
                 answString2 = answString2.Replace(',', ';');
                 answString2 = answString2.Replace('.', ',');
-                string[] answStrArray2 = answString2.Split(';');
+                String[] answStrArray2 = answString2.Split(';');
 
                 double[] values = new double[3];
-                /*
-                if(answStrArray1[0] != "M0")
-                {
-                    //mach iwas fehlerl ER oderso
-                }
-                */
 
                 String[] possibleAnswers = new String[4];
                 possibleAnswers[0] = answStrArray1[1];
                 possibleAnswers[1] = answStrArray1[2];
                 possibleAnswers[2] = answStrArray2[1];
                 possibleAnswers[3] = answStrArray2[2];
-
+                
                 int counter = 0;
-                for (int i=0; i<4; i++)
+                for (int i=0; i<3; i++)
                 {
-                    try
+                    double result = 0;
+                    if(Double.TryParse(possibleAnswers[i], out result)) 
                     {
-                        values[counter] = Double.Parse(possibleAnswers[i]);
+                        values[i] = result;
                         counter++;
+                    } else {
+                        values[i] = Double.PositiveInfinity;
                     }
-                    catch(Exception e){}
                 }
 
-                if (counter != 3) throw new Exception("Nich alle Laser sind in der Reichweite zur Messung. Abstand verändern!");
-                
                 int measurementSeriesCollectionLength = this.measurementSeriesCollection.getMeasurementSeriesLength();
                 MeasurementSeries series = this.measurementSeriesCollection.getMeasurementSeries(measurementSeriesCollectionLength - 1);
 
-                Console.WriteLine("Trigger modelmodifikation");
 
                 if(series is RepeatingAccuracyMeasurementSeries)
                 {
-                    Console.WriteLine(values[0] + " " + values[1] + " " + values[2]);
-
                     RepeatingAccuracyMeasurementSeries repeatingAccuracyMeasurementSeries = (RepeatingAccuracyMeasurementSeries)(series);
                     repeatingAccuracyMeasurementSeries.addMeasurement(new RepeatingAccuracyMeasurement(values[0], values[1], values[2]));
                 }
                 else
                 {
-                    throw new Exception("Trigger Command kann nur auf Wiederholgenauigkeitsmessungen ausgeführt werden!");
+                    throw new Exception("Aktuelle Messreihe ist keine Genauigkeitsmessung.");
                 }
+
+                
+
+                if(counter != 3) 
+                {
+                    viewModel.update();
+                    
+                    throw new Exception("Der Messsenor liefert keinen gültigen Wert. Mögliche Ursachen dafür können beispielsweise sein, " +
+                       "dass der Laser nicht ordnungsgemäß angeschlossen ist oder das Messobjekt sich außerhalb der Reichweite befindet. ");
+                }
+
+                viewModel.update();
             }
             
 

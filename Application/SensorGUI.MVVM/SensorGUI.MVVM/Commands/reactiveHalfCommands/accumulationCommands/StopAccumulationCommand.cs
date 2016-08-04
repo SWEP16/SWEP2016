@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using model;
+using SensorGUI.MVVM;
 
 namespace commands {
     namespace reactivecommands {
@@ -14,7 +15,7 @@ namespace commands {
                 port.Write(new byte[] { 0x41, 0x50, 0x0D }, 0, 3);
             }
 
-            public override void react(char[] answerData) {
+            public override void react(char[] answerData, MainWindowViewModel viewModel) {
                 Console.WriteLine("answer StopAcc: " + new String(answerData));
                 /*
                 if(answStrArray1[0] != "AP")

@@ -10,6 +10,7 @@ using commands;
 using usb;
 using model;
 using System.Threading.Tasks;
+using commands.reactivecommands;
 
 namespace SensorGUI.MVVM {
     [ImplementPropertyChanged]
@@ -26,70 +27,64 @@ namespace SensorGUI.MVVM {
         public bool StartEnabled { get; set; }
         public bool StartStop { get; set; }
         public bool GraphVisible { get; set; }
+        public bool Loading { get; set; }
         public ValueSet AverageValue { get; set; }
         public ValueSet StandardDeviation { get; set; }
         public ValueSet MaxValue { get; set; }
         public ValueSet MinValue { get; set; }
-        public ValueSet Live { get; set; }
-        public ValueSet SelectedMeasurement { get; set; }
+        public RepeatingAccuracyMeasurementWrapper Live { get; set; }
+        //public ValueSet SelectedMeasurement { get; set; }
         public int SelectedIndex { get; set; }
+        public string ErrorMessage { get; set; }
+        public bool ErrorVisible { get; set; }
+        public ObservableCollection<MeasurementSeriesWrapper> MeasurementSeries { get; set; }
         public MeasurementSeriesWrapper CurrentMeasurementSeries { get; set; }
-        public WayTimeMeasurementSeriesWrapper TestSeries { get; set; }
-        public RepeatingAccuracyMeasurementSeriesWrapper RASeries { get; set; }
-        /*public RepeatingAccuracyMeasurementSeriesWrapper CurrentMeasurementSeriesAsRepeatingAccurcyMeasurementSeries 
-        {
-            get 
-            {
-                if(CurrentMeasurementSeriesAsRepeatingAccurcyMeasurementSeries is RepeatingAccuracyMeasurementSeriesWrapper)
-                {
+        public RepeatingAccuracyMeasurementSeriesWrapper CurrentAccuracySeries {
+            get {
+                if(CurrentMeasurementSeries is RepeatingAccuracyMeasurementSeriesWrapper) {
                     return (RepeatingAccuracyMeasurementSeriesWrapper)(this.CurrentMeasurementSeries);
                 }
                 return new RepeatingAccuracyMeasurementSeriesWrapper(new RepeatingAccuracyMeasurementSeries("Messreihe um Rendering der View nicht zu behindern."));
             }
+            set { }
         }
-
-        public WayTimeMeasurementSeriesWrapper CurrentMeasurementSeriesAsWayTimeMeasurementSeries 
-        {
-            get 
-            {
-                if(CurrentMeasurementSeriesAsRepeatingAccurcyMeasurementSeries is RepeatingAccuracyMeasurementSeriesWrapper) {
+        public WayTimeMeasurementSeriesWrapper CurrentWayTimeSeries {
+            get {
+                if(CurrentMeasurementSeries is WayTimeMeasurementSeriesWrapper) {
                     return (WayTimeMeasurementSeriesWrapper)(this.CurrentMeasurementSeries);
                 }
                 return new WayTimeMeasurementSeriesWrapper(new WayTimeMeasurementSeries("Messreihe um Rendering der View nicht zu behindern."));
             }
             set { }
-        }*/
-
+        }
         public ObservableCollection<User> Users { get; set; }
-        public ObservableCollection<MeasurementSeriesWrapper> MeasurementSeries { get; set; }
-        public ObservableCollection<Configuration> Configs { get; set; }
+
         public DispatcherTimer DispatcherTimer { get; set; }
         public Stopwatch Stopwatch { get; set; }
         public TimeSpan TimeSpan { get; set; }
-        public int IDCounter { get; set; }
 
         private CommandExecuter executer;
         private MeasurementSeriesCollection measurementSeriesCollection;
 
         private readonly IDialogService DialogService;
         private string _path;
+        public string Path {
+            get { return _path; }
+            private set { Set(() => Path, ref _path, value); }
+        }
         #endregion
         public MainWindowViewModel(IDialogService DialogService) {
-            #region Beispieldaten
             this.DialogService = DialogService;
             this.Users = new ObservableCollection<User>();
-            this.Configs = new ObservableCollection<Configuration>();
             this.MeasurementSeries = new ObservableCollection<MeasurementSeriesWrapper>();
 
-            
+
             USBAdaption.init(this);
 
             Console.WriteLine("After Init");
 
             this.executer = USBAdaption.getCommandExecuter();
             this.measurementSeriesCollection = new MeasurementSeriesCollection();
-            //this.CurrentMeasurementSeries = new RepeatingAccuracyMeasurementSeriesWrapper(new RepeatingAccuracyMeasurementSeries("Initial Series"));
-            //this.measurementSeriesCollection.addMeasurementSeries(new RepeatingAccuracyMeasurementSeries("Neuer Messvorgang"));
 
             Console.WriteLine("After get Command Executer");
 
@@ -104,73 +99,45 @@ namespace SensorGUI.MVVM {
             this.StartEnabled = true;
             this.StartStop = true;
             this.GraphVisible = false;
+            this.Loading = false;
             this.ConfigName = "Konfiguration auswählen...";
-            this.Timer = "00:00:00";
-            this.IDCounter = 0;
+            this.Timer = "00:00";
             this.AppCode = "1337";
             this.DispatcherTimer = new DispatcherTimer();
             this.DispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
             this.DispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
-            Configuration c1 = new Configuration { Name = "Genauigkeitsmessung", Id = 0, Config = ConfigView.Genauigkeitsmessung };
-            Configuration c2 = new Configuration { Name = "Weg-Zeit Messung", Id = 1, Config = ConfigView.WegZeitMessung };
-            this.Configs.Add(c1);
-            this.Configs.Add(c2);
-            this.Live = new ValueSet { Value1 = 0.1234f, Value2 = 9.7654f, Value3 = 5.9182f };
-            #endregion
-
+            this.ErrorVisible = false;
             InitCommands();
-            update();
+            this.update();
 
             u1.NameChanged += U1_NameChanged;
 
-            //var _ = UpdateValue();
-            //var _ = UpdateLiveValues();
+            var _ = StartLiveUpdate();
         }
 
-        /*private async Task UpdateValue() {
-            for(int i = 0; i < 10; i++) {
-                await Task.Delay(1000);
-                AppCode = i.ToString();
-            }
-        }*/
-        /*private async Task UpdateLiveValues() {
+
+        private async Task StartLiveUpdate() {
             while(true) {
                 await Task.Delay(250);
-                for(int i = 0; i < this.CurrentMeasurementSeries.Measurements.Count; i++) {
-                    this.Live.Value1 = this.CurrentMeasurementSeries.Measurements[i].Value1;
-                    this.Live.Value2 = this.CurrentMeasurementSeries.Measurements[i].Value2;
-                    this.Live.Value3 = this.CurrentMeasurementSeries.Measurements[i].Value3;
+                if(this.executer.areQueuesEmpty() && (ConfigView == ConfigView.Genauigkeitsmessung || ConfigView == ConfigView.WegZeitMessung)) {
+                    this.executer.execute(new ReadValueCommand());
                 }
             }
-        }*/
-        public string Path {
-            get { return _path; }
-            private set { Set(() => Path, ref _path, value); }
         }
 
+
         public void update() {
-            Console.WriteLine("Update!");
+            this.MeasurementSeries = ModelToWrappedModelParser.parse(this.measurementSeriesCollection);
+            int lastIndex = this.MeasurementSeries.Count - 1;
 
             if(this.measurementSeriesCollection.getMeasurementSeriesLength() > 0) {
-                this.MeasurementSeries = ModelToWrappedModelParser.parse(this.measurementSeriesCollection);
-                int lastIndex = this.MeasurementSeries.Count - 1;
-
                 this.CurrentMeasurementSeries = this.MeasurementSeries[lastIndex];
                 this.Title = CurrentMeasurementSeries.Name;
-                if(this.CurrentMeasurementSeries is RepeatingAccuracyMeasurementSeriesWrapper) {
-                    this.TestSeries = new WayTimeMeasurementSeriesWrapper(new WayTimeMeasurementSeries("Error"));
-                    RepeatingAccuracyMeasurementSeriesWrapper currentMeasurementSeriesAsRepeatingAccuracyMeasurementSeries = (RepeatingAccuracyMeasurementSeriesWrapper)(this.CurrentMeasurementSeries);
-                    this.RASeries = currentMeasurementSeriesAsRepeatingAccuracyMeasurementSeries;
-                } else {
-                    this.RASeries = new RepeatingAccuracyMeasurementSeriesWrapper(new RepeatingAccuracyMeasurementSeries("Error"));
-                    WayTimeMeasurementSeriesWrapper currentMeasurementSeriesAsWayTimeMeasurementSeries = (WayTimeMeasurementSeriesWrapper)(this.CurrentMeasurementSeries);
-                    this.TestSeries = currentMeasurementSeriesAsWayTimeMeasurementSeries;
-                }
-                
-            }
-            else {
+            } else {
                 this.Title = "";
+                this.CurrentMeasurementSeries = null;
             }
+            this.Loading = false;
             this.UpdateExtraValues();
         }
 
@@ -183,7 +150,24 @@ namespace SensorGUI.MVVM {
                 this.StandardDeviation = MathHelper.CalculateStandardDeviation(values);
                 this.MaxValue = MathHelper.GetMaximum(values);
                 this.MinValue = MathHelper.GetMinimum(values);
+            } else {
+                this.AverageValue = new ValueSet { Value1 = 0, Value2 = 0, Value3 = 0 };
+                this.StandardDeviation = new ValueSet { Value1 = float.NaN, Value2 = float.NaN, Value3 = float.NaN };
+                this.MaxValue = new ValueSet { Value1 = 0, Value2 = 0, Value3 = 0 };
+                this.MinValue = new ValueSet { Value1 = 0, Value2 = 0, Value3 = 0 };
             }
+        }
+
+        public void UpdateLiveValues(RepeatingAccuracyMeasurement measurement) {
+            this.Live = new RepeatingAccuracyMeasurementWrapper(measurement);
+            //Console.WriteLine("val 3: " + measurement.value3);
+        }
+
+        public void DisplayErrorMessage(string ErrorText) {
+            this.ErrorMessage = ErrorText;
+            this.ErrorVisible = true;
+            //ShowErrorDialog(ViewModel => DialogService.ShowDialog<SensorGUI.MVVM.Views.ErrorWindow>(this, ViewModel));
+            //MessageBoxResult result = this.DialogService.ShowMessageBox(this, ErrorText, ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

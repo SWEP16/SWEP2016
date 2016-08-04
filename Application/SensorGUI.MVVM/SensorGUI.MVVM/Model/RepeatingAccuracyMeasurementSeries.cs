@@ -18,15 +18,12 @@ namespace model {
         public RepeatingAccuracyMeasurement getMeasurement(int index) {
             if(index >= this.getMeasurementsLength()) {
                 throw new MeasurementDoesntExistException();
-                //return 0;
-            }
-            else {
+            } else {
                 return this.measurements.ElementAt(index);
             }
         }
 
-        public void removeMeasurement(int index) 
-        {
+        public void removeMeasurement(int index) {
             this.measurements.RemoveAt(index);
         }
 

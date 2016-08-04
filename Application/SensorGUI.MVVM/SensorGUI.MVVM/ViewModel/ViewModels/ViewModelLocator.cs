@@ -14,11 +14,13 @@ namespace SensorGUI.MVVM {
             SimpleIoc.Default.Register<SaveWindowViewModel>();
             SimpleIoc.Default.Register<CancelWindowViewModel>();
             SimpleIoc.Default.Register<ExportWindowViewModel>();
+            SimpleIoc.Default.Register<ErrorWindowViewModel>();
         }
 
         public MainWindowViewModel MainWindow => ServiceLocator.Current.GetInstance<MainWindowViewModel>();
         public SaveWindowViewModel SaveWindow => ServiceLocator.Current.GetInstance<SaveWindowViewModel>();
         public CancelWindowViewModel CancelWindow => ServiceLocator.Current.GetInstance<CancelWindowViewModel>();
         public ExportWindowViewModel ExportWindow => ServiceLocator.Current.GetInstance<ExportWindowViewModel>();
+        public ErrorWindowViewModel ErrorWindow => ServiceLocator.Current.GetInstance<ErrorWindowViewModel>();
     }
 }

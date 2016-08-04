@@ -17,26 +17,46 @@ namespace SensorGUI.MVVM {
             this.originalRepeatingAccuracyMeasurement = original;
         }
 
-        public float Value1 {
+        public string Value1 {
             get
             {
-                return Math.Abs((float)this.originalRepeatingAccuracyMeasurement.value1);
+                double value = this.originalRepeatingAccuracyMeasurement.value1;
+                if(value == double.PositiveInfinity) 
+                {
+                    return "FFFFFF";
+                }
+                else 
+                {
+                    return value.ToString();
+                }
             }
             set { }
         }
-        public float Value2
+        public string Value2
         {
             get
             {
-                return Math.Abs((float)this.originalRepeatingAccuracyMeasurement.value2);
+                double value = this.originalRepeatingAccuracyMeasurement.value2;
+                if(value == double.PositiveInfinity) {
+                    return "FFFFFF";
+                }
+                else {
+                    return value.ToString();
+                }
             }
             set { }
         }
-        public float Value3
+        public string Value3
         {
             get
             {
-                return Math.Abs((float)this.originalRepeatingAccuracyMeasurement.value3);
+                double value = this.originalRepeatingAccuracyMeasurement.value3;
+                if(value == double.PositiveInfinity) {
+                    return "FFFFFF";
+                }
+                else {
+                    return value.ToString();
+                }
             }
             set { }
         }
